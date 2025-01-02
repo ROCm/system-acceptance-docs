@@ -1,0 +1,21 @@
+root: index.md
+subtrees:
+  - caption: Prerequisites
+    entries:
+      - file: prequisites/index.md
+  - caption: Health Checks
+    entries:
+      - file: health-checks/index.md
+  - caption: System Validation
+    entries:
+      - file: system-validation/index.md
+  - caption: Performance Benchmarking
+    entries:
+      - file: performance-bench/index.md
+    - caption: Acceptance Criteria
+    entries:
+      - file: acceptance-criteria/index.md
+    - caption: Next Steps
+    entries:
+      - file: next-steps/index.md
+      
