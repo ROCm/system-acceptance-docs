@@ -2,10 +2,16 @@ root: index.rst
 subtrees:
   - caption: AMD Instinct MI300X
     entries:
-      - file: prequisites/mi300x.rst
+      - file: prerequisites/mi300x.rst
       - file: health-checks/mi300x.rst
       - file: system-validation/mi300x.rst
       - file: performance-bench/mi300x.rst
       - file: acceptance-criteria/mi300x.rst
       - file: next-steps/mi300x.rst
       - file: reference/appendix.rst
+  - caption: Reference
+    entries:
+      - file: reference/acronyms.rst
+      - file: reference/rocm-techsupport.rst
+      - file: reference/reference-documentation.rst
+      - file: reference/notices.rst
