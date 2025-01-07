@@ -16,36 +16,35 @@ determine system health. Links to supporting documentation are also
 included for reference.
 
 Prior to system validation, the system operator should refer to
-**Chapter 2: Prerequisites** to ensure the server has a supported OS
-installed and is configured with recommended BIOS, GRUB, and OS settings
-to ensure proper operation and peak performance operation.
+:ref:`Prerequisites <mi300x-sv-prerequisites>` to ensure the server has a
+supported OS installed and is configured with recommended BIOS, GRUB, and OS
+settings to ensure proper operation and peak performance operation.
 
-**Chapter 3: Basic System Health Checks** provides the recommended tests
-to validate the system health and configuration of the system across the
-OS, boot configuration, host memory, and GPU connectivity.
+:ref:`Basic system health checks <mi300x-sv-system-health-checks>` provides the
+recommended tests to validate the system health and configuration of the system
+across the OS, boot configuration, host memory, and GPU connectivity.
 
-**Chapter 4: System Validation Tests** provides the recommended tests to
-validate the system’s Compute (GPUs), Memory, IO and Power using the
-ROCm Validation Suite (RVS).
+:ref:`System validation tests <mi300x-sv-system-validation-tests>` provides the
+recommended tests to validate the system’s Compute (GPUs), Memory, IO and Power
+using the ROCm Validation Suite (RVS).
 
-**Chapter 5: Performance Benchmarking** provides a list of
-microbenchmarks to validate the performance of the GPUs in the system.
+:ref:`Performance benchmarking <mi300x-sv-performance-benchmarking>` provides a
+list of microbenchmarks to validate the performance of the GPUs in the system.
 Tests include TransferBench, RCCL, rocBLAS, and BabelStream.
 
-**Chapter 6: Acceptance Criteria** provides a summary of the commands
-and PASS/FAIL criteria to compare against recently gathered test
-results. This comparison is the basis for customer acceptance of a
-tested server. By changing one parameter at a time and repeating
-specific tests in earlier chapters, new results can be compared to the
-baseline data gathered to ensure the best performance for your targeted
-application(s).
+:ref:`Acceptance criteria <mi300x-sv-acceptance-criteria>` provides a summary
+of the commands and PASS/FAIL criteria to compare against recently gathered
+test results. This comparison is the basis for customer acceptance of a tested
+server. By changing one parameter at a time and repeating specific tests in
+earlier chapters, new results can be compared to the baseline data gathered to
+ensure the best performance for your targeted application(s).
 
 After completing the tests outlined in this guide to determine if the
 server/system under test (SUT) meets expected functionality and
 performance, you should proceed to review the recommended referenced
 documents in `Appendix B <#appendix-b-reference-documents>`__ and move
 to the next stage of performance validation testing and optimization
-outlined in `Chapter 7: Next Steps <#chapter-7-next-steps>`__.
+outlined in :ref:`Next steps <mi300x-sv-next-steps>`.
 
 .. _mi300x-sv-prerequisites:
 
@@ -67,21 +66,23 @@ reach out to your system manufacturer.
 This section describes which server settings to configure prior to
 testing including:
 
-- System BIOS Settings
+- :ref:`System BIOS settings <mi300x-sv-bios-settings>`
 
-- Supported Operating Systems
+- :ref:`Supported operating systems <mi300x-sv-supported-os>`
 
-- GRUB Settings
+- :ref:`GRUB settings <mi300x-sv-grub-settings>`
 
-- Operating System Settings
+- :ref:`Operating system settings <mi300x-sv-os-settings>`
 
-- Updating System Firmware
+- :ref:`Updating system firmware <mi300x-sv-system-firmware>`
 
-- ROCm Installation
+- :ref:`ROCm installation <mi300x-rocm-installation>`
 
-**NOTE:** Before changing any system settings and doing testing, it is
-recommended to record existing production system settings to allow the
-system to be returned to the original settings.
+.. note::
+
+   Before changing any system settings and doing testing, it is recommended to
+   record existing production system settings to allow the system to be
+   returned to the original settings.
 
 .. _mi300x-sv-bios-settings:
 
@@ -583,6 +584,8 @@ Refer to `Appendix C Collecting
 Logs <#pappendix-c-collecting-logs-rocm_techsupport.sh>`__ for
 information on the rocm_techsupport.sh script utility from AMD which
 collect system logs for purpose of support and troubleshooting.
+
+.. _mi300x-sv-system-validation-tests:
 
 System validation tests
 =======================
@@ -1710,8 +1713,10 @@ Result:
   - Action: Do not proceed further. Report this issue to your system
     manufacturer immediately.
 
-Chapter 5: Performance Benchmarking
-===================================
+.. _mi300x-sv-performance-benchmarking:
+
+Performance benchmarking
+========================
 
 The benchmarking tests outlined in this chapter validate compute, IO,
 and memory performance for all eight GPUs in a server system. The
@@ -2631,8 +2636,10 @@ BabelStream Benchmarking
    |    Dot        |    3,660,781                                         |
    +---------------+------------------------------------------------------+
 
-Chapter 6: Acceptance Criteria
-==============================
+.. _mi300x-sv-acceptance-criteria:
+
+Acceptance criteria
+===================
 
 If all the Results section PASSED, the SUT is ready and should be
 accepted.
@@ -2819,8 +2826,10 @@ accepted.
    |           |                            | **Fail:** Otherwise         |
    +-----------+----------------------------+-----------------------------+
 
-Chapter 7: Next Steps
-=====================
+.. _mi300x-sv-next-steps:
+
+Next steps
+==========
 
 After successfully completing the tests mentioned in this guide, the
 System Under Test (SUT) meets the customer acceptance criteria. The test
