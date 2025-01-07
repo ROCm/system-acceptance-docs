@@ -12,8 +12,8 @@ mentioned below. Refer to the `Appendix
 B <#appendix-b-reference-documents>`__ for a list of links to all
 referenced documentation in this guide.
 
-7.1 MI300X AI Model Performance Validation Guide
-------------------------------------------------
+MI300X AI model performance validation
+--------------------------------------
 
 Larger AI applications, such as Large Language Models, are beyond the
 scope of this document for system acceptance guidance. However, the SUT
@@ -27,8 +27,8 @@ and the `Performance Validation
 Guide <https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/product-briefs/amd-instinct-mi300x-performance-validation-guide.pdf>`__
 is available on the AMD Documentation Hub.
 
-7.2 MI300X Cluster Network Performance Validation Guide
--------------------------------------------------------
+MI300X cluster network performance validation
+---------------------------------------------
 
 After validating single node performance, it is now time to configure
 each server for maximum data transfer and bandwidth. It's essential to
@@ -41,8 +41,8 @@ step-by-step instructions on configuring network settings, devices, and
 running performance tests to ensure AMD Instinct MI300X based GPU
 clusters operate at peak speed and bandwidth.
 
-7.3 MI300X Workload Optimization Guide
---------------------------------------
+MI300X workload optimization
+----------------------------
 
 Once the system and networking have been fully validated, it is
 recommended to review the `Workload Optimization
