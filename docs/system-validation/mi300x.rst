@@ -1,5 +1,3 @@
-.. _mi300x-sv-system-validation-tests:
-
 System validation tests
 =======================
 
@@ -9,19 +7,23 @@ Validation Suite (rvs) is used which is a collection of tests,
 benchmarks, and qualification tools, each targeting a specific subsystem
 of the SUT.
 
-| If not already installed on the SUT, run the following install command
-  (Ubuntu):
-| :mark:`sudo apt install rocm-validation-suite`
+If not already installed on the SUT, run the following install command
+(Ubuntu):
 
-Then ensure that the path to the rvs executable, located at
-:mark:`/opt/rocm/bin`\ **,** is added to the path. Use the following
-command:
+.. code-block:: shell
 
-:mark:`export PATH=$PATH:/opt/rocm/bin`
+   sudo apt install rocm-validation-suite
 
-The rvs tool consists of modules (each module implements a particular
-test functionality). The collection of the modules can be broadly
-categorized as targeting the following aspects of the hardware platform:
+Then ensure that the path to the ``rvs`` executable, located at
+``/opt/rocm/bin``, is added to the path. Use the following command:
+
+.. code-block:: shell
+
+   export PATH=$PATH:/opt/rocm/bin
+
+The ``rvs`` tool consists of modules where each module implements a particular
+test functionality. The collection of the modules can be broadly categorized as
+targeting the following aspects of the hardware platform:
 
 - Compute / GPU
 
@@ -29,42 +31,42 @@ categorized as targeting the following aspects of the hardware platform:
 
 - IO / PCIe
 
-Each *category* listed above runs a subset of rvs modules to validate
-that the category is working as expected. The standard way to run an rvs
-module is by providing a configuration file prefixed with the -c option.
-When rvs is installed properly on the SUT, the **conf** files are found
-in the following folder:
+Each of these categories runs a subset of ``rvs`` modules to validate that the
+category is working as expected.
 
-:mark:`/opt/rocm/share/rocm-validation-suite/conf/`
+The standard way to run an ``rvs`` module is by providing a configuration file
+prefixed with the ``-c`` option. When ``rvs`` is installed properly on the SUT,
+the **conf** files are found in the
+``/opt/rocm/share/rocm-validation-suite/conf/`` folder. Since this path is a
+part of every ``rvs`` command in this document, an environment variable is
+defined which will be used in place of the long path for commands and their
+output. To set this variable in the environment, run the following command:
 
-Since this path is a part of every rvs command in this document, an
-environment variable is defined which will be used in place of the long
-path for commands and their output. To set this variable in the
-environment, run the following command:
+.. code-block:: shell
 
-:mark:`export RVS_CONF=/opt/rocm/share/rocm-validation-suite/conf`
+   export RVS_CONF=/opt/rocm/share/rocm-validation-suite/conf
 
 The configuration files section of the `ROCm Validation Suite User
 Guide <https://github.com/ROCm/ROCmValidationSuite/blob/master/docs/ug1main.md#configuration-files>`__
-provides detailed description about the conf file, it’s formation, and
-keys. It is advisable to become familiar with the conf file format
-before running the rvs tests described below. Be aware, some conf files
+provides detailed description about the conf file, its formation, and
+keys. It is advisable to become familiar with the ``conf`` file format
+before running the ``rvs`` tests described below. Be aware, some ``conf`` files
 are included in product specific sub-folders (i.e.
 :mark:`=/opt/rocm/share/rocm-validation-suite/conf/MI300X`). If present,
 always use GPU specific configurations instead of default test
 configurations.
 
 In the following subsections, under each of the categories, the relevant
-rvs test modules are listed along with descriptions how the category is
-validated. Example rvs commands with the expected output are also
-provided. Most of the rvs tests do not have strict PASS / FAIL
-conditions reported, rather it is expected that when they are run on the
-SUT, the output observed are within a reasonable range provided.
+``rvs`` test modules are listed along with descriptions how the category is
+validated. Example ``rvs`` commands with the expected output are also provided.
+Most of the ``rvs`` tests do not have strict PASS / FAIL conditions reported,
+rather it is expected that when they are run on the SUT, the output observed
+are within a reasonable range provided.
 
 Compute / GPU
 -------------
 
-The rvs has three different *types* of modules to validate the Compute
+The ``rvs`` has three different *types* of modules to validate the Compute
 subsystem. These are:
 
 - Properties
@@ -73,45 +75,34 @@ subsystem. These are:
 
 - Monitor
 
-MI300X GPU accelerators have many architectural features. Similar to
-section `3.2 Check GPU Presence (lspci) <#_3.2_Check_GPU>`__, rvs has an
-option to display all MI300X GPU accelerators present in the SUT. Before
-proceeding with the modules below, run the following command to make
-sure all the GPUs are seen with their correct PCIe properties.
+MI300X GPU accelerators have many architectural features. Similar to section
+`3.2 Check GPU Presence (lspci) <#_3.2_Check_GPU>`__, ``rvs`` has an option to
+display all MI300X GPU accelerators present in the SUT. Before proceeding with
+the modules below, run the following command to make sure all the GPUs are seen
+with their correct PCIe properties.
 
 Command:
 
-:mark:`rvs -g`
+.. code-block:: shell
+
+   rvs -g
 
 Expected output:
 
-:mark:`ROCm Validation Suite (version 0.0.60202)`
+.. code-block:: shell-session
 
-:mark:`Supported GPUs available:`
+   ROCm Validation Suite (version 0.0.60202)
 
-:mark:`0000:05:00.0 - GPU[ 2 - 28851] AMD Instinct MI300X (Device
-29857)`
+   Supported GPUs available:
 
-:mark:`0000:26:00.0 - GPU[ 3 - 23018] AMD Instinct MI300X (Device
-29857)`
-
-:mark:`0000:46:00.0 - GPU[ 4 - 29122] AMD Instinct MI300X (Device
-29857)`
-
-:mark:`0000:65:00.0 - GPU[ 5 - 22683] AMD Instinct MI300X (Device
-29857)`
-
-:mark:`0000:85:00.0 - GPU[ 6 - 53458] AMD Instinct MI300X (Device
-29857)`
-
-:mark:`0000:a6:00.0 - GPU[ 7 - 63883] AMD Instinct MI300X (Device
-29857)`
-
-:mark:`0000:c6:00.0 - GPU[ 8 - 53667] AMD Instinct MI300X (Device
-29857)`
-
-:mark:`0000:e5:00.0 - GPU[ 9 - 63738] AMD Instinct MI300X (Device
-29857)`
+   0000:05:00.0 - GPU[ 2 - 28851] AMD Instinct MI300X (Device 29857)
+   0000:26:00.0 - GPU[ 3 - 23018] AMD Instinct MI300X (Device 29857)
+   0000:46:00.0 - GPU[ 4 - 29122] AMD Instinct MI300X (Device 29857)
+   0000:65:00.0 - GPU[ 5 - 22683] AMD Instinct MI300X (Device 29857)
+   0000:85:00.0 - GPU[ 6 - 53458] AMD Instinct MI300X (Device 29857)
+   0000:a6:00.0 - GPU[ 7 - 63883] AMD Instinct MI300X (Device 29857)
+   0000:c6:00.0 - GPU[ 8 - 53667] AMD Instinct MI300X (Device 29857)
+   0000:e5:00.0 - GPU[ 9 - 63738] AMD Instinct MI300X (Device 29857)
 
 Result:
 
@@ -133,13 +124,11 @@ problems.
 To confirm the architectural properties of the GPU, use the GPUP module
 which makes use of the GPUP configuration file.
 
-The configuration file for GPUP module is located at:
-
-:mark:`{RVS_CONF}/gpup_single.conf`
+The configuration file for GPUP module is located at ``{RVS_CONF}/gpup_single.conf``.
 
 The GPUP module section of the `ROCm Validation Suite User
 Guide <https://github.com/ROCm/ROCmValidationSuite/blob/master/docs/ug1main.md#gpup-module>`__
-provides detailed description about the GPUP conf file, it’s formation,
+provides detailed description about the GPUP conf file, its formation,
 and keys.
 
 Command:
@@ -607,13 +596,13 @@ the following memory tests [Algorithm, data pattern]:
 
 - Memory stress test
 
-The configuration file for GST module is located at:
-
-:mark:`{RVS_CONF}/mem.conf`
+The configuration file for GST module is located at ``{RVS_CONF}/mem.conf``.
 
 Command:
 
-:mark:`rvs -c ${RVS_CONF}/mem.conf -l mem.txt`
+.. code-block:: shell
+
+   rvs -c ${RVS_CONF}/mem.conf -l mem.txt
 
 The entire output file is not shown here for brevity. Performing grep
 for certain string(s) in the file where the log is saved makes it easier
@@ -737,11 +726,15 @@ maximum bandwidth obtained is reported.
 
 The configuration file for GST module is located at:
 
-:mark:`{RVS_CONF}/MI300X/pebb_single.conf`
+.. code-block:: shell
+
+   {RVS_CONF}/MI300X/pebb_single.conf
 
 Command:
 
-:mark:`rvs -c ${RVS_CONF}/MI300X/pebb_single.conf -l pebb.txt`
+.. code-block:: shell
+
+   rvs -c ${RVS_CONF}/MI300X/pebb_single.conf -l pebb.txt
 
 Expected output (truncated):
 
@@ -912,11 +905,15 @@ characteristics of the PCIe bus interconnect to a GPU:
 
 The configuration file for peqt module is located at:
 
-:mark:`{RVS_CONF}/peqt_single.conf`
+.. code-block:: shell
+
+   {RVS_CONF}/peqt_single.conf
 
 Command:
 
-:mark:`sudo rvs -c ${RVS_CONF}/peqt_single.conf`
+.. code-block:: shell
+
+   sudo rvs -c ${RVS_CONF}/peqt_single.conf
 
 | This module has total 17 tests (pcie_act_1 – pcie_act_17). Each test
   checks for a subset of PCIe capabilities and shows the true or false
@@ -1050,7 +1047,9 @@ The PBQT module executes the following tests:
 
 The configuration file for the pbqt module for MI300X is located here:
 
-:mark:`{RVS_CONF}/MI300X/pbqt_single.conf`
+.. code-block:: shell
+
+   {RVS_CONF}/MI300X/pbqt_single.conf
 
 The conf file has 12 “actions_xy” test segments. Each of these, checks
 for peer-to-peer connectivity among GPUs and provides a true/false
@@ -1064,7 +1063,9 @@ running the following command.
 
 Command:
 
-:mark:`rvs -c ${RVS_CONF}/MI300X/pbqt_single.conf`
+.. code-block:: shell
+
+   rvs -c ${RVS_CONF}/MI300X/pbqt_single.conf
 
 Only two example lines from the very long log file is shown because
 other lines look similar as all combinations of GPU pairs are considered

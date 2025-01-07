@@ -1,75 +1,84 @@
+**************************
 Basic system health checks
-==========================
+**************************
 
-Prior to proceeding to more extensive system validation, it is important
-to ensure all components in the system are operating at peak performance
-and bandwidth.
+Before proceeding with more extensive system validation, it's important to
+ensure all components in the system are operating at peak performance and
+bandwidth.
 
-A typical MI300X based GPU server architecture consists of:
+A typical MI300X based GPU server architecture consists of the following
+components.
 
-- Host CPUs: Usually dual socket, handling general processing and
-  orchestrating tasks.
+- Host CPUs: Usually dual socket, handling general processing and orchestrating
+  tasks.
 
 - Memory: DRAM attached to each CPU socket for fast data access.
 
-- GPUs: Multiple GPUs connected over AMD Infinity Fabric Link for
-  parallel processing and acceleration.
+- GPUs: Multiple GPUs connected over AMD Infinity Fabric Link for parallel
+  processing and acceleration.
 
 - HBM3 Memory: attached to GPUs through I/O Die (IOD)
 
 - Storage: High-speed NVMe SSDs or traditional HDDs for data storage.
 
-- Networking: High-bandwidth network interfaces like 100-400GbE or
-  InfiniBand for fast data transfer between systems.
+- Networking: High-bandwidth network interfaces like 100-400GbE or InfiniBand
+  for fast data transfer between systems.
 
-The CPUs, memory, GPUs, storage, and networking components are
-interconnected via high-speed communication paths, with PCIe lanes
-facilitating data flow between CPUs and GPUs. This architecture allows
-for efficient parallel processing and accelerated computation for AI,
-HPC, and other demanding workloads.
+The CPUs, memory, GPUs, storage, and networking components are interconnected
+via high-speed communication paths, with PCIe lanes facilitating data flow
+between CPUs and GPUs. This architecture allows for efficient parallel
+processing and accelerated computation for AI, HPC, and other demanding
+workloads.
 
-This section covers the basic system checks for the MI300X GPU
-Accelerators connected in the system using:
+This section covers the basic system checks for the Instinct MI300X accelerators
+connected in the system using:
 
-- Basic Linux system commands: ``cat``, dmesg, lsmem, and lspci
+- Basic Linux system commands: ``cat``, ``dmesg``, ``lsmem``, and ``lspci``
 
-- ROCm Monitoring Tool: amd-smi
+- ROCm monitoring tool: ``amd-smi``
 
-**NOTE: Checking the health of other components in the system is outside
-the scope of this document.**
+.. note::
 
-After the system boots, run the following commands listed in the
-sections below. For each command, an example output is provided. Expect
-to observe similar output when these commands are executed on the System
-Under Test (SUT). For illustration purposes, commands and the output
-shown below were obtained from a system running Ubuntu 22.04, which is
-one of the supported distributions for ROCm 6.2 at the time of release
-of this guide. Running other supported distributions on the SUT may
-result in slightly different output.
+   Checking the health of other components in the system is outside
+   the scope of this document.
+
+After the system boots, run the following commands listed in the following
+sections. For each command, an example output is provided. Expect to see similar
+output when these commands are executed on the System Under Test (SUT). For
+illustration purposes, commands and the output shown below were obtained from a
+system running Ubuntu 22.04, which is one of the supported distributions for
+ROCm 6.2 at the time of release of this guide. Running other supported
+distributions on the SUT may result in slightly different output.
 
 Check OS and host system checks
--------------------------------
+===============================
 
 The following sub-sections lists items to check for the operating system
 and host CPU and memory checks. For each, a sample command along with
 corresponding log output is shown. The sample output provides typical
 results and serves as a guideline.
 
-**NOTE:** If results vary from the sample expected output, contact your
-system manufacturer support representative for further assistance.
+.. note::
+
+   If results vary from the sample expected output, contact your system
+   manufacturer support representative for further assistance.
 
 Check OS distribution (os-release)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 Check the OS distribution installed on the SUT using the following
 command.
 
-:mark:`cat /etc/os-release`
+.. code-block:: shell
+
+   cat /etc/os-release
 
 An example of the output is given below. The output may vary based on
 the OS distribution running.
 
-:mark:`VERSION="22.04.4 LTS (Jammy Jellyfish)"`
+.. code-block:: shell-session
+
+   VERSION="22.04.4 LTS (Jammy Jellyfish)"
 
 Ensure that the OS distribution used is listed in the AMD’s ROCm
 `Compatibility
@@ -90,7 +99,7 @@ Result:
     with the installation of ROCm 6.2 or a newer version.
 
 Check kernel boot arguments (cmdline)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 Correct boot arguments must be utilized by the Linux kernel during the
 startup of the System Under Test (SUT). Once the system has booted, run
@@ -98,7 +107,9 @@ the following command in the terminal to display the boot arguments:
 
 Command:
 
-:mark:`cat /proc/cmdline`
+.. code-block:: shell
+
+   cat /proc/cmdline
 
 An example of the output from an AMD CPU based system is given below
 with the required boot parameters highlighted in yellow. Output may vary
@@ -129,12 +140,14 @@ Result:
     distribution, not all GPUs may be recognized.
 
 Check for driver errors (dmesg)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------
 
 Use the following command to check for driver errors in the Linux OS
-diagnostic messages (dmesg).
+diagnostic messages (``dmesg``).
 
-:mark:`sudo dmesg –T \| grep amdgpu \| grep -i error`
+.. code-block:: shell
+
+   sudo dmesg –T \| grep amdgpu \| grep -i error
 
 The expected output should be return no results (null).
 
@@ -148,23 +161,26 @@ Result:
     start the acceptance testing from this section.
 
 Check for available memory (lsmem)
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------
 
 Confirm there is at least 1.5T of memory in the system.
 
 Command:
 
-:mark:`lsmem \| grep "Total online memory"`
+.. code-block:: shell
+
+   lsmem \| grep "Total online memory"
 
 Expected output:
 
-:mark:`Total online memory: 1.5T`
+.. code-block:: shell-session
 
-Warning:
+   Total online memory: 1.5T
 
-If the available memory is less than 1.5T, the system may not function
-properly when a large workload is run. But you can continue to next
-check.
+.. warning::
+
+   If the available memory is less than 1.5T, the system may not function
+   properly when a large workload is run. But you can continue to next check.
 
 Check GPU presence (lspci)
 --------------------------
@@ -172,7 +188,9 @@ Check GPU presence (lspci)
 Confirm all GPU accelerators are present and available on the PCIe bus
 by running the following command.
 
-:mark:`lspci \| grep MI300X`
+.. code-block:: shell
+
+   lspci \| grep MI300X
 
 The following is an example of the output.
 
@@ -230,7 +248,9 @@ ID=0x74a1 and grep for device status (DevSta) and link status (LnkSta):
 
 Command:
 
-:mark:`sudo lspci -d 1002:74a1 -vvv \| grep -e DevSta -e LnkSta`
+.. code-block:: shell
+
+   sudo lspci -d 1002:74a1 -vvv \| grep -e DevSta -e LnkSta
 
 Expected output:
 
@@ -287,10 +307,8 @@ Result:
   - Action: Do not proceed further. Report this issue to your system
     manufacturer immediately.
 
-.. _mi300x-sv-monitoring-utilization-metrics:
-
 Monitoring utilization metrics (amd-smi)
-----------------------------------------
+========================================
 
 The amd-smi monitor command-line tool, typically installed with ROCm,
 can be used to monitor AMD GPU hardware, including thermal, power,
@@ -301,13 +319,17 @@ Know Your GPU: A Deep Dive into AMD
 SMI <https://rocm.blogs.amd.com/software-tools-optimization/amd-smi-overview/README.html>`__
 for details on this tool.
 
-**NOTE:** This check requires that ROCm be installed on the SUT. The
-monitoring tool rocm-smi may alternatively be used.
+.. note::
+
+   This check requires that ROCm be installed on the SUT. The
+   monitoring tool rocm-smi may alternatively be used.
 
 Run the following command to display GPU metrics when the system is idle
 i.e. not running any workload.
 
-:mark:`amd-smi monitor -putm`
+.. code-block:: shell
+
+   amd-smi monitor -putm
 
 An output similar to the following will be displayed. Please note that
 the results will vary when the system is running a workload.
@@ -361,7 +383,9 @@ troubleshooting hardware and driver issues.
 
 To check for errors in the kernel messages, use the following command:
 
-:mark:`sudo dmesg -T \| grep -i 'error\\|warn\\|fail\\|exception'`
+.. code-block:: shell
+
+   sudo dmesg -T \| grep -i 'error\\|warn\\|fail\\|exception'
 
 Expected output:
 
@@ -377,7 +401,6 @@ Result:
   - Action: Don’t proceed further. Analyze each *dmesg*
     error/fail/exception
 
-Refer to `Appendix C Collecting
-Logs <#pappendix-c-collecting-logs-rocm_techsupport.sh>`__ for
-information on the rocm_techsupport.sh script utility from AMD which
-collect system logs for purpose of support and troubleshooting.
+See :doc:`/reference/rocm-techsupport` for information on the
+``rocm_techsupport.sh`` script utility from AMD which collect system logs for
+purpose of support and troubleshooting.
