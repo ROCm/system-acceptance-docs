@@ -24,7 +24,6 @@ html_theme_options = {
         "ROCm&#8482 docs": "https://rocm.docs.amd.com"
     },
     # Add any additional theme options here
-    "repository_provider": "github.com"
 }
 html_title = project
 extensions = ["rocm_docs"]
@@ -33,5 +32,3 @@ extensions = ["rocm_docs"]
 external_toc_path = "./sphinx/_toc.yml"
 
 exclude_patterns = ['.venv']
-
-external_projects_remote_repository = ""
