@@ -26,6 +26,7 @@ html_theme_options = {
     # Add any additional theme options here
     "repository_provider": "github.com"
 }
+html_title = project
 extensions = ["rocm_docs"]
 
 # Table of contents
