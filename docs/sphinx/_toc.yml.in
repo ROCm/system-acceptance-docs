@@ -1,20 +1,11 @@
-root: index.md
+root: index.rst
 subtrees:
-  - caption: Prerequisites
+  - caption: AMD Instinct MI300X
     entries:
-      - file: prequisites/index.md
-  - caption: Health Checks
-    entries:
-      - file: health-checks/index.md
-  - caption: System Validation
-    entries:
-      - file: system-validation/index.md
-  - caption: Performance Benchmarking
-    entries:
-      - file: performance-bench/index.md
-  - caption: Acceptance Criteria
-    entries:
-      - file: acceptance-criteria/index.md
-  - caption: Next Steps
-    entries:
-      - file: next-steps/index.md
+      - file: prequisites/mi300x.rst
+      - file: health-checks/mi300x.rst
+      - file: system-validation/mi300x.rst
+      - file: performance-bench/mi300x.rst
+      - file: acceptance-criteria/mi300x.rst
+      - file: next-steps/mi300x.rst
+      - file: reference/appendix.rst

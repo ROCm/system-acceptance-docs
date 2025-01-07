@@ -1,0 +1,157 @@
+*************
+Prerequisites
+*************
+
+Prior to proceeding to the prerequisites in this section, the operator
+should ensure the system does not have visible damage and is installed
+correctly. Refer to the installation guide from the system manufacturer
+to ensure the system has been correctly installed in a rack with
+sufficient cooling, has been connected to required power, and is
+accessible from the network.
+
+If errors or warnings are discovered during setup, troubleshooting the
+issue may be required, e.g. reseating auxiliary PCBs, checking internal
+cable connections, or monitoring the situation. For debugging support,
+reach out to your system manufacturer.
+
+This section describes which server settings to configure prior to
+testing including:
+
+- :ref:`System BIOS settings <mi300x-sv-bios-settings>`
+
+- :ref:`Supported operating systems <mi300x-sv-supported-os>`
+
+- :ref:`GRUB settings <mi300x-sv-grub-settings>`
+
+- :ref:`Operating system settings <mi300x-sv-os-settings>`
+
+- :ref:`Updating system firmware <mi300x-sv-system-firmware>`
+
+- :ref:`ROCm installation <mi300x-sv-rocm-installation>`
+
+.. note::
+
+   Before changing any system settings and doing testing, it is recommended to
+   record existing production system settings to allow the system to be
+   returned to the original settings.
+
+.. _mi300x-sv-bios-settings:
+
+System BIOS settings
+--------------------
+
+Some server manufacturers offer tools that allow the current BIOS
+configuration settings to be exported to a file, modified with needed
+changes, and loaded back to the system. In the case that the server
+manufacturer does not offer such a tool, the BIOS settings will need to
+be reviewed and updated manually from the BIOS setup interface prior to
+booting the OS.
+
+Refer to the recommended `System BIOS
+Settings <https://rocm.docs.amd.com/en/latest/how-to/system-optimization/mi300x.html#mi300x-bios-settings>`__
+for MI300X to ensure the system BIOS is setup correctly for maximum
+performance prior to validating the system with AMD EPYC™ 9004-series
+processors and AMI System BIOS. These settings should be set as default
+values in the system BIOS. Analogous settings for other non-AMI System
+BIOS providers could be set similarly. For systems with Intel
+processors, some settings may not apply or be available.
+
+.. _mi300x-sv-supported-os:
+
+Supported operating systems
+---------------------------
+
+AMD ROCm software supports certain Linux distributions. Refer to the
+list of `Support Operating
+Systems <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#supported-distributions>`__
+and ensure the system is installed with one of the supported Linux
+distributions. Other distributions may not be able to run ROCm or
+complete the validation tests listed in this document.
+
+To obtain and validate the Linux distribution information for systems
+with the OS already installed, refer to the `Installation
+Prerequisites <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/prerequisites.html>`__
+for ROCm.
+
+.. _mi300x-sv-grub-settings:
+
+GRUB settings
+-------------
+
+GRUB, or GNU Grand Unified Bootloader, is a boot loader and boot manager
+for Linux that allows the operator to select which operating system and
+kernel configuration to use when booting the system. MI300X based
+servers require appending strings to the Linux command line and this is
+done in the GRUB configuration file as described in the recommended
+`GRUB
+settings <https://rocm.docs.amd.com/en/latest/how-to/system-optimization/mi300x.html#mi300x-grub-settings>`__
+for MI300X. After updating GRUB and rebooting the system, it is
+recommended to check the GRUB configuration file before proceeding.
+
+.. _mi300x-sv-os-settings:
+
+Operating system settings
+-------------------------
+
+To ensure the system is operating at maximum performance prior to
+running the validations and performance tests in this document, the
+operator should ensure that power gating is disabled, NUMA configuration
+is set appropriately, and specific environment variables are exported as
+outlined in the `Operating System
+Settings <https://rocm.docs.amd.com/en/latest/how-to/system-optimization/mi300x.html#mi300x-os-settings>`__
+for MI300X. For the purposes of illustration, in all the sections to
+follow the commands and their output shown, are for Ubuntu 22.04 Linux
+unless otherwise specified.
+
+.. _mi300x-sv-system-firmware:
+
+Updating system firmware
+------------------------
+
+Ensure that the system under test is running the latest firmware
+versions by contacting your system manufacturer. Systems with older
+firmware versions may not fully be validated, and performance or
+functionality could be sub-optimal.
+
+.. _mi300x-sv-rocm-installation:
+
+ROCm installation
+-----------------
+
+Once the system is properly configured, ROCm software can be installed.
+Prior to validating the system, ensure that ROCm 6.2 or greater is
+installed. For maximum performance and functionality, it is recommended
+to always install the latest version of ROCm on the system.
+
+Refer to `ROCm Installation for
+Linux <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/index.html>`__
+for the available options to install ROCm on your system. For operators
+new to ROCm, please refer to the `Quick Start Installation
+Guide <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/quick-start.html>`__
+for your supported distribution. Once ROCm is installed, it is
+recommended to follow the `Post-Installation
+Instructions <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/post-install.html>`__.
+To troubleshoot issues encountered when installing ROCm tools or
+libraries, please refer to the `Installation
+Troubleshooting <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/install-faq.html>`__
+guide.
+
+To check the ROCm version running on the system after installation, run
+the following command.
+
+.. code-block:: shell
+
+   cat /opt/rocm/.info/version
+
+An example output log is given below. In this case, the system has ROCm
+version 6.2.0-66
+
+.. code-block:: shell-session
+
+   6.2.0-66
+
+.. note::
+
+   Contact your system manufacturer support representative to
+   ensure this version of ROCm installed is compatible with the system
+   firmware.
