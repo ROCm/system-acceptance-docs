@@ -10,7 +10,7 @@ The benchmarking tests outlined in this chapter validate compute, IO, and memory
 performance for all eight GPUs in a server system. The benchmarking tests
 require ROCm installation - see section 2.6 ROCm Installation for details.
 During the test, it is recommended to monitor system utilization, power, and
-temperature using amd-smi, and check for errors using ``lspci`` and ``dmesg`` as
+temperature using AMD SMI (``amd-smi``), and check for errors using ``lspci`` and ``dmesg`` as
 detailed in Chapter 2.
 
 Benchmark tests in this section leverage and include instructions for
@@ -427,7 +427,7 @@ GEMM kernels.
 
 The rocBLAS test application allows users to benchmark the GEMM performance of
 rocBLAS in a standalone application. The numbers below indicate for the included
-benchmark (fp32) and two half precision GEMMs the expected performance of
+benchmark (``fp32``) and two half precision GEMMs the expected performance of
 rocBLAS on a validated system.
 
 .. note::
@@ -472,7 +472,7 @@ Build rocBLAS from source by running the following commands in your terminal:
    complete.
 
 We include 3 rocBLAS benchmarks here targeting single, bf16, and int8
-precisions. Half precision and fp8 precision are not in the scope of
+precisions. Half precision and ``fp8`` precision are not in the scope of
 rocBLAS, and are not included in system validation. Compare test results
 to :ref:`mi300x-bench-gemm-table`, below.
 
