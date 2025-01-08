@@ -2,8 +2,9 @@
    :description lang=en:
    :keywords:
 
+***********************
 System validation tests
-=======================
+***********************
 
 The validation tests in this section are intended to ensure that a system is
 operating correctly as expected. In this section, ROCm Validation Suite
@@ -67,7 +68,7 @@ rather it is expected that when they are run on the SUT, the output observed
 are within a reasonable range provided.
 
 Compute / GPU
--------------
+=============
 
 The ``rvs`` has three different types of modules to validate the Compute
 subsystem. These are:
@@ -117,7 +118,7 @@ Result:
     see all GPUs.
 
 Properties
-~~~~~~~~~~
+----------
 
 The GPU Properties module queries the configuration of a targeted GPU
 and returns the device’s static characteristics. These static values can
@@ -186,7 +187,7 @@ Result:
   - Typically, it is not expected that this module will fail
 
 Benchmark, stress, qualification
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+--------------------------------
 
 These categories of modules perform qualification of the GPU subsystem,
 execute stress test, and compute and display bandwidth. The modules do
@@ -195,7 +196,7 @@ reports the bandwidth and doesn’t make any comparisons with existing set
 of numbers. Only exceptions are GST and IET modules.
 
 Benchmark
-^^^^^^^^^
+~~~~~~~~~
 
 The GPU Stress Test (GST) module stresses the GPU FLOPS performance for
 SGEMM, DGEMM and HGEMM operations and computes and displays peak
@@ -319,7 +320,7 @@ Result:
     manufacturer immediately.
 
 Stress
-^^^^^^
+~~~~~~
 
 The Input Energy Delay Product (EDPp) test (IET) module runs GEMM workloads to
 stress the GPU power, that is, Total Graphics Power (TGP).
@@ -375,7 +376,7 @@ Result:
     manufacturer immediately.
 
 Qualification
-^^^^^^^^^^^^^
+~~~~~~~~~~~~~
 
 The GPU monitor (GM) module is used to report and validate the following
 system attributes.
@@ -419,7 +420,7 @@ Result:
     this module.
 
 Memory
-------
+======
 
 To validate the GPU memory subsystem, rvs has the following two *types* of
 modules:
@@ -429,7 +430,7 @@ modules:
 - BABEL
 
 MEM
-~~~
+---
 
 The Memory module, MEM, tests the GPU memory for hardware errors and soft
 errors using HIP. It consists of various tests that use algorithms like Walking
@@ -527,13 +528,13 @@ Result:
     manufacturer immediately.
 
 BABEL
-~~~~~
+-----
 
 Refer to the :ref:`BabelStream section <mi300x-bench-babelstream>` for
 instructions on how to run this module to test memory.
 
 IO
---
+==
 
 To validate the GPU interfaces, rvs has the following three *types* of
 modules:
