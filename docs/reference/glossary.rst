@@ -1,16 +1,16 @@
 .. meta::
-   :description lang=en: Common acronyms and terminology in the AMD Instinct system validation documentation.
-   :keywords: terms, terminology, abbreviation, abbreviations, definition, jargon, unit, units
+   :description lang=en: Common terms and abbreviations used in the AMD Instinct documentation for system admins.
+   :keywords: terminology, abbreviation, abbreviations, definition, jargon, unit, units, acronyms
 
 ********
-Acronyms
+Glossary
 ********
 
-The following table contains acronyms and definitions used throughout this
+The following table contains terms and definitions used throughout this
 documentation.
 
 +---------------+------------------------------------------------------+
-| Acronym       | Description                                          |
+| Term          | Description                                          |
 +===============+======================================================+
 | AMI           | American Megatrends Inc. (BIOS provider)             |
 +---------------+------------------------------------------------------+

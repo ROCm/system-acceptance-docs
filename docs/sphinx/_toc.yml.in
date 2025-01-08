@@ -11,7 +11,7 @@ subtrees:
       - file: reference/appendix.rst
   - caption: Reference
     entries:
-      - file: reference/acronyms.rst
+      - file: reference/glossary.rst
       - file: reference/rocm-techsupport.rst
       - file: reference/reference-documentation.rst
       - file: reference/notices.rst
