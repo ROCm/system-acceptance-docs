@@ -1,6 +1,6 @@
 .. meta::
-   :description lang=en:
-   :keywords:
+   :description lang=en: AMD Instinct MI300X post-acceptance optimization.
+   :keywords: performance, optimize, AI, HPC, cluster, mpi, LLM, learning, tutorial
 
 **********
 Next steps
@@ -12,9 +12,9 @@ related to performance serve as a baseline for further enhancements. To further
 optimize the system, it is recommended to make incremental changes to individual
 parameters noted in the pre-requisites and repeat the tests. Once complete, AMD
 recommends proceeding with AI model validation and cluster network validation
-using the guides mentioned below. Refer to the catalogue of :doc:`reference
-documentation B <reference/reference-documentation>` for a list of links to all
-referenced documentation in this guide.
+using the guides mentioned below. Refer to the catalogue of
+:doc:`reference documentation <reference/reference-documentation>` for a list
+of links to all referenced documentation in this guide.
 
 MI300X AI model performance validation
 ======================================

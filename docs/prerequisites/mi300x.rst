@@ -1,6 +1,6 @@
 .. meta::
-   :description lang=en:
-   :keywords:
+   :description lang=en: Prerequisites for acceptance testing AMD Instinct MI300X GPU accelerators.
+   :keywords: prereq, install
 
 *************
 Prerequisites

@@ -1,6 +1,6 @@
 .. meta::
-   :description lang=en:
-   :keywords:
+   :description lang=en: AMD Instinct MI300X system health checks for acceptance testing.
+   :keywords: prereq, prerequisite, memory, smi, log
 
 **************************
 Basic system health checks

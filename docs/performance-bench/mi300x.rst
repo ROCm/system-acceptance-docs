@@ -1,6 +1,6 @@
 .. meta::
-   :description lang=en:
-   :keywords:
+   :description lang=en: AMD Instinct MI300X performance benchmarking guide for acceptance testing.
+   :keywords: perf, bench, accelerator, node, multi, type, precision
 
 ************************
 Performance benchmarking
@@ -337,6 +337,8 @@ running the commands below in your terminal:
 Once RCCL tests is installed on your SUT, follow these instructions to run the
 Allreduce benchmark.
 
+.. _mi300x-bench-rccl-allreduce:
+
 Allreduce
 ~~~~~~~~~
 
@@ -476,8 +478,10 @@ precisions. Half precision and ``fp8`` precision are not in the scope of
 rocBLAS, and are not included in system validation. Compare test results
 to :ref:`mi300x-bench-gemm-table`, below.
 
+.. _mi300x-bench-rocblas-fp32:
+
 FP32 full precision benchmark
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 To run the FP32 full precision benchmark, run the following command in
 your terminal:
@@ -496,6 +500,8 @@ output. Truncated example output is shown here:
    transA,transB,M,N,K,alpha,lda,beta,ldb,ldc,rocblas-Gflops,us
 
    N,T,4000,4000,4000,1,4000,0,4000,4000, 97190.6, 1317
+
+.. _mi300x-bench-rocblas-bf16:
 
 BF16 half precision benchmark
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -517,6 +523,8 @@ output. Truncated example output is shown here:
    transA,transB,M,N,K,alpha,lda,stride_a,beta,ldb,stride_b,ldc,stride_c,ldd,stride_d,batch_count,rocblas-Gflops,us
 
    N,T,1024,2048,512,1.1,1024,4096,1,2048,4096,1024,2097152,1024,2097152,5, 159783, 67.2
+
+.. _mi300x-bench-rocblas-int8:
 
 INT8 integer precision benchmark
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -572,7 +580,7 @@ BabelStream benchmarking results
 
 BabelStream is an open-source benchmark to measure transfer rates
 to/from global device memory on GPUs. For more information, see
-`BabelStream <https://github.com/UoB-HPC/BabelStream>`__.
+`BabelStream <https://github.com/UoB-HPC/BabelStream>`_.
 
 The qualification section will explain how to configure BabelStream. Running the
 test will perform the benchmark on each GPU concurrently.

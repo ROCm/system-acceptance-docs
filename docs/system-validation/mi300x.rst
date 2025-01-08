@@ -1,6 +1,6 @@
 .. meta::
-   :description lang=en:
-   :keywords:
+   :description lang=en: AMD Instinct MI300X system validation guide for acceptance testing.
+   :keywords: validate, rvs, performance, benchmarking
 
 ***********************
 System validation tests
