@@ -64,46 +64,41 @@ Supported operating systems
 ===========================
 
 AMD ROCm software supports certain Linux distributions. Refer to the list of
-`Support operating systems
-<https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/system-requirements.html#supported-distributions>`__
+:ref:`Supported operating systems <rocm-install-on-linux:supported_distributions>`
 and ensure the system is installed with one of the supported Linux
 distributions. Other distributions may not be able to run ROCm or
 complete the validation tests listed in this document.
 
 To obtain and validate the Linux distribution information for systems
-with the OS already installed, refer to the `Installation
-prerequisites <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/prerequisites.html>`__
-for ROCm.
+with the OS already installed, refer to the
+:doc:`ROCm installation prerequisites <rocm-install-on-linux:install/prerequisites>`.
 
 .. _mi300x-prereq-grub-settings:
 
 GRUB settings
 =============
 
-GRUB, or GNU Grand Unified Bootloader, is a boot loader and boot manager
-for Linux that allows the operator to select which operating system and
-kernel configuration to use when booting the system. MI300X based
-servers require appending strings to the Linux command line and this is
-done in the GRUB configuration file as described in the recommended
-`GRUB
-settings <https://rocm.docs.amd.com/en/latest/how-to/system-optimization/mi300x.html#mi300x-grub-settings>`__
-for MI300X. After updating GRUB and rebooting the system, it is
-recommended to check the GRUB configuration file before proceeding.
+GRUB, or GNU Grand Unified Bootloader, is a boot loader and boot manager for
+Linux that allows the operator to select which operating system and kernel
+configuration to use when booting the system. MI300X based servers require
+appending strings to the Linux command line and this is done in the GRUB
+configuration file as described in the recommended
+:ref:`GRUB settings <rocm:mi300x-grub-settings>` for MI300X. After updating GRUB
+and rebooting the system, it is recommended to check the GRUB configuration file
+before proceeding.
 
 .. _mi300x-prereq-os-settings:
 
 Operating system settings
 =========================
 
-To ensure the system is operating at maximum performance prior to
-running the validations and performance tests in this document, the
-operator should ensure that power gating is disabled, NUMA configuration
-is set appropriately, and specific environment variables are exported as
-outlined in the `Operating System
-Settings <https://rocm.docs.amd.com/en/latest/how-to/system-optimization/mi300x.html#mi300x-os-settings>`__
-for MI300X. For the purposes of illustration, in all the sections to
-follow the commands and their output shown, are for Ubuntu 22.04 Linux
-unless otherwise specified.
+To ensure the system is operating at maximum performance prior to running the
+validations and performance tests in this document, the operator should ensure
+that power gating is disabled, NUMA configuration is set appropriately, and
+specific environment variables are exported as outlined in the :ref:`Operating
+system settings <rocm:mi300x-os-settings>` for MI300X. For the purposes of
+illustration, in all the sections to follow the commands and their output shown,
+are for Ubuntu 22.04 Linux unless otherwise specified.
 
 .. _mi300x-prereq-system-firmware:
 
@@ -125,18 +120,14 @@ validating the system, ensure that ROCm version 6.2 or greater is installed. For
 maximum performance and functionality, it's recommended to always install the
 latest version of ROCm on the system.
 
-Refer to `ROCm installation for Linux
-<https://rocm.docs.amd.com/projects/install-on-linux/en/latest/index.html>`_ for
+Refer to :doc:`ROCm installation for Linux <rocm-install-on-linux:index>` for
 the available options to install ROCm on your system. For operators new to ROCm,
-see the `Quick start installation guide
-<https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/quick-start.html>`__
+see the :doc:`Quick start installation guide <rocm-install-on-linux:install/quick-start>`
 for your supported distribution. Once ROCm is installed, follow the
-`Post-Installation Instructions
-<https://rocm.docs.amd.com/projects/install-on-linux/en/latest/install/post-install.html>`__.
+:doc:`Post-installation instructions <rocm-install-on-linux:install/post-install>`
 To troubleshoot issues encountered when installing ROCm tools or
-libraries, see the `Installation
-troubleshooting <https://rocm.docs.amd.com/projects/install-on-linux/en/latest/reference/install-faq.html>`__
-guide.
+libraries, see the
+:doc:`Installation troubleshooting guide <rocm-install-on-linux:reference/install-faq>`.
 
 To check the ROCm version running on the system after installation, run
 the following command.

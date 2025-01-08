@@ -57,10 +57,10 @@ different output.
 Check OS and host system checks
 ===============================
 
-The following sub-sections lists items to check for the operating system
-and host CPU and memory checks. For each, a sample command along with
-corresponding log output is shown. The sample output provides typical
-results and serves as a guideline.
+The following sub-sections lists items to check for the operating system and
+host CPU and memory checks. For each, a sample command along with corresponding
+log output is shown. The sample output provides typical results and serves as a
+guideline.
 
 .. note::
 
@@ -70,8 +70,7 @@ results and serves as a guideline.
 Check OS distribution (os-release)
 ----------------------------------
 
-Check the OS distribution installed on the SUT using the following
-command.
+Check the OS distribution installed on the SUT using the following command.
 
 .. code-block:: shell
 
@@ -83,11 +82,9 @@ Example output (varies depending on the running Linux distribution):
 
    VERSION="22.04.4 LTS (Jammy Jellyfish)"
 
-Ensure that the OS distribution used is listed in the ROCm `ROCm compatibility
-matrix
-<https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html>`_
-or in `Past versions of ROCm compatibility matrix
-<https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html#past-rocm-compatibility-matrix>`_.
+Ensure that the OS distribution used is listed in the :doc:`ROCm compatibility
+matrix <rocm:compatibility/compatibility-matrix>` or in :ref:`Past versions of
+ROCm compatibility matrix <rocm:past-rocm-compatibility-matrix>`.
 
 Result:
 
@@ -96,16 +93,16 @@ Result:
 - FAILED: Not listed in the compatibility matrix page.
 
   - Action: If the operating system distribution is not listed in the
-    compatibility matrix pages, do not continue with the following
-    steps. Instead, install a supported distribution and then proceed
-    with the installation of ROCm 6.2 or a newer version.
+    compatibility matrix pages, do not continue with the following steps.
+    Instead, install a supported distribution and then proceed with the
+    installation of ROCm 6.2 or a newer version.
 
 Check kernel boot arguments (cmdline)
 -------------------------------------
 
-Correct boot arguments must be utilized by the Linux kernel during the
-startup of the System Under Test (SUT). Once the system has booted, run
-the following command in the terminal to display the boot arguments:
+Correct boot arguments must be utilized by the Linux kernel during the startup
+of the System Under Test (SUT). Once the system has booted, run the following
+command in the terminal to display the boot arguments:
 
 Command:
 
@@ -113,14 +110,14 @@ Command:
 
    cat /proc/cmdline
 
-An example of the output from an AMD CPU based system is given below
-with the required boot parameters highlighted in yellow. Output may vary
-based on OS distribution and GRUB settings. When using Intel host
-processors, replace *amd_iommu* with *intel_iommu*
+An example of the output from an AMD CPU based system is given below with the
+required boot parameters highlighted in yellow. Output may vary based on OS
+distribution and GRUB settings. When using Intel host processors, replace
+``amd_iommu`` with ``intel_iommu``.
 
-:mark:`BOOT_IMAGE=/boot/vmlinuz-6.8.0-40-generic
-root=UUID=372435f6-bb80-4d82-83ed-c4d077dc5e23 ro pci=realloc=off
-amd_iommu=on iommu=pt`
+.. code-block:: shell-session
+
+   BOOT_IMAGE=/boot/vmlinuz-6.8.0-40-generic root=UUID=372435f6-bb80-4d82-83ed-c4d077dc5e23 ro pci=realloc=off amd_iommu=on iommu=pt
 
 Result:
 
@@ -138,7 +135,7 @@ Result:
 
   - Action: Don’t proceed further. Updated the GRUB settings of the SUT
     and reboot, and then start the acceptance testing from this section.
-    Note that if pci=realloc=off is not in GRUB configuration in Ubuntu
+    Note that if ``pci=realloc=off`` is not in GRUB configuration in Ubuntu
     distribution, not all GPUs may be recognized.
 
 Check for driver errors (dmesg)
