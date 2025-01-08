@@ -682,7 +682,7 @@ checks for a subset of PCIe capabilities and shows the true or false status.
 
 .. note::
 
-   The tests needs sudo permission to run properly.
+   The tests needs ``sudo`` permission to run properly.
 
 Expected output:
 
@@ -746,7 +746,7 @@ Result:
 
 - FAILED: If any tests show true.
 
-  - Action: Check that you are running this test as root or with sudo
+  - Action: Check that you are running this test as root or with ``sudo``
     privileges. If not, actions 6 through 16 will fail. Run this same test
     later again.
 

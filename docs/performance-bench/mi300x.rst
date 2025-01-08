@@ -69,7 +69,7 @@ and install TransferBench, run the following commands:
 TransferBench can be run in a variety of configurations, however for SUT
 validation use the built-in tests below. Once TransferBench is installed on your
 SUT, follow the instructions below to run the All-to-All and Peer-to-Peer
-benchmarks. We also include a section on the TransferBench ConfigFile format,
+benchmarks. We also include a section on the TransferBench ``ConfigFile`` format,
 which allows for a set of Transfers (a Test) to run in parallel.
 
 .. _mi300x-bench-transferbench-a2a:
@@ -130,9 +130,9 @@ CPU and GPUs. Run the following command:
 
    TransferBench p2p
 
-Expected output (truncated) - Note that these values do not map to the
-run that produced the results on **Table 2** but are within our
-reproducibility acceptance criteria:
+Expected output (truncated) - Note that these values do not map to the run that
+produced the results in :ref:`mi300x-bench-transferbench-p2p-table` but are
+within our reproducibility acceptance criteria:
 
 .. code-block:: shell-session
 
@@ -202,13 +202,13 @@ reproducibility acceptance criteria:
 
 .. _mi300x-bench-transferbench-configfile:
 
-TransferBench default ConfigFile
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+TransferBench default ConfigFile test
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-The TransferBench default ConfigFile test allows a set of Transfers (a
-Test) to run in parallel. To learn more about the ConfigFile format,
-please review the `official
-documentation <https://rocm.docs.amd.com/projects/TransferBench/en/latest/how%20to/use-transferbench.html>`__.
+The TransferBench default ``ConfigFile`` test allows a set of transfers (or,
+tests) to run in parallel. To learn more about the ``ConfigFile`` format,
+please review the `official documentation
+<https://rocm.docs.amd.com/projects/TransferBench/en/latest/how%20to/use-transferbench.html>`__.
 
 Run the following command:
 

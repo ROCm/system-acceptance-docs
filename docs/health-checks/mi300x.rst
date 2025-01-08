@@ -25,7 +25,7 @@ components.
 
 - Storage: High-speed NVMe SSDs or traditional HDDs for data storage.
 
-- Networking: High-bandwidth network interfaces like 100-400GbE or InfiniBand
+- Networking: High-bandwidth network interfaces like 100-400 GbE or InfiniBand
   for fast data transfer between systems.
 
 The CPUs, memory, GPUs, storage, and networking components are interconnected
@@ -68,8 +68,8 @@ The sample output provides typical results and serves as a guideline.
 
 .. _mi300x-health-checks-os-release:
 
-Check OS distribution (os-release)
-----------------------------------
+Check OS distribution
+---------------------
 
 Check the OS distribution installed on the SUT using the following command.
 
@@ -100,8 +100,8 @@ Result:
 
 .. _mi300x-health-checks-cmdline:
 
-Check kernel boot arguments (cmdline)
--------------------------------------
+Check kernel boot arguments
+---------------------------
 
 Correct boot arguments must be utilized by the Linux kernel during the startup
 of the System Under Test (SUT). Once the system has booted, run the following
@@ -143,8 +143,8 @@ Result:
 
 .. _mi300x-health-checks-driver-errors:
 
-Check for driver errors (dmesg)
--------------------------------
+Check for driver errors
+-----------------------
 
 Use the following command to check for driver errors in the Linux OS
 diagnostic messages (``dmesg``).
@@ -166,8 +166,8 @@ Result:
 
 .. _mi300x-health-checks-lsmem:
 
-Check for available memory (lsmem)
-----------------------------------
+Check for available memory
+--------------------------
 
 Confirm there is at least 1.5T of memory in the system.
 
@@ -190,8 +190,8 @@ Expected output:
 
 .. _mi300x-health-checks-lspci:
 
-Check GPU presence (lspci)
-==========================
+Check GPU presence
+==================
 
 Confirm all GPU accelerators are present and available on the PCIe bus by
 running the following command.
@@ -234,8 +234,8 @@ Result:
 
 .. _mi300x-health-checks-gpu-link-speed:
 
-Check GPU link speed and width on PCIe bus (sudo lspci -vvv)
-============================================================
+Check GPU link speed and width on PCIe bus
+==========================================
 
 Confirm PCIe links to each of the GPUs are running at full speed and width. Use
 the following ``lspci`` command with the highest verbosity mode (``-vvv``)
@@ -284,8 +284,8 @@ Result:
 
 .. _mi300x-health-checks-monitor-utilization:
 
-Monitoring utilization metrics (amd-smi)
-========================================
+Monitor utilization metrics
+===========================
 
 The ``amd-smi`` monitor command-line tool, typically installed with ROCm, can be
 used to monitor AMD GPU hardware, including thermal, power, hardware performance
@@ -343,8 +343,8 @@ Result for an idle system:
 
 .. _mi300x-health-checks-system-kernel-logs:
 
-Check the system kernel logs for other errors (dmesg)
-=====================================================
+Check the system kernel logs for other errors
+=============================================
 
 The command line utility ``dmesg`` prints boot-time message and on-going kernel
 event messages about the state of the system hardware and drivers. The utility
