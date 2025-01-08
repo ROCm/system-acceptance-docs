@@ -5,184 +5,269 @@ Acceptance criteria
 If all the Results section PASSED, the SUT is ready and should be
 accepted.
 
-.. table:: **Table 7:** Summary of the Basic System Health Checks
+.. _mi300x-acceptance-health-checks:
 
-   +------------+----------------+---------------------------------------+
-   | Test       | Command        | Pass/Fail Criteria                    |
-   +============+================+=======================================+
-   | Check OS   | cat            | **Pass:** OS version listed in        |
-   | Di         | /              | compatibility matrix                  |
-   | stribution | etc/os-release | **Fail:** Otherwise                   |
-   +------------+----------------+---------------------------------------+
-   | Check      | cat            | **                                    |
-   | Kernel     | /proc/cmdline  | Pass:** Contains pci=realloc=off, amd |
-   | Boot       |                | _iommu=on or intel_iommu=on, iommu=pt |
-   | Arguments  |                | **Fail:** Otherwise                   |
-   +------------+----------------+---------------------------------------+
-   | Check for  | sudo dmesg –T  | **Pass:** Null                        |
-   | Driver     | \| grep amdgpu | **Fail:** Errors reported             |
-   | Errors     | \| grep -i     |                                       |
-   |            | error          |                                       |
-   +------------+----------------+---------------------------------------+
-   | Check      | lsmem \| grep  | **Pass:** 1.5T or more                |
-   | Available  | "Total online  | **Fail:** Less than 1.5T              |
-   | Memory     | memory"        |                                       |
-   +------------+----------------+---------------------------------------+
-   | Check GPU  | lspci \| grep  | **Pass:** All 8 GPUs found            |
-   | Presence   | MI300X         | **Fail:** Otherwise                   |
-   +------------+----------------+---------------------------------------+
-   | Check GPU  | sudo lspci -d  | **Pass:** Speed 32GT/s, Width x16, no |
-   | Link Speed | 1002:74a1 -vvv | FatalErr+                             |
-   | and Width  | \| grep -e     | **Fail:** Otherwise                   |
-   |            | DevSta -e      |                                       |
-   |            | LnkSta         |                                       |
-   +------------+----------------+---------------------------------------+
-   | Monitor    | amd-smi        | **Pass:** Idle metrics as specified   |
-   | U          | monitor -putm  | **Fail:** Otherwise                   |
-   | tilization |                |                                       |
-   | Metrics    |                |                                       |
-   +------------+----------------+---------------------------------------+
-   | Check      | sudo dmesg -T  | **Pass:** Null                        |
-   | System     | \| grep -i     | **Fail:** Otherwise                   |
-   | Kernel     | 'error|warn|f  |                                       |
-   | Logs for   | ail|exception' |                                       |
-   | Errors     |                |                                       |
-   +------------+----------------+---------------------------------------+
+.. list-table:: Summary of basic system health checks
+   :header-rows: 1
 
-.. table:: **Table 8:** Summary of System Validation Tests
+   * - Test
+     - Command
+     - Pass/Fail criteria
 
-   +------------------+--------------------------+-----------------------+
-   | Test             | Command                  | Pass/Fail Criteria    |
-   +==================+==========================+=======================+
-   | Compute/GPU      | rvs -c                   | **Pass:** All GPUs    |
-   | Properties       | ${RV                     | listed, no errors     |
-   |                  | S_CONF}/gpup_single.conf | **Fail:** Missing     |
-   |                  |                          | GPUs or errors        |
-   +------------------+--------------------------+-----------------------+
-   | GPU Stress Test  | rvs -c                   | **Pass:** "met: TRUE" |
-   | (GST)            | ${RVS_CONF               | in logs               |
-   |                  | }/MI300X/gst_single.conf | **Fail:** Target      |
-   |                  |                          | GFLOP/s not met       |
-   +------------------+--------------------------+-----------------------+
-   | Input Energy     | rvs -c ${RVS_CONF}/      | **Pass:** "pass:      |
-   | Delay Product    | MI300X/iet_single.conf   | TRUE" for all actions |
-   | (IET)            |                          | **Fail:** Otherwise   |
-   +------------------+--------------------------+-----------------------+
-   | Memory Test      | rvs -c                   | **Pass:** All tests   |
-   | (MEM)            | ${RVS_CONF}/mem.conf -l  | passed, bandwidth     |
-   |                  | mem.txt                  | ~2TB/s                |
-   |                  |                          | **Fail:** Any test    |
-   |                  |                          | failed or low         |
-   |                  |                          | bandwidth             |
-   +------------------+--------------------------+-----------------------+
-   | PCIe Bandwidth   | rvs -c ${RVS_CONF}/      | **Pass:** All         |
-   | Benchmark (PEBB) | MI300X/pebb_single.conf  | distances and         |
-   |                  |                          | bandwidths displayed  |
-   |                  |                          | **Fail:** Missing     |
-   |                  |                          | data                  |
-   +------------------+--------------------------+-----------------------+
-   | PCIe             | sudo rvs -c              | **Pass:** All actions |
-   | Qualification    | ${RV                     | true                  |
-   | Tool (PEQT)      | S_CONF}/peqt_single.conf | **Fail:** Otherwise   |
-   +------------------+--------------------------+-----------------------+
-   | P2P Benchmark    | rvs -c ${RVS_CONF}/      | *                     |
-   | and              | MI300X/pbqt_single.conf  | *Pass:** "peers:true" |
-   | Qualification    |                          | lines and non-zero    |
-   | Tool (PBQT)      |                          | throughput            |
-   |                  |                          | **Fail:** Otherwise   |
-   +------------------+--------------------------+-----------------------+
+   * - Check OS distribution
+     - .. code-block:: shell
 
-.. table:: **Table 9:** Summary of Performance Benchmarking Tests
+          cat/etc/os-release
 
-   +-----------+----------------------------+-----------------------------+
-   | Test      | Command                    | Pass/Fail Criteria          |
-   +===========+============================+=============================+
-   | Tran      | TransferBench a2a          | **Pass:** ≥ 32.9            |
-   | sferBench |                            |                             |
-   | A         |                            | **Fail:** Otherwise         |
-   | ll-to-All |                            |                             |
-   +-----------+----------------------------+-----------------------------+
-   | Tran      | TransferBench p2p          | **UniDir Pass:** ≥ 33.9     |
-   | sferBench |                            |                             |
-   | Pee       |                            | **BiDir Pass:** ≥ 43.9      |
-   | r-to-Peer |                            |                             |
-   |           |                            | **Fail:** Otherwise         |
-   +-----------+----------------------------+-----------------------------+
-   | Tran      | TransferBench example.cfg  | | **Test 1 Pass:** ≥ 47.1   |
-   | sferBench |                            |   GB/s                      |
-   | Tests 1-6 |                            | | **Test 2 Pass:** ≥ 48.4   |
-   |           |                            |   GB/s                      |
-   |           |                            |                             |
-   |           |                            | **Test 3 Pass:** ≥ 31.9     |
-   |           |                            | GB/s (0 to 1)               |
-   |           |                            |                             |
-   |           |                            | ≥ 38.9 GB/s (1 to 0)        |
-   |           |                            |                             |
-   |           |                            | **Test 4 Pass:** ≥ 1264     |
-   |           |                            | GB/s                        |
-   |           |                            |                             |
-   |           |                            | **Test 5 Pass:** N/A for    |
-   |           |                            | GPU validation              |
-   |           |                            |                             |
-   |           |                            | **Test 6 Pass:** ≥ 48.6     |
-   |           |                            | GB/s                        |
-   |           |                            |                             |
-   |           |                            | **Fail:** Otherwise         |
-   +-----------+----------------------------+-----------------------------+
-   | RCCL      | build/all_reduce_perf -b 8 | **Pass:** ≥ 304 GB/s        |
-   | Allreduce | -e 8G -f 2 -g 8            | **Fail:** Otherwise         |
-   +-----------+----------------------------+-----------------------------+
-   | rocBLAS   | rocblas-bench -f gemm -r s | **Pass:** ≥ 94100 TFLOPS    |
-   | FP32      | -m 4000 -n 4000 -k 4000    | **Fail:** Otherwise         |
-   | Benchmark | --lda 4000 --ldb 4000      |                             |
-   |           | --ldc 4000 --transposeA N  |                             |
-   |           | --transposeB T             |                             |
-   +-----------+----------------------------+-----------------------------+
-   | rocBLAS   | rocblas-bench -f           | **Pass:** ≥ 130600 TFLOPS   |
-   | BF16      | gemm_strided_batched_ex    | **Fail:** Otherwise         |
-   | Benchmark | --transposeA N             |                             |
-   |           | --transposeB T -m 1024 -n  |                             |
-   |           | 2048 -k 512 --a_type h     |                             |
-   |           | --lda 1024 --stride_a 4096 |                             |
-   |           | --b_type h --ldb 2048      |                             |
-   |           | --stride_b 4096 --c_type s |                             |
-   |           | --ldc 1024 --stride_c      |                             |
-   |           | 2097152 --d_type s --ldd   |                             |
-   |           | 1024 --stride_d 2097152    |                             |
-   |           | --compute_type s --alpha   |                             |
-   |           | 1.1 --beta 1 --batch_count |                             |
-   |           | 5                          |                             |
-   +-----------+----------------------------+-----------------------------+
-   | rocBLAS   | rocblas-bench -f           | **Pass:** ≥ 162700 TFLOPS   |
-   | INT8      | gemm_strided_batched_ex    | **Fail:** Otherwise         |
-   | Benchmark | --transposeA N             |                             |
-   |           | --transposeB T -m 1024 -n  |                             |
-   |           | 2048 -k 512 --a_type i8_r  |                             |
-   |           | --lda 1024 --stride_a 4096 |                             |
-   |           | --b_type i8_r --ldb 2048   |                             |
-   |           | --stride_b 4096 --c_type   |                             |
-   |           | i32_r --ldc 1024           |                             |
-   |           | --stride_c 2097152         |                             |
-   |           | --d_type i32_r --ldd 1024  |                             |
-   |           | --stride_d 2097152         |                             |
-   |           | --compute_type i32_r       |                             |
-   |           | --alpha 1.1 --beta 1       |                             |
-   |           | --batch_count 5            |                             |
-   +-----------+----------------------------+-----------------------------+
-   | Ba        | mpiexec -n 8 wrapper.sh    | **Copy Pass:** ≥ 4,177,285  |
-   | belStream |                            | MB/s                        |
-   |           |                            |                             |
-   |           |                            | **Mul Pass:** ≥ 4,067,069   |
-   |           |                            | MB/s                        |
-   |           |                            |                             |
-   |           |                            | **Add Pass:** ≥ 3,920,853   |
-   |           |                            | MB/s                        |
-   |           |                            |                             |
-   |           |                            | **Triad Pass:** ≥ 3,885,301 |
-   |           |                            | MB/s                        |
-   |           |                            |                             |
-   |           |                            | **Dot Pass:** ≥ 3,660,781   |
-   |           |                            | MB/s                        |
-   |           |                            |                             |
-   |           |                            | **Fail:** Otherwise         |
-   +-----------+----------------------------+-----------------------------+
+     - 
+       * **Pass**: OS version listed in compatibility matrix
+       * **Fail**: Otherwise
+
+   * - Check kernel boot arguments
+     - .. code-block:: shell
+
+          cat/proc/cmdline
+
+     - 
+       * **Pass**: Contains ``pci-realloc=off``, ``amd_iommu=on`` or
+         ``intel_iommu=on``, and ``iommu=pt``
+       * **Fail**: Otherwise
+
+   * - Check for driver errors
+     - .. code-block:: shell
+
+          sudo dmesg -T | grep amdgpu | grep -i error
+
+     - 
+       * **Pass**: Null
+       * **Fail**: Errors reported
+
+   * - Check available memory
+     - .. code-block:: shell
+
+          lsmem | grep "Total online memory"
+
+     - 
+       * **Pass**: 1.5T or more
+       * **Fail**: Less than 1.5T
+
+   * - Check GPU presence
+     - .. code-block:: shell
+
+          lspci | grep MI300X
+
+     - 
+       * **Pass**: All 8 GPUs found
+       * **Fail**: Otherwise
+
+   * - Check GPU link speed and width
+     - .. code-block:: shell
+
+          sudo lspci -d 1002:74a1 -vvv | grep -e DevSta -e LnkSta
+
+     - 
+       * **Pass**: Speed 32GT/s, width ``x16``, no ``FatalErr+``
+       * **Fail**: Otherwise
+
+   * - Monitor utilization metrics
+     - .. code-block:: shell
+
+          amd-smi monitor -putm
+
+     - 
+       * **Pass**: Idle metrics as specified
+       * **Fail**: Otherwise
+
+   * - Check system kernel logs for errors
+     - .. code-block:: shell
+
+          sudo dmesg -T | grep -i 'error|warn|fail|exception'
+
+     - 
+       * **Pass**: Null
+       * **Fail**: Otherwise
+
+.. _mi300x-acceptance-system-validation:
+
+.. list-table:: Summary of system validation tests
+   :header-rows: 1
+
+   * - Test
+     - Command
+     - Pass/Fail criteria
+
+   * - Compute/GPU properties
+     - .. code-block:: shell
+
+          rvs -c ${RVS_CONF}/gpup_single.conf
+
+     - 
+       * **Pass**: All GPUs listed with no errors
+       * **Fail**: Missing GPUs or errors
+
+   * - GPU stress test (GST)
+     - .. code-block:: shell
+
+          rvs -c ${RVS_CONF}/MI300X/gst_single.conf
+
+     - 
+       * **Pass**: ``met: TRUE`` in logs
+       * **Fail**: Target GFLOP/s not met
+
+   * - Input energy delay product (IET)
+     - .. code-block:: shell
+
+          rvs -c ${RVS_CONF}/MI300X/iet_single.conf
+
+     - 
+       * **Pass**: ``met: TRUE`` for all actions
+       * **Fail**: Otherwise
+
+   * - Memory test (MEM)
+     - .. code-block:: shell
+
+          rvs -c ${RVS_CONF}/mem.conf -l mem.txt
+
+     - 
+       * **Pass**: All tests passed; bandwidth ~2TB/s
+       * **Fail**: Any test failed or low bandwidth
+
+   * - PCIe bandwidth benchmark (PEBB)
+     - .. code-block:: shell
+
+          rvs -c ${RVS_CONF}/MI300X/pebb_single.conf
+
+     - 
+       * **Pass**: All distances and bandwidths displayed
+       * **Fail**: Missing data
+
+   * - PCIe qualification tool (PEQT)
+     - .. code-block:: shell
+
+          rvs -c ${RVS_CONF}/peqt_single.conf
+
+     - 
+       * **Pass**: All actions true
+       * **Fail**: Otherwise
+
+   * - P2P benchmark and qualification tool (PBQT)
+     - .. code-block:: shell
+
+          rvs -c ${RVS_CONF}/pbqt_single.conf
+
+     - 
+       * **Pass**: ``peers:true`` lines and non-zero throughput
+       * **Fail**: Otherwise
+
+.. _mi300x-acceptance-performance-bench:
+
+.. list-table:: Summary of performance benchmarking tests
+   :header-rows: 1
+
+   * - Test
+     - Command
+     - Pass/Fail criteria
+
+   * - TransferBench all-to-all
+     - .. code-block:: shell
+
+          TransferBench a2a
+
+     - 
+       * **Pass**: Greater than or equal to 32.9
+       * **Fail**: Otherwise
+
+   * - TransferBench peer-to-peer
+     - .. code-block:: shell
+
+          TransferBench p2p
+
+     - 
+       * **UniDir pass**: Greater than or equal to 33.9
+       * **BiDir pass**: Greater than or equal to 43.9
+       * **Fail**: Otherwise
+
+   * - TransferBench tests 1 to 6
+     - .. code-block:: shell
+
+          TransferBench example.cfg
+
+     - 
+       * **Test 1 pass**: Greater than or equal to 47.1 GB/s
+       * **Test 2 pass**: Greater than or equal to 48.4 GB/s
+       * **Test 3 pass**: Greater than or equal to 31.9 GB/s (0 to 1) and 38.9
+         GB/s (1 to 0)
+       * **Test 4 pass**: Greater than or equal to 1264 GB/s
+       * **Test 5 pass**: N/A for GPU validation
+       * **Test 6 pass**: Greater than or equal to 48.6 GB/s
+       * **Fail**: Otherwise
+
+   * - RCCL Allreduce
+     - .. code-block:: shell
+
+          build/all_reduce_perf -b 8 -e 8G -f 2 -g 8
+
+     - 
+       * **Pass**: Greater than or equal to 304 GB/s
+       * **Fail**: Otherwise
+
+   * - rocBLAS FP32 benchmark
+     - .. code-block:: shell
+
+          rocblas-bench -f gemm \
+            -r s -m 4000 \
+            --lda 4000 --ldb 4000 --ldc 4000 \
+            --transposeA N --transposeB T
+
+     - 
+       * **Pass**: Greater than or equal to 94100 TFLOPS
+       * **Fail**: Otherwise
+
+   * - rocBLAS BF16 benchmark
+     - .. code-block:: shell
+
+          rocblas-bench -f gemm_strided_batched_ex \
+            --transposeA N --transposeB T \
+            -m 1024 -n 2048 -k 512 \
+            --a_type h --lda 1024 --stride_a 4096 \
+            --b_type h --ldb 2048 --stride_b 4096 \
+            --c_type s --ldc 1024 --stride_c 2097152 \
+            --d_type s --ldd 1024 --stride_d 2097152 \
+            --compute_type s \
+            --alpha 1.1 --beta 1 \
+            --batch_count 5
+
+     - 
+       * **Pass**: Greater than or equal to 130600 TFLOPS
+       * **Fail**: Otherwise
+
+   * - rocBLAS INT8 benchmark
+     - .. code-block:: shell
+
+          rocblas-bench -f gemm_strided_batched_ex \
+            --transposeA N --transposeB T \
+            -m 1024 -n 2048 -k 512 \
+            --a_type i8_r --lda 1024 --stride_a 4096 \
+            --b_type i8_r --ldb 2048 --stride_b 4096 \
+            --c_type i32_r --ldc 1024 --stride_c 2097152 \
+            --d_type i32_r --ldd 1024 --stride_d 2097152 \
+            --compute_type i32_r \
+            --alpha 1.1 --beta 1 \
+            --batch_count 5
+
+     - 
+       * **Pass**: Greater than or equal to 162700 TFLOPS
+       * **Fail**: Otherwise
+
+   * - BabelStream
+     - .. code-block:: shell
+
+          mpiexec -n 8 wrapper.sh
+
+     - 
+       * **Copy pass**: Greater than or equal to 4,177,285 MB/s
+       * **Copy pass**: Greater than or equal to 4,067,069 MB/s
+       * **Copy pass**: Greater than or equal to 3,920,853 MB/s
+       * **Copy pass**: Greater than or equal to 3,885,301 MB/s
+       * **Copy pass**: Greater than or equal to 3,660,781 MB/s
+       * **Fail**: Otherwise
