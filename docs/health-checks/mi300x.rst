@@ -182,7 +182,7 @@ Expected output:
    properly when a large workload is run. But you can continue to next check.
 
 Check GPU presence (lspci)
---------------------------
+==========================
 
 Confirm all GPU accelerators are present and available on the PCIe bus by
 running the following command.
@@ -224,7 +224,7 @@ Result:
       manufacturer for further assistance.
 
 Check GPU link speed and width on PCIe bus (sudo lspci -vvv)
-------------------------------------------------------------
+============================================================
 
 Confirm PCIe links to each of the GPUs are running at full speed and width. Use
 the following ``lspci`` command with the highest verbosity mode (``-vvv``)
@@ -329,7 +329,7 @@ Result for an idle system:
     system manufacturer.
 
 Check the system kernel logs for other errors (dmesg)
------------------------------------------------------
+=====================================================
 
 The command line utility ``dmesg`` prints boot-time message and on-going kernel
 event messages about the state of the system hardware and drivers. The utility
