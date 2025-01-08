@@ -4,6 +4,7 @@ Bootloader
 ConfigFile
 GFLOP
 GFLOPs
+GPUP
 GST
 GbE
 HDDs
@@ -12,6 +13,7 @@ IET
 IOD
 NVMe
 PBQT
+PCBs
 PEBB
 PEQT
 PVG
@@ -23,4 +25,6 @@ SUT
 TGP
 Tera
 microbenchmarks
+reproducibility
+reseating
 xGMI

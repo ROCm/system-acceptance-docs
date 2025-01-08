@@ -134,7 +134,7 @@ The configuration file for GPUP module is located at ``{RVS_CONF}/gpup_single.co
 
 The GPUP module section of the `ROCm Validation Suite User
 Guide <https://github.com/ROCm/ROCmValidationSuite/blob/master/docs/ug1main.md#gpup-module>`__
-provides detailed description about the GPUP conf file, its formation,
+provides detailed description about the GPUP ``conf`` file, its formation,
 and keys.
 
 Command:
@@ -328,7 +328,7 @@ Result:
 Stress
 ~~~~~~
 
-The Input Energy Delay Product (EDPp) test (IET) module runs GEMM workloads to
+The Input Energy Delay Product (EDP) test (IET) module runs GEMM workloads to
 stress the GPU power, that is, Total Graphics Power (TGP).
 
 This test is used to:
@@ -645,7 +645,7 @@ bandwidth and indicates whether its bidirectional or unidirectional transfer.
 
 Result:
 
-- PASSED: If all CPUs-GPUs distances are displayed and CPU (x=0/1) to GPUy
+- PASSED: If all CPUs-GPUs distances are displayed and CPU x (x=0/1) to GPU y
   (y=2/3/4/5/6/7/8/9) PCIe transfer bandwidths are displayed.
 
 - FAILED: Otherwise
@@ -669,7 +669,7 @@ characteristics of the PCIe bus interconnect to a GPU:
 
 - PCIe link width
 
-The configuration file for peqt module is located at ``{RVS_CONF}/peqt_single.conf``.
+The configuration file for the PEQT module is located at ``{RVS_CONF}/peqt_single.conf``.
 
 Command:
 

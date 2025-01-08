@@ -6,7 +6,7 @@
 Prerequisites
 *************
 
-Before actioning the prerequisites in this section, as the system administrator,
+Before completing the prerequisites in this section, as the system administrator,
 you should ensure the system does not have visible damage and is installed
 correctly. Refer to the installation guide from the system manufacturer to
 ensure the system has been correctly installed in a rack with sufficient

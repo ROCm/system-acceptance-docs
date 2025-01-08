@@ -34,8 +34,8 @@ user-specified CPU and GPU devices. For more information, see the
 :doc:`TransferBench documentation <transferbench:index>` and `GitHub repository
 <https://github.com/ROCm/TransferBench>`_.
 
-The system health benchmarks run 6 TransferBench tests from the `example.cfg
-file <https://github.com/ROCm/TransferBench/blob/develop/examples/example.cfg>`__.
+The system health benchmarks run 6 TransferBench tests from the
+`example.cfg file <https://github.com/ROCm/TransferBench/blob/develop/examples/example.cfg>`_.
 For reference, the six transfers are:
 
 1. Single GPU-executed Transfer between GPUs 0 and 1 using 4 Compute
@@ -46,16 +46,16 @@ For reference, the six transfers are:
 3. Copy 1 MB from GPU 0 to GPU 1 with 4 CUs, and 2 MB from GPU 1 to GPU
    0 with 8 CUs – This test reports results for both Transfers
 
-4. "Memset" by GPU 0 to GPU 0 memory
+4. ``Memset`` by GPU 0 to GPU 0 memory
 
-5. "Read-only" by CPU 0
+5. ``Read-only`` by CPU 0
 
 6. Broadcast from GPU 0 to GPU 0 and GPU 1
 
 TransferBench qualification
 ---------------------------
 
-Ensure that ROCm and libnuma are first installed on the SUT. To download
+Ensure that ROCm and ``libnuma`` are first installed on the SUT. To download
 and install TransferBench, run the following commands:
 
 .. code-block:: shell
@@ -207,8 +207,8 @@ TransferBench default ConfigFile test
 
 The TransferBench default ``ConfigFile`` test allows a set of transfers (or,
 tests) to run in parallel. To learn more about the ``ConfigFile`` format,
-please review the `official documentation
-<https://rocm.docs.amd.com/projects/TransferBench/en/latest/how%20to/use-transferbench.html>`__.
+please review the
+`official documentation <https://rocm.docs.amd.com/projects/TransferBench/en/latest/how%20to/use-transferbench.html>`__.
 
 Run the following command:
 
@@ -347,9 +347,10 @@ following command in your terminal:
 
    build/all_reduce_perf -b 8 -e 8G -f 2 -g 8
 
-The RCCL all-reduce test criteria is to exceed an in-place busbw metric of 304
-GB/s at a message size of 8589934592B, approximately 8GB – the reported value is
-shown in the example output below:
+The RCCL all-reduce test criteria is to exceed an in-place ``busbw`` metric of 304
+GB/s at a message size of 8589934592B, approximately 8GB.
+
+Example output:
 
 .. code-block:: shell-session
 
@@ -435,8 +436,8 @@ rocBLAS on a validated system.
    situations and kernels, other AMD ROCm supported tools, such as hipBLASLt,
    Triton and Composable Kernel, can provide superior performance.
 
-For more information, see `rocblas-bench
-<https://rocm.docs.amd.com/projects/rocBLAS/en/develop/how-to/Programmers_Guide.html#rocblas-bench>`__.
+For more information, see
+`rocblas-bench <https://rocm.docs.amd.com/projects/rocBLAS/en/develop/how-to/Programmers_Guide.html#rocblas-bench>`_.
 Future updates of ROCm in particular can boost performance of GEMM benchmarks,
 so these numbers are expected to vary in the future.
 
@@ -444,7 +445,7 @@ rocBLAS qualification
 ---------------------
 
 rocBLAS can be built from source to target tests and benchmarks only,
-which have a dependency on gtest. On Ubuntu, install gtest by running
+which have a dependency on ``gtest``. On Ubuntu, install ``gtest`` by running
 the following command:
 
 .. code-block:: shell
@@ -549,13 +550,13 @@ benchmarks, larger scores are better.
    * - GEMM
      - Minimum passing score (TFLOPS)
 
-   * - FP32 4kx4kx4k
+   * - FP32 ``4kx4kx4k``
      - 94100
 
-   * - Strided BF16, BS 5, 1kx2kx512
+   * - Strided BF16, BS 5, ``1kx2kx512``
      - 130600
 
-   * - Strided Int8, BS5, 1kx2kx512
+   * - Strided Int8, BS5, ``1kx2kx512``
      - 162700
 
 .. note::
@@ -596,11 +597,11 @@ by running the commands below in your terminal:
 
    export PATH=$PWD/build:$PATH
 
-Running babelstream on all eight 300X GPUs concurrently requires
-coordinated job launching and device identification as an argument to
-the hip-stream executable. AMD recommends mpi to orchestrate this, and
-the easiest way to run on the SUT is to create a script called
-*wrapper.sh* and populate it with the following lines:
+Running BabelStream on all eight 300X GPUs concurrently requires coordinated
+job launching and device identification as an argument to the ``hip-stream``
+executable. AMD recommends MPI to orchestrate this, and the easiest way to
+run on the SUT is to create a script called ``wrapper.sh`` and populate it with
+the following lines:
 
 .. code-block:: bash
 
@@ -621,7 +622,7 @@ Open MPI can be installed on Ubuntu platforms with the following syntax:
 
    sudo apt-get install openmpi-bin openmpi-common libopenmpi-dev
 
-After completing the babelstream tests, openmpi can be uninstalled.
+After completing the BabelStream tests, ``openmpi`` can be uninstalled.
 
 For your first benchmark run, execute the following command to assign
 proper permissions to the wrapper script:
@@ -686,17 +687,17 @@ Expected output (truncated):
    * - Function
      - Minimum passing score (MB/s)
 
-   * - Copy
+   * - ``Copy``
      - 4,177,285
 
-   * - Mul
+   * - ``Mul``
      - 4,067,069
 
-   * - Add
+   * - ``Add``
      - 3,920,853
 
-   * - Triad
+   * - ``Triad``
      - 3,885,301
 
-   * - Dot
+   * - ``Dot``
      - 3,660,781
