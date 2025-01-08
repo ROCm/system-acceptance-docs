@@ -181,6 +181,8 @@ Expected output:
    If the available memory is less than 1.5T, the system may not function
    properly when a large workload is run. But you can continue to next check.
 
+.. _mi300x-health-checks-lspci:
+
 Check GPU presence (lspci)
 ==========================
 

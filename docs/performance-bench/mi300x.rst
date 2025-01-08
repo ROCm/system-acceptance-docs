@@ -764,6 +764,8 @@ NOTE: Typically, rocBLAS benchmarking requires multiple test runs to
 obtain peak performance. It is recommended to use the highest TFLOPS
 score obtained for each GEMM test to validate the compute performance.
 
+.. _mi300x-bench-babelstream:
+
 5.4 BabelStream Benchmarking Results
 ------------------------------------
 
