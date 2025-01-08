@@ -24,7 +24,9 @@ the following
 
 - BabelStream
 
-TransferBench benchmarking results 
+.. _mi300x-bench-transferbench:
+
+TransferBench benchmarking results
 ==================================
 
 TransferBench is a tool and utility for benchmarking copies between
@@ -70,6 +72,8 @@ SUT, follow the instructions below to run the All-to-All and Peer-to-Peer
 benchmarks. We also include a section on the TransferBench ConfigFile format,
 which allows for a set of Transfers (a Test) to run in parallel.
 
+.. _mi300x-bench-transferbench-a2a:
+
 All-to-all
 ~~~~~~~~~~
 
@@ -113,6 +117,8 @@ within our reproducibility acceptance criteria:
 
    * - ``a2a`` average bandwidth
      - 32.9
+
+.. _mi300x-bench-transferbench-p2p:
 
 Peer-to-peer
 ~~~~~~~~~~~~
@@ -286,6 +292,8 @@ better.
    are highly platform dependent and should not be used to validate GPU
    performance.
 
+.. _mi300x-bench-rccl:
+
 RCCL benchmarking results
 =========================
 
@@ -405,6 +413,8 @@ shown in the example output below:
 
    * - ``all_reduce``
      - 304
+
+.. _mi300x-bench-rocblas:
 
 rocBLAS benchmarking results
 ============================

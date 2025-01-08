@@ -10,7 +10,7 @@ Before proceeding with more extensive system validation, it's important to
 ensure all components in the system are operating at peak performance and
 bandwidth.
 
-A typical MI300X based GPU server architecture consists of the following
+A typical MI300X-based GPU server architecture consists of the following
 components.
 
 - Host CPUs: Usually dual socket, handling general processing and orchestrating
@@ -21,7 +21,7 @@ components.
 - GPUs: Multiple GPUs connected over AMD Infinity Fabric Link for parallel
   processing and acceleration.
 
-- HBM3 Memory: attached to GPUs through I/O Die (IOD)
+- HBM3 Memory: attached to GPUs through I/O Die (IOD).
 
 - Storage: High-speed NVMe SSDs or traditional HDDs for data storage.
 
@@ -57,15 +57,16 @@ different output.
 Check OS and host system checks
 ===============================
 
-The following sub-sections lists items to check for the operating system and
-host CPU and memory checks. For each, a sample command along with corresponding
-log output is shown. The sample output provides typical results and serves as a
-guideline.
+The following subsections list operating system and host CPU and memory checks.
+For each item, a sample command along with corresponding log output is shown.
+The sample output provides typical results and serves as a guideline.
 
 .. note::
 
    If results vary from the sample expected output, contact your system
    manufacturer support representative for further assistance.
+
+.. _mi300x-health-checks-os-release:
 
 Check OS distribution (os-release)
 ----------------------------------
@@ -96,6 +97,8 @@ Result:
     compatibility matrix pages, do not continue with the following steps.
     Instead, install a supported distribution and then proceed with the
     installation of ROCm 6.2 or a newer version.
+
+.. _mi300x-health-checks-cmdline:
 
 Check kernel boot arguments (cmdline)
 -------------------------------------
@@ -138,6 +141,8 @@ Result:
     Note that if ``pci=realloc=off`` is not in GRUB configuration in Ubuntu
     distribution, not all GPUs may be recognized.
 
+.. _mi300x-health-checks-driver-errors:
+
 Check for driver errors (dmesg)
 -------------------------------
 
@@ -158,6 +163,8 @@ Result:
 
   - Action: Don’t proceed further. Reinstall amdgpu driver and then
     start the acceptance testing from this section.
+
+.. _mi300x-health-checks-lsmem:
 
 Check for available memory (lsmem)
 ----------------------------------
@@ -225,6 +232,8 @@ Result:
     - If adjusting the torque does not resolve the problem, contact your system
       manufacturer for further assistance.
 
+.. _mi300x-health-checks-gpu-link-speed:
+
 Check GPU link speed and width on PCIe bus (sudo lspci -vvv)
 ============================================================
 
@@ -272,6 +281,8 @@ Result:
 
   - Action: Do not proceed further. Report this issue to your system
     manufacturer immediately.
+
+.. _mi300x-health-checks-monitor-utilization:
 
 Monitoring utilization metrics (amd-smi)
 ========================================
@@ -329,6 +340,8 @@ Result for an idle system:
   - Action: Check the data center ambient temperature and system fan speed.
     Power cycle the system. If the issue persists, report this issue to your
     system manufacturer.
+
+.. _mi300x-health-checks-system-kernel-logs:
 
 Check the system kernel logs for other errors (dmesg)
 =====================================================

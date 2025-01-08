@@ -1,9 +1,13 @@
+.. meta::
+   :description lang=en:
+   :keywords:
+
 *******************
 Acceptance criteria
 *******************
 
-If all the Results section PASSED, the SUT is ready and should be
-accepted.
+Provided the system under test passes the following criteria, the SUT is ready
+and should be accepted.
 
 .. _mi300x-acceptance-health-checks:
 
@@ -14,7 +18,7 @@ accepted.
      - Command
      - Pass/Fail criteria
 
-   * - Check OS distribution
+   * - :ref:`Check OS distribution <mi300x-health-checks-os-release>`
      - .. code-block:: shell
 
           cat/etc/os-release
@@ -23,7 +27,7 @@ accepted.
        * **Pass**: OS version listed in compatibility matrix
        * **Fail**: Otherwise
 
-   * - Check kernel boot arguments
+   * - :ref:`Check kernel boot arguments <mi300x-health-checks-cmdline>`
      - .. code-block:: shell
 
           cat/proc/cmdline
@@ -33,7 +37,7 @@ accepted.
          ``intel_iommu=on``, and ``iommu=pt``
        * **Fail**: Otherwise
 
-   * - Check for driver errors
+   * - :ref:`Check for driver errors <mi300x-health-checks-driver-errors>`
      - .. code-block:: shell
 
           sudo dmesg -T | grep amdgpu | grep -i error
@@ -42,7 +46,7 @@ accepted.
        * **Pass**: Null
        * **Fail**: Errors reported
 
-   * - Check available memory
+   * - :ref:`Check available memory <mi300x-health-checks-lsmem>`
      - .. code-block:: shell
 
           lsmem | grep "Total online memory"
@@ -51,7 +55,7 @@ accepted.
        * **Pass**: 1.5T or more
        * **Fail**: Less than 1.5T
 
-   * - Check GPU presence
+   * - :ref:`Check GPU presence <mi300x-health-checks-lspci>`
      - .. code-block:: shell
 
           lspci | grep MI300X
@@ -60,7 +64,7 @@ accepted.
        * **Pass**: All 8 GPUs found
        * **Fail**: Otherwise
 
-   * - Check GPU link speed and width
+   * - :ref:`Check GPU link speed and width <mi300x-health-checks-gpu-link-speed>`
      - .. code-block:: shell
 
           sudo lspci -d 1002:74a1 -vvv | grep -e DevSta -e LnkSta
@@ -69,7 +73,7 @@ accepted.
        * **Pass**: Speed 32GT/s, width ``x16``, no ``FatalErr+``
        * **Fail**: Otherwise
 
-   * - Monitor utilization metrics
+   * - :ref:`Monitor utilization metrics <mi300x-health-checks-monitor-utilization>`
      - .. code-block:: shell
 
           amd-smi monitor -putm
@@ -78,7 +82,7 @@ accepted.
        * **Pass**: Idle metrics as specified
        * **Fail**: Otherwise
 
-   * - Check system kernel logs for errors
+   * - :ref:`Check system kernel logs for errors <mi300x-health-checks-system-kernel-logs>`
      - .. code-block:: shell
 
           sudo dmesg -T | grep -i 'error|warn|fail|exception'
@@ -96,7 +100,7 @@ accepted.
      - Command
      - Pass/Fail criteria
 
-   * - Compute/GPU properties
+   * - :ref:`Compute/GPU properties <mi300x-rvs-compute-gpu>`
      - .. code-block:: shell
 
           rvs -c ${RVS_CONF}/gpup_single.conf
@@ -105,7 +109,7 @@ accepted.
        * **Pass**: All GPUs listed with no errors
        * **Fail**: Missing GPUs or errors
 
-   * - GPU stress test (GST)
+   * - :ref:`GPU stress test (GST) <mi300x-rvs-gst>`
      - .. code-block:: shell
 
           rvs -c ${RVS_CONF}/MI300X/gst_single.conf
@@ -114,7 +118,7 @@ accepted.
        * **Pass**: ``met: TRUE`` in logs
        * **Fail**: Target GFLOP/s not met
 
-   * - Input energy delay product (IET)
+   * - :ref:`Input energy delay product (IET) <mi300x-rvs-iet>`
      - .. code-block:: shell
 
           rvs -c ${RVS_CONF}/MI300X/iet_single.conf
@@ -123,7 +127,7 @@ accepted.
        * **Pass**: ``met: TRUE`` for all actions
        * **Fail**: Otherwise
 
-   * - Memory test (MEM)
+   * - :ref:`Memory test (MEM) <mi300x-rvs-mem>`
      - .. code-block:: shell
 
           rvs -c ${RVS_CONF}/mem.conf -l mem.txt
@@ -132,7 +136,7 @@ accepted.
        * **Pass**: All tests passed; bandwidth ~2TB/s
        * **Fail**: Any test failed or low bandwidth
 
-   * - PCIe bandwidth benchmark (PEBB)
+   * - :ref:`PCIe bandwidth benchmark (PEBB) <mi300x-rvs-pebb>`
      - .. code-block:: shell
 
           rvs -c ${RVS_CONF}/MI300X/pebb_single.conf
@@ -141,7 +145,7 @@ accepted.
        * **Pass**: All distances and bandwidths displayed
        * **Fail**: Missing data
 
-   * - PCIe qualification tool (PEQT)
+   * - :ref:`PCIe qualification tool (PEQT) <mi300x-rvs-peqt>`
      - .. code-block:: shell
 
           rvs -c ${RVS_CONF}/peqt_single.conf
@@ -150,7 +154,7 @@ accepted.
        * **Pass**: All actions true
        * **Fail**: Otherwise
 
-   * - P2P benchmark and qualification tool (PBQT)
+   * - :ref:`P2P benchmark and qualification tool (PBQT) <mi300x-rvs-pbqt>`
      - .. code-block:: shell
 
           rvs -c ${RVS_CONF}/pbqt_single.conf
@@ -168,7 +172,7 @@ accepted.
      - Command
      - Pass/Fail criteria
 
-   * - TransferBench all-to-all
+   * - :ref:`TransferBench all-to-all <mi300x-bench-transferbench-a2a>`
      - .. code-block:: shell
 
           TransferBench a2a
@@ -177,7 +181,7 @@ accepted.
        * **Pass**: Greater than or equal to 32.9
        * **Fail**: Otherwise
 
-   * - TransferBench peer-to-peer
+   * - :ref:`TransferBench peer-to-peer <mi300x-bench-transferbench-p2p>`
      - .. code-block:: shell
 
           TransferBench p2p
@@ -187,7 +191,7 @@ accepted.
        * **BiDir pass**: Greater than or equal to 43.9
        * **Fail**: Otherwise
 
-   * - TransferBench tests 1 to 6
+   * - :ref:`TransferBench tests 1 to 6 <mi300x-bench-transferbench-configfile>`
      - .. code-block:: shell
 
           TransferBench example.cfg

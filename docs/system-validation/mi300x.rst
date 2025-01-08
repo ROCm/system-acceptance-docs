@@ -7,9 +7,9 @@ System validation tests
 ***********************
 
 The validation tests in this section are intended to ensure that a system is
-operating correctly as expected. In this section, ROCm Validation Suite
-(``rvs``) is used which is a collection of tests, benchmarks, and qualification
-tools, each targeting a specific subsystem of the SUT.
+operating correctly. In this section, ROCm Validation Suite (``rvs``) is used
+which is a collection of tests, benchmarks, and qualification tools, each
+targeting a specific subsystem of the system under test (SUT).
 
 If not already installed on the SUT, run the following install command
 (Ubuntu):
@@ -52,7 +52,7 @@ output. To set this variable in the environment, run the following command:
 
 The configuration files section of the `ROCm Validation Suite User Guide
 <https://github.com/ROCm/ROCmValidationSuite/blob/master/docs/ug1main.md#configuration-files>`__
-provides detailed description about the conf file, its formation, and keys. It
+provides detailed description about the ``conf`` file, its formation, and keys. It
 is advisable to become familiar with the ``conf`` file format before running
 the ``rvs`` tests described below. Be aware, some ``conf`` files are included
 in product specific sub-folders (for instance,
@@ -66,6 +66,8 @@ validated. Example ``rvs`` commands with the expected output are also provided.
 Most of the ``rvs`` tests do not have strict PASS / FAIL conditions reported,
 rather it is expected that when they are run on the SUT, the output observed
 are within a reasonable range provided.
+
+.. _mi300x-rvs-compute-gpu:
 
 Compute / GPU
 =============
@@ -189,11 +191,13 @@ Result:
 Benchmark, stress, qualification
 --------------------------------
 
-These categories of modules perform qualification of the GPU subsystem,
-execute stress test, and compute and display bandwidth. The modules do
-not produce a PASS / FAIL result. When bandwidth is measured it only
-reports the bandwidth and doesn’t make any comparisons with existing set
-of numbers. Only exceptions are GST and IET modules.
+These categories of modules perform qualification of the GPU subsystem, execute
+stress test, and compute and display bandwidth. The modules do not produce a
+PASS / FAIL result. When bandwidth is measured it only reports the bandwidth
+and doesn’t make any comparisons with existing set of numbers. Only exceptions
+are GST and IET modules.
+
+.. _mi300x-rvs-gst:
 
 Benchmark
 ~~~~~~~~~
@@ -319,6 +323,8 @@ Result:
   - Action: Do not proceed further. Report this issue to your system
     manufacturer immediately.
 
+.. _mi300x-rvs-iet:
+
 Stress
 ~~~~~~
 
@@ -402,6 +408,8 @@ Command:
 
 Expected output (truncated):
 
+.. code-block:: shell-session
+
    [RESULT] [209228.305186] [metrics_monitor] gm 28851 temp violations 0
    [RESULT] [209228.305186] [metrics_monitor] gm 28851 clock violations 0
    [RESULT] [209228.305186] [metrics_monitor] gm 28851 mem_clock violations 0
@@ -422,12 +430,14 @@ Result:
 Memory
 ======
 
-To validate the GPU memory subsystem, rvs has the following two *types* of
+To validate the GPU memory subsystem, ``rvs`` has the following two *types* of
 modules:
 
 - MEM
 
 - BABEL
+
+.. _mi300x-rvs-mem:
 
 MEM
 ---
@@ -465,12 +475,12 @@ Command:
 
    rvs -c ${RVS_CONF}/mem.conf -l mem.txt
 
-The entire output file is not shown here for brevity. Performing grep
-for certain string(s) in the file where the log is saved makes it easier
-to understand the log. The “-l mem.txt” option in the command line dumps
-the entire output into the file.
+The entire output file is not shown here for brevity. Grepping for certain
+strings in the file where the log is saved makes it easier to understand the
+log. The ``-l mem.txt`` option in the command dumps the entire output into
+the file.
 
-Performing grep for the string “mem Test 1:” shows, Test 1 (Change one
+Grepping for the string ``mem Test 1:`` shows, Test 1 (Change one
 bit memory address) is launched for each GPU.
 
 .. code-block:: shell-session
@@ -485,8 +495,7 @@ bit memory address) is launched for each GPU.
    [RESULT] [214777.52685 ] [action_1] mem Test 1: Change one bit memory addresss
    [RESULT] [214777.155703] [action_1] mem Test 1: Change one bit memory addresss
 
-Performing grep for the string “mem Test 1 :” shows, Test 1 passed for
-all GPUs.
+Grepping for the string ``mem Test 1 :`` shows, Test 1 passed for all GPUs.
 
 .. code-block:: shell-session
 
@@ -499,10 +508,10 @@ all GPUs.
    [RESULT] [214777.75572 ] [action_1] mem Test 1 : PASS
    [RESULT] [214777.178653] [action_1] mem Test 1 : PASS
 
-Similarly, other string(s) can be used to parse the log file easily.
+Similarly, you can grep other strings to parse the log file easily.
 
-Performing grep for the string “bandwidth” shows the memory bandwidth
-perceived by each of the eight GPUs.
+Grepping for the string “bandwidth” shows the memory bandwidth perceived by
+each of the eight GPUs.
 
 .. code-block:: shell-session
 
@@ -536,7 +545,7 @@ instructions on how to run this module to test memory.
 IO
 ==
 
-To validate the GPU interfaces, rvs has the following three *types* of
+To validate the GPU interfaces, ``rvs`` has the following three *types* of
 modules:
 
 - PEBB – PCIe Bandwidth Benchmark
@@ -544,6 +553,8 @@ modules:
 - PEQT – PCIe Qualification Tool
 
 - PBQT – P2P Benchmark and Qualification Tool
+
+.. _mi300x-rvs-pebb:
 
 PEBB (PCIe Bandwidth Benchmark)
 -------------------------------
@@ -564,32 +575,32 @@ Command:
 
    rvs -c ${RVS_CONF}/MI300X/pebb_single.conf -l pebb.txt
 
-Expected output (truncated):
+The PEBB modules has the following tests defined in the ``conf`` file (where
+``h2d`` means host to device, ``d2h`` means device to host, ``xMB`` means
+random block size, and ``b2b`` means back to back):
 
-The PEBB modules has the following tests (h2d=host to device, d2h=device
-to host, xMB=random block size, b2b=back to back) defined in the conf
-file:
+- ``h2d-sequential-51MB``
 
-- h2d-sequential-51MB
+- ``d2h-sequential-51MB``
 
-- d2h-sequential-51MB
+- ``h2d-d2h-sequential-51MB``
 
-- h2d-d2h-sequential-51MB
+- ``h2d-parallel-xMB``
 
-- h2d-parallel-xMB
+- ``d2h-parallel-xMB``
 
-- d2h-parallel-xMB
+- ``h2d-d2h-xMB``
 
-- h2d-d2h-xMB
+- ``h2d-b2b-51MB``
 
-- h2d-b2b-51MB
+- ``d2h-b2b-51MB``
 
-- d2h-b2b-51MB
-
-- h2d-d2h-b2b-51MB
+- ``h2d-d2h-b2b-51MB``
 
 Each of these tests will produce the following header as part of the
 output log. It shows the distances between CPUs and GPUs.
+
+Expected output (truncated):
 
 .. code-block:: shell-session
 
@@ -634,12 +645,14 @@ bandwidth and indicates whether its bidirectional or unidirectional transfer.
 
 Result:
 
-- PASSED: If all CPUs-GPUs distances are displayed and CPUx (x=0/1) to
-  GPUy (y=2/3/4/5/6/7/8/9) PCIe transfer bandwidths are displayed.
+- PASSED: If all CPUs-GPUs distances are displayed and CPU (x=0/1) to GPUy
+  (y=2/3/4/5/6/7/8/9) PCIe transfer bandwidths are displayed.
 
 - FAILED: Otherwise
 
   - Action: Proceed to next step. Run this same test later again.
+
+.. _mi300x-rvs-peqt:
 
 PEQT (PCIe Qualification Tool)
 ------------------------------
@@ -737,6 +750,8 @@ Result:
     privileges. If not, actions 6 through 16 will fail. Run this same test
     later again.
 
+.. _mi300x-rvs-pbqt:
+
 PBQT (P2P Benchmark and Qualification Tool)
 -------------------------------------------
 
@@ -751,7 +766,7 @@ The PBQT module executes the following tests:
 The configuration file for the ``pbqt`` module for MI300X is located here:
 ``{RVS_CONF}/MI300X/pbqt_single.conf``.
 
-The conf file has 12 ``actions_xy`` test segments. Each of these, checks for
+The ``conf`` file has 12 ``actions_xy`` test segments. Each of these, checks for
 peer-to-peer connectivity among GPUs and provides a true/false status. In
 addition, it also performs bidirectional throughput test and reports the
 throughput obtained based on config parameters. Since comparison is not
@@ -784,8 +799,8 @@ for the GPU and its connection to the other seven GPU peers:
    [RESULT] [1104553.34294 ] [p2p-unidir-sequential-64MB] p2p [GPU:: 2 - 28851 - 0000:05:00.0] [GPU:: 8 - 53667 - 0000:c6:00.0] peers:true distance:15 xGMI:15
    [RESULT] [1104553.34298 ] [p2p-unidir-sequential-64MB] p2p [GPU:: 2 - 28851 - 0000:05:00.0] [GPU:: 9 - 63738 - 0000:e5:00.0] peers:true distance:15 xGMI:15
 
-The following lines show unidirectional throughput between the 56 GPU
-pairs (not all are shown):
+The following lines show unidirectional throughput between the 56 GPU pairs
+(not all are shown):
 
 .. code-block:: shell-session
 
