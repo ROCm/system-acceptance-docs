@@ -1,13 +1,13 @@
 .. meta::
-   :description lang=en:
-   :keywords:
+   :description lang=en: Common acronyms and terminology in the AMD Instinct system validation documentation.
+   :keywords: terms, terminology, abbreviation, abbreviations, definition, jargon, unit, units
 
 ********
 Acronyms
 ********
 
-The following table contains acronyms and definitions used throughout
-this document.
+The following table contains acronyms and definitions used throughout this
+documentation.
 
 +---------------+------------------------------------------------------+
 | Acronym       | Description                                          |

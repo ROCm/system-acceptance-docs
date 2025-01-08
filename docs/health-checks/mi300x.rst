@@ -1,3 +1,7 @@
+.. meta::
+   :description lang=en:
+   :keywords:
+
 **************************
 Basic system health checks
 **************************
@@ -42,13 +46,13 @@ connected in the system using:
    Checking the health of other components in the system is outside
    the scope of this document.
 
-After the system boots, run the following commands listed in the following
-sections. For each command, an example output is provided. Expect to see similar
-output when these commands are executed on the System Under Test (SUT). For
-illustration purposes, commands and the output shown below were obtained from a
-system running Ubuntu 22.04, which is one of the supported distributions for
-ROCm 6.2 at the time of release of this guide. Running other supported
-distributions on the SUT may result in slightly different output.
+After the system boots, run the commands listed in the following sections. For
+each command, an example output is provided. Expect to see similar output when
+these commands are executed on the System Under Test (SUT). For illustration
+purposes, commands and the output shown below were obtained from a system
+running Ubuntu 22.04, which is one of the supported distributions for ROCm 6.2.
+Running other supported distributions on the SUT may result in slightly
+different output.
 
 Check OS and host system checks
 ===============================
@@ -73,19 +77,17 @@ command.
 
    cat /etc/os-release
 
-An example of the output is given below. The output may vary based on
-the OS distribution running.
+Example output (varies depending on the running Linux distribution):
 
 .. code-block:: shell-session
 
    VERSION="22.04.4 LTS (Jammy Jellyfish)"
 
-Ensure that the OS distribution used is listed in the AMD’s ROCm
-`Compatibility
-matrix <https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html>`__
-page or in `Past versions of ROCm compatibility
-matrix <https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html#past-rocm-compatibility-matrix>`__
-page.
+Ensure that the OS distribution used is listed in the ROCm `ROCm compatibility
+matrix
+<https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html>`_
+or in `Past versions of ROCm compatibility matrix
+<https://rocm.docs.amd.com/en/latest/compatibility/compatibility-matrix.html#past-rocm-compatibility-matrix>`_.
 
 Result:
 
@@ -124,15 +126,15 @@ Result:
 
 - PASSED: If output displays the following settings:
 
-  - *pci=realloc=off*
+  - ``pci=realloc=off``
 
-  - *amd_iommu=on OR intel_iommu=on*
+  - ``amd_iommu=on`` or ``intel_iommu=on``
 
     - Be sure to use the parameter appropriate for the host CPU used
 
-  - *iommu=pt*
+  - ``iommu=pt``
 
-- FAILED: otherwise
+- FAILED:
 
   - Action: Don’t proceed further. Updated the GRUB settings of the SUT
     and reboot, and then start the acceptance testing from this section.
@@ -147,7 +149,7 @@ diagnostic messages (``dmesg``).
 
 .. code-block:: shell
 
-   sudo dmesg –T \| grep amdgpu \| grep -i error
+   sudo dmesg –T | grep amdgpu | grep -i error
 
 The expected output should be return no results (null).
 
@@ -169,7 +171,7 @@ Command:
 
 .. code-block:: shell
 
-   lsmem \| grep "Total online memory"
+   lsmem | grep "Total online memory"
 
 Expected output:
 
@@ -185,124 +187,89 @@ Expected output:
 Check GPU presence (lspci)
 --------------------------
 
-Confirm all GPU accelerators are present and available on the PCIe bus
-by running the following command.
+Confirm all GPU accelerators are present and available on the PCIe bus by
+running the following command.
 
 .. code-block:: shell
 
-   lspci \| grep MI300X
+   lspci | grep MI300X
 
-The following is an example of the output.
+Example output:
 
-:mark:`05:00.0 Processing accelerators: Advanced Micro Devices, Inc.
-[AMD/ATI] Aqua Vanjaram [Instinct MI300X]`
+.. code-block:: shell-session
 
-:mark:`26:00.0 Processing accelerators: Advanced Micro Devices, Inc.
-[AMD/ATI] Aqua Vanjaram [Instinct MI300X]`
-
-:mark:`46:00.0 Processing accelerators: Advanced Micro Devices, Inc.
-[AMD/ATI] Aqua Vanjaram [Instinct MI300X]`
-
-:mark:`65:00.0 Processing accelerators: Advanced Micro Devices, Inc.
-[AMD/ATI] Aqua Vanjaram [Instinct MI300X]`
-
-:mark:`85:00.0 Processing accelerators: Advanced Micro Devices, Inc.
-[AMD/ATI] Aqua Vanjaram [Instinct MI300X]`
-
-:mark:`a6:00.0 Processing accelerators: Advanced Micro Devices, Inc.
-[AMD/ATI] Aqua Vanjaram [Instinct MI300X]`
-
-:mark:`c6:00.0 Processing accelerators: Advanced Micro Devices, Inc.
-[AMD/ATI] Aqua Vanjaram [Instinct MI300X]`
-
-:mark:`e5:00.0 Processing accelerators: Advanced Micro Devices, Inc.
-[AMD/ATI] Aqua Vanjaram [Instinct MI300X]`
+   05:00.0 Processing accelerators: Advanced Micro Devices, Inc. [AMD/ATI] Aqua Vanjaram [Instinct MI300X]
+   26:00.0 Processing accelerators: Advanced Micro Devices, Inc. [AMD/ATI] Aqua Vanjaram [Instinct MI300X]
+   46:00.0 Processing accelerators: Advanced Micro Devices, Inc. [AMD/ATI] Aqua Vanjaram [Instinct MI300X]
+   65:00.0 Processing accelerators: Advanced Micro Devices, Inc. [AMD/ATI] Aqua Vanjaram [Instinct MI300X]
+   85:00.0 Processing accelerators: Advanced Micro Devices, Inc. [AMD/ATI] Aqua Vanjaram [Instinct MI300X]
+   a6:00.0 Processing accelerators: Advanced Micro Devices, Inc. [AMD/ATI] Aqua Vanjaram [Instinct MI300X]
+   c6:00.0 Processing accelerators: Advanced Micro Devices, Inc. [AMD/ATI] Aqua Vanjaram [Instinct MI300X]
+   e5:00.0 Processing accelerators: Advanced Micro Devices, Inc. [AMD/ATI] Aqua Vanjaram [Instinct MI300X]
 
 Result:
 
-- PASSED: If all 8 GPUs are found shown above
+- PASSED: If all eight GPUs are found shown above
 
-- FAILED: otherwise
+- FAILED:
 
   - Action:
 
     - Don’t proceed further. Adjust GRUB configuration to ensure
-      *pci=realloc=off* is present.
+      ``pci=realloc=off`` is present.
 
-    - Reboot and rerun the above command to confirm all eight GPUs are
-      shown.
+    - Reboot and rerun the above command to confirm all eight GPUs are shown.
 
-    - If the issue persists despite previous attempts, verify that the
-      torque applied to OAMs meets required specification.
+    - If the issue persists despite previous attempts, verify that the torque
+      applied to OAMs meets required specification.
 
-    - If adjusting the torque does not resolve the problem, contact your
-      system manufacturer for further assistance.
+    - If adjusting the torque does not resolve the problem, contact your system
+      manufacturer for further assistance.
 
 Check GPU link speed and width on PCIe bus (sudo lspci -vvv)
 ------------------------------------------------------------
 
-Confirm PCIe links to each of the GPUs are running at full speed and
-width. Use the following lspci command with the highest verbosity mode
-(-vvv) available and designating the vendor ID=1002 with device
-ID=0x74a1 and grep for device status (DevSta) and link status (LnkSta):
+Confirm PCIe links to each of the GPUs are running at full speed and width. Use
+the following ``lspci`` command with the highest verbosity mode (``-vvv``)
+available and designating the vendor ``ID=1002`` with device ``ID=0x74a1`` and
+``grep`` for device status (``DevSta``) and link status (``LnkSta``).
 
 Command:
 
 .. code-block:: shell
 
-   sudo lspci -d 1002:74a1 -vvv \| grep -e DevSta -e LnkSta
+   sudo lspci -d 1002:74a1 -vvv | grep -e DevSta -e LnkSta
 
 Expected output:
 
-:mark:`**DevSta**: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr-
-TransPend-`
+.. code-block:: shell-session
 
-:mark:`**LnkSta**: Speed 32GT/s, Width x16`
-
-:mark:`**DevSta**: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr-
-TransPend-`
-
-:mark:`**LnkSta**: Speed 32GT/s, Width x16`
-
-:mark:`**DevSta**: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr-
-TransPend-`
-
-:mark:`**LnkSta**: Speed 32GT/s, Width x16`
-
-:mark:`**DevSta**: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr-
-TransPend-`
-
-:mark:`**LnkSta**: Speed 32GT/s, Width x16`
-
-:mark:`**DevSta**: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr-
-TransPend-`
-
-:mark:`**LnkSta**: Speed 32GT/s, Width x16`
-
-:mark:`**DevSta**: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr-
-TransPend-`
-
-:mark:`**LnkSta**: Speed 32GT/s, Width x16`
-
-:mark:`**DevSta**: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr-
-TransPend-`
-
-:mark:`**LnkSta**: Speed 32GT/s, Width x16`
-
-:mark:`**DevSta**: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr-
-TransPend-`
-
-:mark:`**LnkSta**: Speed 32GT/s, Width x16`
+   DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+   LnkSta: Speed 32GT/s, Width x16
+   DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+   LnkSta: Speed 32GT/s, Width x16
+   DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+   LnkSta: Speed 32GT/s, Width x16
+   DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+   LnkSta: Speed 32GT/s, Width x16
+   DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+   LnkSta: Speed 32GT/s, Width x16
+   DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+   LnkSta: Speed 32GT/s, Width x16
+   DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+   LnkSta: Speed 32GT/s, Width x16
+   DevSta: CorrErr- NonFatalErr- FatalErr- UnsupReq- AuxPwr- TransPend-
+   LnkSta: Speed 32GT/s, Width x16
 
 Result:
 
 - PASSED: Each output line must have:
 
-  - LinkSta displays link speed is 32GT/s and width is x16, and
+  - ``LinkSta`` displays link speed is 32GT/s and width is ``x16``, and
 
-  - FatalErr+ is not displayed
+  - ``FatalErr+`` is not displayed
 
-- FAILED: If FatalErr+ is present
+- FAILED: If ``FatalErr+`` is present
 
   - Action: Do not proceed further. Report this issue to your system
     manufacturer immediately.
@@ -310,96 +277,87 @@ Result:
 Monitoring utilization metrics (amd-smi)
 ========================================
 
-The amd-smi monitor command-line tool, typically installed with ROCm,
-can be used to monitor AMD GPU hardware, including thermal, power,
-hardware performance along with error reporting. The amd-smi can be run
-in parallel with the validation tests outlined in this guide to provide
-additional information on the operation of the system. See `Getting to
-Know Your GPU: A Deep Dive into AMD
-SMI <https://rocm.blogs.amd.com/software-tools-optimization/amd-smi-overview/README.html>`__
+The ``amd-smi`` monitor command-line tool, typically installed with ROCm, can be
+used to monitor AMD GPU hardware, including thermal, power, hardware performance
+along with error reporting. The ``amd-smi`` can be run in parallel with the
+validation tests outlined in this guide to provide additional information on the
+operation of the system. See `Getting to Know Your GPU: A Deep Dive into AMD SMI
+<https://rocm.blogs.amd.com/software-tools-optimization/amd-smi-overview/README.html>`_
 for details on this tool.
 
 .. note::
 
-   This check requires that ROCm be installed on the SUT. The
-   monitoring tool rocm-smi may alternatively be used.
+   This check requires that ROCm be installed on the SUT. The monitoring tool
+   ``rocm-smi`` may alternatively be used.
 
-Run the following command to display GPU metrics when the system is idle
-i.e. not running any workload.
+Run the following command to display GPU metrics when the system is idle, that
+is, not running any workload.
 
 .. code-block:: shell
 
    amd-smi monitor -putm
 
-An output similar to the following will be displayed. Please note that
-the results will vary when the system is running a workload.
+Example output (results will vary when the system is running a workload):
 
-:mark:`GPU POWER GPU_TEMP MEM_TEMP **GFX_UTIL** **GFX_CLOCK**
-**MEM_UTIL** **MEM_CLOCK**`
+.. code-block:: shell-session
 
-:mark:`0 125 W 37 °C 32 °C 0 % 158 MHz 0 % 900 MHz`
+   GPU POWER GPU_TEMP MEM_TEMP **GFX_UTIL** **GFX_CLOCK** **MEM_UTIL** **MEM_CLOCK**
+   0 125 W 37 °C 32 °C 0 % 158 MHz 0 % 900 MHz
+   1 121 W 36 °C 28 °C 0 % 139 MHz 0 % 900 MHz
+   2 124 W 39 °C 29 °C 0 % 141 MHz 0 % 900 MHz
+   3 122 W 36 °C 28 °C 0 % 158 MHz 0 % 900 MHz
+   4 125 W 40 °C 32 °C 0 % 140 MHz 0 % 900 MHz
+   5 124 W 36 °C 29 °C 0 % 139 MHz 0 % 900 MHz
+   6 124 W 38 °C 31 °C 0 % 139 MHz 0 % 900 MHz
+   7 122 W 37 °C 29 °C 0 % 142 MHz 0 % 900 MHz
 
-:mark:`1 121 W 36 °C 28 °C 0 % 139 MHz 0 % 900 MHz`
-
-:mark:`2 124 W 39 °C 29 °C 0 % 141 MHz 0 % 900 MHz`
-
-:mark:`3 122 W 36 °C 28 °C 0 % 158 MHz 0 % 900 MHz`
-
-:mark:`4 125 W 40 °C 32 °C 0 % 140 MHz 0 % 900 MHz`
-
-:mark:`5 124 W 36 °C 29 °C 0 % 139 MHz 0 % 900 MHz`
-
-:mark:`6 124 W 38 °C 31 °C 0 % 139 MHz 0 % 900 MHz`
-
-:mark:`7 122 W 37 °C 29 °C 0 % 142 MHz 0 % 900 MHz`
-
-When the system is idle, the GPU’s utilization (GFX_UTIL) and memory
-utilization (MEM_UTIL) will be 0%. The frequency of the GPU clock
-(GFX_CLOCK) will be throttled back to under 200MHz and memory
-(MEM_CLOCK) throttled down to 900 MHz. The GPU temperature (GPU_TEMP)
+When the system is idle, the GPU’s utilization (``GFX_UTIL``) and memory
+utilization (``MEM_UTIL``) will be 0%. The frequency of the GPU clock
+(``GFX_CLOCK``) will be throttled back to under 200MHz and memory
+(``MEM_CLOCK``) throttled down to 900 MHz. The GPU temperature (``GPU_TEMP``)
 should also be well under 85°C when idle.
 
 Result for an idle system:
 
-- PASSED: When the system is idle, the GPU’s utilization (GFX_UTIL) and
-  memory utilization (MEM_UTIL) should be 0%, the frequency of the GPU
-  clock (GFX_CLOCK) throttled back to under 200 MHz, memory (MEM_CLOCK)
-  throttled down to 900 MHz, and GPU Temperature (GPU_TEMP) should also
+- PASSED: When the system is idle, the GPU’s utilization (``GFX_UTIL``) and
+  memory utilization (``MEM_UTIL``) should be 0%, the frequency of the GPU
+  clock (``GFX_CLOCK``) throttled back to under 200 MHz, memory (``MEM_CLOCK``)
+  throttled down to 900 MHz, and GPU temperature (``GPU_TEMP``) should also
   be well under 85°C.
 
 - FAILED: Otherwise
 
-  - Action: Check the data center ambient temp and system fan speed.
-    Power cycle the system. If the issue persists, report this issue to
-    your system manufacturer.
+  - Action: Check the data center ambient temperature and system fan speed.
+    Power cycle the system. If the issue persists, report this issue to your
+    system manufacturer.
 
 Check the system kernel logs for other errors (dmesg)
 -----------------------------------------------------
 
-The command line utility *dmesg* prints boot-time message and on-going
-kernel event messages about the state of the system hardware and
-drivers. The utility is useful for capturing diagnostic information for
-troubleshooting hardware and driver issues.
+The command line utility ``dmesg`` prints boot-time message and on-going kernel
+event messages about the state of the system hardware and drivers. The utility
+is useful for capturing diagnostic information for troubleshooting hardware and
+driver issues.
 
 To check for errors in the kernel messages, use the following command:
 
 .. code-block:: shell
 
-   sudo dmesg -T \| grep -i 'error\\|warn\\|fail\\|exception'
+   sudo dmesg -T | grep -i 'error\|warn\|fail\|exception'
 
 Expected output:
 
-When system is operating without errors, warnings, or failures, the
-output of the command will be null.
+When system is operating without errors, warnings, or failures, the output of
+the command will be null.
 
 Result:
 
-- PASSED: The output will be null, when the system is running properly
+- PASSED: The output will be null when the system is running properly.
 
 - FAILED: Otherwise
 
-  - Action: Don’t proceed further. Analyze each *dmesg*
-    error/fail/exception
+  - Action: Don’t proceed further. Analyze each ``dmesg`` error, fail, and
+    exception.
 
 See :doc:`/reference/rocm-techsupport` for information on the
 ``rocm_techsupport.sh`` script utility from AMD which collect system logs for
