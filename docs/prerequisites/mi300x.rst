@@ -80,7 +80,7 @@ GRUB settings
 
 GRUB, or GNU Grand Unified Bootloader, is a boot loader and boot manager for
 Linux that allows the operator to select which operating system and kernel
-configuration to use when booting the system. MI300X based servers require
+configuration to use when booting the system. MI300X-based servers require
 appending strings to the Linux command line and this is done in the GRUB
 configuration file as described in the recommended
 :ref:`GRUB settings <rocm:mi300x-grub-settings>` for MI300X. After updating GRUB

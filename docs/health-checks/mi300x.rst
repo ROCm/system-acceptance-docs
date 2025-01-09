@@ -113,8 +113,8 @@ Command:
 
    cat /proc/cmdline
 
-An example of the output from an AMD CPU based system is given below with the
-required boot parameters highlighted in yellow. Output may vary based on OS
+An example of the output from an AMD CPU-based system is given below, with the
+required boot parameters highlighted in yellow. Output might vary based on OS
 distribution and GRUB settings. When using Intel host processors, replace
 ``amd_iommu`` with ``intel_iommu``.
 
@@ -136,7 +136,7 @@ Result:
 
 - FAILED:
 
-  - Action: Don’t proceed further. Updated the GRUB settings of the SUT
+  - Action: Don’t proceed. Update the GRUB settings of the SUT
     and reboot, and then start the acceptance testing from this section.
     Note that if ``pci=realloc=off`` is not in GRUB configuration in Ubuntu
     distribution, not all GPUs may be recognized.
@@ -153,7 +153,7 @@ diagnostic messages (``dmesg``).
 
    sudo dmesg –T | grep amdgpu | grep -i error
 
-The expected output should be return no results (null).
+The expected output should return no results (null).
 
 Result:
 
@@ -161,7 +161,7 @@ Result:
 
 - FAILED: Errors reported
 
-  - Action: Don’t proceed further. Reinstall amdgpu driver and then
+  - Action: Don’t proceed. Reinstall amdgpu driver and then
     start the acceptance testing from this section.
 
 .. _mi300x-health-checks-lsmem:
