@@ -13,7 +13,7 @@ optimize the system, it is recommended to make incremental changes to individual
 parameters noted in the pre-requisites and repeat the tests. Once complete, AMD
 recommends proceeding with AI model validation and cluster network validation
 using the guides mentioned below. Refer to the list of
-:doc:`related documentation <reference/related-documentation>` for a list of
+:doc:`related documentation </reference/related-documentation>` for a list of
 links to all referenced documentation in this guide.
 
 MI300X AI model performance validation
