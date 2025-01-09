@@ -43,8 +43,8 @@ connected in the system using:
 
 .. note::
 
-   Checking the health of other components in the system is outside
-   the scope of this document.
+   Checking the health of other system components in the system is outside the
+   scope of this document.
 
 After the system boots, run the commands listed in the following sections. For
 each command, an example output is provided. Expect to see similar output when
@@ -54,12 +54,12 @@ running Ubuntu 22.04, which is one of the supported distributions for ROCm 6.2.
 Running other supported distributions on the SUT may result in slightly
 different output.
 
-Check OS and host system checks
-===============================
+OS and host system checks
+=========================
 
-The following subsections list operating system and host CPU and memory checks.
-For each item, a sample command along with corresponding log output is shown.
-The sample output provides typical results and serves as a guideline.
+The following sections list the operating system and host CPU and memory
+checks. A sample command and corresponding log output are shown for each item.
+The sample outputs provide typical results and serve as a guideline.
 
 .. note::
 
@@ -103,9 +103,9 @@ Result:
 Check kernel boot arguments
 ---------------------------
 
-Correct boot arguments must be utilized by the Linux kernel during the startup
-of the System Under Test (SUT). Once the system has booted, run the following
-command in the terminal to display the boot arguments:
+The Linux kernel must utilize correct boot arguments during the startup of the
+System Under Test (SUT). Once the system has booted, run the following command
+in the terminal to display the boot arguments:
 
 Command:
 
@@ -372,5 +372,5 @@ Result:
     exception.
 
 See :doc:`/reference/rocm-techsupport` for information on the
-``rocm_techsupport.sh`` script utility from AMD which collect system logs for
-purpose of support and troubleshooting.
+``rocm_techsupport.sh`` script utility, which collects system logs for support
+and troubleshooting.

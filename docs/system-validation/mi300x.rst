@@ -25,8 +25,8 @@ Then ensure that the path to the ``rvs`` executable, located at
 
    export PATH=$PATH:/opt/rocm/bin
 
-The ``rvs`` tool consists of modules where each module implements a particular
-test functionality. The collection of the modules can be broadly categorized as
+The ``rvs`` tool consists of modules that implement a particular test
+functionality. The collection of the modules can be broadly categorized as
 targeting the following aspects of the hardware platform:
 
 - Compute / GPU
@@ -52,13 +52,12 @@ output. To set this variable in the environment, run the following command:
 
 The configuration files section of the `ROCm Validation Suite User Guide
 <https://github.com/ROCm/ROCmValidationSuite/blob/master/docs/ug1main.md#configuration-files>`__
-provides detailed description about the ``conf`` file, its formation, and keys. It
-is advisable to become familiar with the ``conf`` file format before running
-the ``rvs`` tests described below. Be aware, some ``conf`` files are included
-in product-specific subfolders (for instance,
-``=/opt/rocm/share/rocm-validation-suite/conf/MI300X``). If present, always
-use GPU-specific configurations instead of the default test
-configurations.
+provides detailed description about the ``conf`` file, its formation, and keys.
+It's recommended to become familiar with the ``conf`` file before running the
+``rvs`` tests described in the following sections. Be aware that some ``conf``
+files are included in product-specific subfolders (for instance,
+``=/opt/rocm/share/rocm-validation-suite/conf/MI300X``). If present, always use
+GPU-specific configurations instead of the default test configurations.
 
 In the following subsections, under each of the categories, the relevant
 ``rvs`` test modules are listed along with descriptions how the category is
@@ -127,8 +126,8 @@ and returns the device’s static characteristics. These static values can
 be used to debug issues such as device support, performance and firmware
 problems.
 
-To confirm the architectural properties of the GPU, use the GPUP module
-which makes use of the GPUP configuration file.
+To confirm the architectural properties of the GPU, use the GPUP module, which
+uses of the GPUP configuration file.
 
 The configuration file for GPUP module is located at ``{RVS_CONF}/gpup_single.conf``.
 
@@ -193,9 +192,9 @@ Benchmark, stress, qualification
 
 These categories of modules perform qualification of the GPU subsystem, execute
 stress test, and compute and display bandwidth. The modules do not produce a
-PASS / FAIL result. When bandwidth is measured it only reports the bandwidth
-and doesn’t make any comparisons with existing set of numbers. Only exceptions
-are GST and IET modules.
+PASS / FAIL result. When bandwidth is measured, it only reports the bandwidth
+and doesn’t make any comparisons with the existing set of numbers. The only
+exceptions are GST and IET modules.
 
 .. _mi300x-rvs-gst:
 
@@ -333,8 +332,7 @@ stress the GPU power, that is, Total Graphics Power (TGP).
 
 This test is used to:
 
-- Verify the GPU is capable of handling maximum power stress for a sustained
-  period.
+- Verify the GPU can handle maximum power stress for a sustained period.
 
 - Check that the GPU power reaches a set target power.
 
@@ -657,7 +655,7 @@ Result:
 PEQT (PCIe Qualification Tool)
 ------------------------------
 
-The PCIe Qualification Tool is used to qualify the PCIe bus on which the GPU is
+The PCIe Qualification Tool is used to qualify the PCIe bus the GPU is
 connected to. The qualification tool can determine the following
 characteristics of the PCIe bus interconnect to a GPU:
 
@@ -766,7 +764,7 @@ The PBQT module executes the following tests:
 The configuration file for the ``pbqt`` module for MI300X is located here:
 ``{RVS_CONF}/MI300X/pbqt_single.conf``.
 
-The ``conf`` file has 12 ``actions_xy`` test segments. Each of these, checks for
+The ``conf`` file has 12 ``actions_xy`` test segments. Each of these checks for
 peer-to-peer connectivity among GPUs and provides a true/false status. In
 addition, it also performs bidirectional throughput test and reports the
 throughput obtained based on config parameters. Since comparison is not

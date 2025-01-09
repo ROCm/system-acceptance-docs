@@ -6,12 +6,11 @@
 Prerequisites
 *************
 
-Before completing the prerequisites in this section, as the system administrator,
-you should ensure the system does not have visible damage and is installed
-correctly. Refer to the installation guide from the system manufacturer to
-ensure the system has been correctly installed in a rack with sufficient
-cooling, has been connected to required power, and is accessible from the
-network.
+Before proceeding with the prerequisites in this section, ensure that the
+system has been properly installed and is free of visible damage. As the system
+administrator, refer to the manufacturer's installation guide to verify that
+the system is correctly installed in a rack with sufficient cooling, is
+connected to the required power, and is accessible from the network.
 
 If errors or warnings are found during setup, you might need to
 troubleshoot the issue by, for example, reseating auxiliary PCBs, checking
