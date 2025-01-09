@@ -35,13 +35,12 @@ Tests include TransferBench, RCCL, rocBLAS, and BabelStream.
 :doc:`Acceptance criteria </acceptance-criteria/mi300x>` provides a summary
 of the commands and PASS/FAIL criteria to compare against recently gathered
 test results. This comparison is the basis for customer acceptance of a tested
-server. By changing one parameter at a time and repeating specific tests in
-earlier chapters, new results can be compared to the baseline data gathered to
+server. Changing one parameter at a time and repeating specific tests in
+previous chapters help compare new results to the baseline data gathered and
 ensure the best performance for your targeted application(s).
 
 After completing the tests outlined in this guide to determine if the
 server/system under test (SUT) meets expected functionality and performance,
-proceed to review the :doc:`recommended reference documentation
-</reference/related-documentation>` and move to the next stage of performance
-validation testing and optimization outlined in :doc:`Next steps
-</next-steps/mi300x>`.
+review the :doc:`related documentation </reference/related-documentation>` and
+move to the next stage of performance validation testing and optimization
+outlined in :doc:`Next steps </next-steps/mi300x>`.
