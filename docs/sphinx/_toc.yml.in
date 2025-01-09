@@ -13,5 +13,5 @@ subtrees:
     entries:
       - file: reference/glossary.rst
       - file: reference/rocm-techsupport.rst
-      - file: reference/reference-documentation.rst
+      - file: reference/related-documentation.rst
       - file: reference/notices.rst

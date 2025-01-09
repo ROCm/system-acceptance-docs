@@ -1,10 +1,10 @@
 .. meta::
    :description lang=en: Important resources for AMD Instinct MI300X system administrators.
-   :keywords: settings, optimization, workload, ai, hpc, libraries, ROCm
+   :keywords: settings, optimization, workload, AI, HPC, libraries, ROCm, reference, tutorials
 
-***********************
-Reference documentation
-***********************
+*********************
+Related documentation
+*********************
 
 The following table provides the relevant reference documents and links to
 setup the system and run the tests in this guide.

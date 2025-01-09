@@ -42,6 +42,6 @@ ensure the best performance for your targeted application(s).
 After completing the tests outlined in this guide to determine if the
 server/system under test (SUT) meets expected functionality and performance,
 proceed to review the :doc:`recommended reference documentation
-</reference/reference-documentation>` and move to the next stage of performance
+</reference/related-documentation>` and move to the next stage of performance
 validation testing and optimization outlined in :doc:`Next steps
 </next-steps/mi300x>`.
