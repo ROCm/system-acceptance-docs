@@ -84,7 +84,7 @@ setup the system and run the tests in this guide.
    * - BabelStream repository
      - `<https://github.com/UoB-HPC/BabelStream>`__
 
-   * - Performance validation guide (pdf)
+   * - Performance validation guide (PDF)
      - `<https://www.amd.com/content/dam/amd/en/documents/instinct-tech-docs/product-briefs/amd-instinct-mi300x-performance-validation-guide.pdf>`__
 
    * - Infinity Hub portal

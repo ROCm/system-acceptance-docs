@@ -7,7 +7,7 @@ System validation tests
 ***********************
 
 The validation tests in this section are intended to ensure that a system is
-operating correctly. In this section, ROCm Validation Suite (``rvs``) is used
+operating correctly. In this section, ROCm Validation Suite (``rvs``) is used,
 which is a collection of tests, benchmarks, and qualification tools, each
 targeting a specific subsystem of the system under test (SUT).
 
@@ -55,9 +55,9 @@ The configuration files section of the `ROCm Validation Suite User Guide
 provides detailed description about the ``conf`` file, its formation, and keys. It
 is advisable to become familiar with the ``conf`` file format before running
 the ``rvs`` tests described below. Be aware, some ``conf`` files are included
-in product specific sub-folders (for instance,
+in product-specific subfolders (for instance,
 ``=/opt/rocm/share/rocm-validation-suite/conf/MI300X``). If present, always
-use GPU specific configurations instead of default test
+use GPU-specific configurations instead of the default test
 configurations.
 
 In the following subsections, under each of the categories, the relevant
@@ -81,8 +81,8 @@ subsystem. These are:
 
 - Monitor
 
-MI300X GPU accelerators have many architectural features. Similar to section
-:ref:`Check GPU presence (lspci) <mi300x-health-checks-lspci>`, ``rvs`` has an
+MI300X GPU accelerators have many architectural features. Similar to 
+:ref:`Check GPU presence (lspci) <mi300x-health-checks-lspci>` section, ``rvs`` has an
 option to display all MI300X GPU accelerators present in the SUT. Before
 proceeding with the modules below, run the following command to make sure all
 the GPUs are seen with their correct PCIe properties.
@@ -146,8 +146,8 @@ Command:
 Expected output (truncated):
 
 The ``conf`` file has six test cases ``RVS-GPUP-TC1``, ``RVS-GPUP-TC2``, and so
-on up to ``RV-GPUP-TC6``. Only truncated version of output of ``RVS-GPUP-TC1`` is
-shown here. The other tests are modified versions of ``RVS-GPUP-TC1`` which display
+on up to ``RV-GPUP-TC6``. Only a truncated version of the output of ``RVS-GPUP-TC1`` is
+shown here. The other tests are modified versions of ``RVS-GPUP-TC1``, which display
 a subset of properties and/or a subset of ``io_links-properties``.
 
 The first block of output displays the properties (all):
@@ -184,7 +184,7 @@ Result:
 
 - PASSED: If generated output looks similar
 
-- FAILED: If any GPU is not listed in output or we see ERROR tagged logs
+- FAILED: If any GPU is not listed in output or ERROR tagged logs are seen
 
   - Typically, it is not expected that this module will fail
 
@@ -453,13 +453,13 @@ tests [Algorithm, data pattern]:
 
 - Moving inversions, ones & zeros
 
-- Moving inversions, 8 bit pattern
+- Moving inversions, 8-bit pattern
 
 - Moving inversions, random pattern
 
 - Block move, 64 moves
 
-- Moving inversions, 32 bit pattern
+- Moving inversions, 32-bit pattern
 
 - Random number sequence
 
@@ -773,7 +773,7 @@ throughput obtained based on config parameters. Since comparison is not
 performed for some target throughput numbers, there is no PASS/FAIL condition
 for the overall test.
 
-It is recommended to carefully review the ``pbqt_single.conf`` file before
+It's recommended that you carefully review the ``pbqt_single.conf`` file before
 running the following command.
 
 Command:
