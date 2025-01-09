@@ -34,9 +34,8 @@ including:
 
 .. note::
 
-   Before changing any system settings and doing testing, it is recommended to
-   record existing production system settings to allow the system to be returned
-   to the original settings.
+   Before changing any system settings and testing, record existing production
+   system settings to allow the system to be returned to the original settings.
 
 .. _mi300x-prereq-bios-settings:
 
@@ -44,10 +43,10 @@ System BIOS settings
 ====================
 
 Some server manufacturers offer tools that allow the current BIOS configuration
-settings to be exported to a file, modified with needed changes, and loaded back
-to the system. In the case that the server manufacturer does not offer such a
-tool, the BIOS settings will need to be reviewed and updated manually from the
-BIOS setup interface prior to booting the OS.
+settings to be exported to a file, modified with needed changes, and loaded
+back to the system. If the server manufacturer doesn't offer such a tool, the
+BIOS settings will need to be reviewed and updated manually from the BIOS setup
+interface before booting the OS.
 
 Refer to the recommended :ref:`system BIOS settings <rocm:mi300x-bios-settings>`
 for MI300X to ensure the system BIOS is set up correctly for maximum performance
@@ -62,11 +61,10 @@ be unavailable.
 Supported operating systems
 ===========================
 
-AMD ROCm software supports certain Linux distributions. Refer to the list of
-:ref:`Supported operating systems <rocm-install-on-linux:supported_distributions>`
-and ensure the system is installed with one of the supported Linux
-distributions. Other distributions may not be able to run ROCm or
-complete the validation tests listed in this document.
+Refer to the list of Linux :ref:`Supported operating systems
+<rocm-install-on-linux:supported_distributions>` and ensure your system is
+installed with one. Other distributions might be unable to run ROCm or complete
+the validation tests in this document.
 
 To obtain and validate the Linux distribution information for systems
 with the OS already installed, refer to the
@@ -95,9 +93,9 @@ To ensure the system is operating at maximum performance prior to running the
 validations and performance tests in this document, the operator should ensure
 that power gating is disabled, NUMA configuration is set appropriately, and
 specific environment variables are exported as outlined in the :ref:`Operating
-system settings <rocm:mi300x-os-settings>` for MI300X. For the purposes of
-illustration, in all the sections to follow the commands and their output shown,
-are for Ubuntu 22.04 Linux unless otherwise specified.
+system settings <rocm:mi300x-os-settings>` for MI300X. For illustration
+purposes, this document uses Ubuntu 22.04 for commands and output unless
+otherwise specified.
 
 .. _mi300x-prereq-system-firmware:
 
@@ -128,8 +126,8 @@ To troubleshoot issues encountered when installing ROCm tools or
 libraries, see the
 :doc:`Installation troubleshooting guide <rocm-install-on-linux:reference/install-faq>`.
 
-To check the ROCm version running on the system after installation, run
-the following command.
+Run the following command to check the ROCm version running on the system after
+installation.
 
 .. code-block:: shell
 
