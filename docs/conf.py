@@ -1,7 +1,7 @@
 """Configuration file for the Sphinx documentation builder."""
 import os
 
-html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "dcgpu.docs.amd.com")
+html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "instinct.docs.amd.com")
 html_context = {}
 if os.environ.get("READTHEDOCS", "") == "True":
     html_context["READTHEDOCS"] = True
@@ -11,7 +11,7 @@ version = "1.0.0"
 release = version
 html_title = ""
 author = "Advanced Micro Devices, Inc."
-copyright = "Copyright (c) 2024 Advanced Micro Devices, Inc. All rights reserved."
+copyright = "Copyright (c) 2025 Advanced Micro Devices, Inc. All rights reserved."
 
 # Required settings
 html_theme = "rocm_docs_theme"
@@ -25,6 +25,7 @@ html_theme_options = {
     },
     # Add any additional theme options here
 }
+html_title = project
 extensions = ["rocm_docs"]
 
 # Table of contents
