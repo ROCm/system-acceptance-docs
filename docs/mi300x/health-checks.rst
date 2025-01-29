@@ -151,7 +151,7 @@ diagnostic messages (``dmesg``).
 
 .. code-block:: shell
 
-   sudo dmesg –T | grep amdgpu | grep -i error
+   sudo dmesg -T | grep amdgpu | grep -i error
 
 The expected output should return no results (null).
 
