@@ -464,7 +464,7 @@ Build rocBLAS from source by running the following commands in your terminal:
 
    git checkout rocm-6.2.0
 
-   ./install --clients-only --library-path /opt/rocm
+   ./install.sh --clients-only --library-path /opt/rocm
 
 .. note::
 
