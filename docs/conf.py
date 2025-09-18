@@ -1,15 +1,21 @@
 """Configuration file for the Sphinx documentation builder."""
 import os
+import subprocess
+import sys
 
 html_baseurl = os.environ.get("READTHEDOCS_CANONICAL_URL", "instinct.docs.amd.com")
 html_context = {}
 if os.environ.get("READTHEDOCS", "") == "True":
     html_context["READTHEDOCS"] = True
-project = "AMD Instinct Customer Acceptance Test Guide"
+project = "AMD Instinct Customer Acceptance Guide"
+
+# Disable external projects to avoid GitHub API issues
+external_projects_remote_repository = ""
+external_projects_current_project = "system-acceptance-docs"
 
 version = "1.0.0"
 release = version
-html_title = ""
+html_title = project
 author = "Advanced Micro Devices, Inc."
 copyright = "Copyright (c) 2025 Advanced Micro Devices, Inc. All rights reserved."
 
@@ -25,7 +31,7 @@ html_theme_options = {
     },
     # Add any additional theme options here
 }
-html_title = project
+
 extensions = ["rocm_docs"]
 
 # Table of contents
