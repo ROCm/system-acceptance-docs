@@ -6,8 +6,7 @@ This section provides detailed, vendor-specific guidance for installing and conf
 
 An overview of the driver and software installation steps for the AMD Pensando™ Pollara 400 AI-NIC are given below. However, complete details are given in the following document:
 
-* [AMD Pensando Pollara Series Installation Guide (UG1716)](https://docs.amd.com/r/en-US/ug1716-pollara-series-installation-guide)
-* [AMD Pensando Pollara Series User Guide (UG1717)](https://docs.amd.com/r/en-US/ug1717-pollara-series-user-guide)
+* [AMD AI NIC Pollara 400 Adapter Operations and Troubleshooting User Guide (UG1801)](https://docs.amd.com/r/en-US/ug1801-ai-nic-pollara-400-ops-guide/)
 
 The firmware and software bundles are available on the AMD Pensando Customer Portal at [pensandosupport.amd.com](https://pensandosupport.amd.com/). Additional information and documentation can be obtained by registering on the Pollara registration page at [account.amd.com/en/forms/registration/tip/tip-pollara-pulsar.html](https://account.amd.com/en/forms/registration/tip/tip-pollara-pulsar.html).
 
