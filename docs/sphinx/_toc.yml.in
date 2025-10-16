@@ -1,16 +1,40 @@
-root: index.rst
+root: index.md
+defaults:
+  titlesonly: true
 subtrees:
-  - caption: AMD Instinct MI300X
+  - entries:
+    - file: gpus/mi355x.md
+    - file: gpus/mi350x.md
+    - file: gpus/mi325x.md
+    - file: gpus/mi300x.md
+    
+  - caption: System Configuration
     entries:
-      - file: mi300x/prerequisites.rst
-      - file: mi300x/health-checks.rst
-      - file: mi300x/system-validation.rst
-      - file: mi300x/performance-bench.rst
-      - file: mi300x/acceptance-criteria.rst
-      - file: mi300x/next-steps.rst
+      - file: common/prerequisites.md
+      - file: common/bios-settings.md
+      - file: common/kernel-parameters.md
+      - file: common/system-setup.md      
+      - file: common/health-checks.md      
+      - file: common/os-tuning.md
+      - file: common/system-validation.md
+      - file: common/firmware-updates.md      
+
+  - caption: Cluster Networking
+    entries:
+      - title: NIC Driver Insallation
+        file: network/nic-installation.md
+      - title: Network Routing
+        file: network/configuration.md
+      - title: Performance Optimization
+        file: network/optimization.md
+      - title: Topology Mapping
+        file: network/topology-mapping.md
+      - file: network/rdma-benchmarking.md
+      - file: network/validation.md
+
   - caption: Reference
     entries:
-      - file: reference/glossary.rst
-      - file: reference/rocm-techsupport.rst
-      - file: reference/related-documentation.rst
-      - file: reference/notices.rst
+      - file: reference/glossary.md
+      - file: reference/rocm-techsupport.md
+      - file: reference/related-documentation.md
+      - file: reference/notices.md

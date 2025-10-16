@@ -1,6 +1,4 @@
-*******
-Notices
-*******
+# Notices
 
 © Copyright 2025 Advanced Micro Devices, Inc.
 
@@ -28,8 +26,7 @@ LIABLE TO ANY PERSON FOR ANY RELIANCE, DIRECT, INDIRECT, SPECIAL, OR OTHER
 CONSEQUENTIAL DAMAGES ARISING FROM THE USE OF ANY INFORMATION CONTAINED HEREIN,
 EVEN IF AMD IS EXPRESSLY ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
-Trademarks
-==========
+## Trademarks
 
 AMD, the AMD Arrow logo, and combinations thereof are trademarks of Advanced
 Micro Devices, Inc.
