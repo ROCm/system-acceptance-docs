@@ -74,7 +74,7 @@ Firmware and software updates are complete.
 
 For optimal cluster performance with the Pensando Pollara AI NIC, follow the setup procedures outlined in AMD–Pensando AI-NIC Configuration & Benchmarking, version 1.0.09.16 or later. This document can be obtained through your AMD support representative.
 
-Ensure that **Priority Flow Control (PFC)** is enabled and that **Dynamic Congestion Notification Control (DCQNC)** and **Quality of Service (QoS)** are correctly configured. These settings are critical for achieving maximum data throughput and minimizing latency in AI workloads. Please see the scripts provided in AMD–Pensando AI-NIC Configuration & Benchmarking. Exact settings in scripts will need to be modified.
+Ensure that **Priority Flow Control (PFC)** is enabled and that **Dynamic Congestion Notification Control (DCQCN)** and **Quality of Service (QoS)** are correctly configured. These settings are critical for achieving maximum data throughput and minimizing latency in AI workloads. Please see the scripts provided in AMD–Pensando AI-NIC Configuration & Benchmarking. Exact settings in scripts will need to be modified.
 
 ```{note}
 Configuration settings will not persist through a system power cycle. Reapply all required parameters after each reboot to maintain proper operation. For persistent settings please see the guide to personas at [https://docs.amd.com/r/en-US/ug1717-ai-nic-pollara-400-user-guide/AI-NICPersonas](https://docs.amd.com/r/en-US/ug1717-ai-nic-pollara-400-user-guide/AI-NICPersonas)

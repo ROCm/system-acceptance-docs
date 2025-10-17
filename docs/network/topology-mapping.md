@@ -134,7 +134,7 @@ Given the examples from this section, generate the following table for adjacency
 
 ## Map NIC PCI BDF to NIC Name
 
-Finally, run the following loop to map each NIC's PCI BDF to the name of the NIC, as listed in the last column in the table above, ensuring correct identification of network interfaces:
+Finally, run the following loop to map each NIC PCI BDF to the name of the NIC, as listed in the last column in the table above, ensuring correct identification of network interfaces:
 
 ```bash
 $ for iface in /sys/class/net/*; do

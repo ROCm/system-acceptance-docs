@@ -308,6 +308,7 @@ py
 pycache
 qa
 qos
+QoS
 Radeon
 rccl
 RCCL
@@ -381,6 +382,7 @@ UBB
 ubuntu
 UCX
 UEFI
+UDEV
 UG
 ulimit
 uncorrectable
