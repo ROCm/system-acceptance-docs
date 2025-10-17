@@ -70,16 +70,41 @@ Prerequisite: Driver & Tools version needs to match the firmware version.
 
 Firmware and software updates are complete.
 
+#### Performance Optimizations
+
+For optimal cluster performance with the Pensando Pollara AI NIC, follow the setup procedures outlined in AMD–Pensando AI-NIC Configuration & Benchmarking, version 1.0.09.16 or later. This document can be obtained through your AMD support representative.
+
+Ensure that **Priority Flow Control (PFC)** is enabled and that **Dynamic Congestion Notification Control (DCQNC)** and **Quality of Service (QoS)** are correctly configured. These settings are critical for achieving maximum data throughput and minimizing latency in AI workloads. Please see the scripts provided in AMD–Pensando AI-NIC Configuration & Benchmarking. Exact settings in scripts will need to be modified.
+
+```{note}
+Configuration settings will not persist through a system power cycle. Reapply all required parameters after each reboot to maintain proper operation. For persistent settings please see the guide to personas at [https://docs.amd.com/r/en-US/ug1717-ai-nic-pollara-400-user-guide/AI-NICPersonas](https://docs.amd.com/r/en-US/ug1717-ai-nic-pollara-400-user-guide/AI-NICPersonas)
+```
+
+## Broadcom 400G Network Adapter
+
+For Broadcom 400G NICs, perform the following actions to guarantee proper operation and peak performance:
+Enable PCIe relaxed ordering.
+- Enable RDMA support.
+- Select the RoCE performance profile.
+- Exclude all speeds except 400G from the speed mask.
+- Disable unused ports to optimize resources.
+
+For detailed configuration, use the scripts provided in the cluster networking GitHub repository.
+
 ## NVIDIA Mellanox CX-7 400Gx1
 
-Install ROCm first, and then UCX, and the NVIDIA Mellanox driver last.
+To prevent library incompatibilities that could disrupt system operations, it is necessary to follow the specific installation order:
 
+1.  ROCm Installation: The ROCm driver must be installed first, because it sets up essential components and libraries that may otherwise conflict with the versions installed by other drivers.
+2.  Mellanox Driver Installation: The Mellanox driver should be installed before the UCX library because it installs an older version of the UCX library.
+3.  UCX Library Update: Since the Mellanox driver packages an outdated UCX library version, updating the UCX library after completing the Mellanox installation ensures that you are working with the latest features and fixes, thereby maintaining system stability and performance.
+   
 ```{note}
 Ensure that the installation steps are performed in this order.
 ```
 
 ```bash
-sudo apt install gcc-gfortran lsof tk tcl createrepo kernel-rpm-macros perl-sigtrap libtool
+sudo apt install lsof tk tcl libtool
 
 # Example link is subject to change,
 # see https://network.nvidia.com/products/infiniband-drivers/linux/mlnx_ofed/

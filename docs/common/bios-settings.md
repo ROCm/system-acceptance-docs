@@ -34,11 +34,11 @@ For systems with Intel processors, some settings might not apply or may be unava
 | AMD CBS / GPU common options | Global C-state control | Auto | Global C-states – do not disable this menu item. For performance, specific C-States are disabled below. |
 | AMD CBS / GPU common options | CCD/Core/Thread enablement | Accept | May be necessary to enable the SMT control menu. |
 | AMD CBS / GPU common options / performance | SMT control | Disable | Set to Auto if the primary application is not compute-bound. |
-| AMD CBS / DF common options / memory addressing | NUMA nodes per socket | Auto | Auto = NPS1. At this time, the other options for NUMA nodes per socket should not be used. This is subject to change. |
-| AMD CBS / DF common options / memory addressing | Memory interleaving | Auto | Depends on NUMA nodes (NPS) setting. |
+| AMD CBS / DF common options / memory addressing | NUMA nodes per socket | Auto | Auto = NPS1. At this time, the other options for NUMA nodes per socket should not be used. This is subject to change. **A value of 0 (NPS0) is not allowed.** |
+| AMD CBS / DF common options / memory addressing | Memory interleaving | Auto | Depends on NUMA nodes (NPS) setting. **Required.** |
 | AMD CBS / DF common options / link | 4-link xGMI max speed | 32 Gbps | Auto results in the speed being set to the lower of the max speed the motherboard is designed to support and the max speed of the CPU in use. |
-| AMD CBS / NBIO common options | IOMMU | Enabled | Required for GPU passthrough and virtualization. |
-| AMD CBS / NBIO common options | PCIe ten bit tag support | Auto |  |
+| AMD CBS / NBIO common options | IOMMU | Enabled | Used for GPU passthrough and virtualization. **Required.** |
+| AMD CBS / NBIO common options | PCIe ten bit tag support | Auto | **Required** |
 | AMD CBS / NBIO common options / SMU common options | Determinism control | Manual |  |
 | AMD CBS / NBIO common options / SMU common options | Determinism slider | Power |  |
 | AMD CBS / NBIO common options / SMU common options | cTDP control | Manual | Set cTDP to the maximum supported by the installed CPU. |

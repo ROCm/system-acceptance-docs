@@ -54,13 +54,13 @@ A typical AMD Instinct GPU-based server should have:
 
 The recommended minimum system memory for AMD Instinct products is as follows:
 
-| Product | Minimum System Memory (TB) |
-|---|---|
-| MI300X | 2.0 |
-| MI308X | 2.0 |
-| MI325X | 2.5 |
-| MI350X | 3.0 |
-| MI355X | 3.0 |
+| Product | Minimum System Memory without Virtualization or a Single Virtual Machine (TB) | Minimum System Memory with Multiple Virtual Machines (TB) |
+|---|---|---|
+| MI300X | 2.0 | 3.0 |
+| MI308X | 2.0 | 3.0 |
+| MI325X | 2.5 | 6.0 |
+| MI350X | 3.0 | 6.0 |
+| MI355X | 3.0 | 6.0 |
 
 > **Note**: System memory requirements scale with GPU count and workload complexity. Systems with larger memory configurations provide better performance for memory-intensive AI and HPC workloads.
 

@@ -697,30 +697,13 @@ For complete details, extended guidance, and troubleshooting tips, consult the *
 
 ### AGFHC Installation
 
-The ROCm Validation suite (RVS) is a prerequisite of AGFHC. Make sure that this is installed as of the ROCm software installation. For example, on Ubuntu 22.04:
+For AGFHC installation steps consult the AMD GPU Field Health Check (AGFHC) User Guide (UG-58416) on the [AMD Technical Information Portal](https://docs.amd.com/).
+
+The ROCm Validation suite (RVS) is a prerequisite of AGFHC. Make sure that this is installed as of the ROCm software installation. For example, on Ubuntu:
 
 ```bash
 sudo apt install rocm-validation-suite
 ```
-
-1. Extract the AGFHC package:
-
-   ```bash
-   tar -xf agfhc-<package>_<version>_<distro>.tar.bz2
-   ```
-
-2. Navigate to the extracted directory and run the installation script:
-
-   ```bash
-   sudo ./install
-   ```
-
-3. The installer will automatically detect your ROCm version and install the appropriate packages. An example installation is shown below:
-
-   ```bash
-   tar -xf /tmp/agfhc-mi300x_1.24.1_ub2204.tar.bz2
-   sudo ./install
-   ```
 
 ### AGFHC Expected Output
 
@@ -834,20 +817,27 @@ AGFHC offers various test levels to suit different validation needs. Individual 
 
 The tables below list the recommended and suggested AGFHC validation recipes along with their estimated run times for applicable products. These recipes are designed to comprehensively exercise and validate essential functional areas of AMD GPU-based systems. For additional details and test parameters, refer to the AGFHC User Guide.
 
-#### Recommended AGFHC Recipes
+#### Minimum Required AGFHC Tests
 
-| Recipe Name | Applicable Products | Iterations | Estimated Test Duration |
+| Recipe Name | Applicable Products | Iterations/Duration | Estimated Test Duration |
 | --- | --- | --- | --- |
-| all_lvl5 | All AMD MI3xx Instinct™ models | 1 | 2 Hours |
-| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 | 2 Hours (2 x 2 hours) |
-| pcie_lvl3 | All AMD MI3xx Instinct™ models | 1 | 30 Minutes |
+| all_lvl5 | All AMD MI3xx Instinct™ models | 1 iteration | 2 Hours |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 4 iterations | 8 Hours (4 x 2 hours) |
+| minihpl | All AMD MI3xx Instinct™ models | 4 hours | 4 Hours |
+| xgmi_lvl1 | All AMD MI3xx Instinct™ models | 1 iteration | 5 Minutes |
+| pcie_lvl2 | All AMD MI3xx Instinct™ models | 1 iteration | 10 Minutes |
+| Total | | | 14 Hours and 15 Minutes |
 
-#### Suggested AGFHC Recipes
+#### Recommended AGFHC Tests
 
-| Recipe Name | Applicable Products | Estimated Test Duration |
-| --- | --- | --- |
-| rocHPL | MI300X, MI308X, MI325X | 3 Hours |
-| miniHPL | MI350X, MI355X | 3 Hours |
+| Recipe Name | Applicable Products | Iterations/Duration | Estimated Test Duration |
+| --- | --- | --- | --- |
+| all_lvl5 | All AMD MI3xx Instinct™ models | 1 iteration | 2 Hours |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 4 iterations | 8 Hours (4 x 2 hours) |
+| minihpl | All AMD MI3xx Instinct™ models | 10 hours | 10 Hours |
+| xgmi_lvl1 | All AMD MI3xx Instinct™ models | 1 iteration | 5 Minutes |
+| pcie_lvl2 | All AMD MI3xx Instinct™ models | 1 iteration | 10 Minutes |
+| Total | | | 20 Hours and 15 Minutes |
 
 ### AGFHC Recipe Coverage Details
 
@@ -952,65 +942,95 @@ Log directory: /root/agfhc/logs/agfhc_20250707-082635
 Program exiting with return code AGFHC_SUCCESS [0]
 ```
 
-#### pcie_lvl3
+#### xgmi_lvl1
 
-- **PCIe Link Health:** Confirms all links are negotiated at expected width and speed.
-- **PCIe Bandwidth:** Benchmarks device-to-host and host-to-device bandwidth, ensuring full performance.
-- **Error Detection:** Looks for PCIe-specific errors that may disrupt sustained transfers.
+- **XGMI Link Health:** Confirms all links are negotiated at expected width and speed.
+- **XGMI Bandwidth:** Benchmarks GPU-to-GPU bandwidth, ensuring full performance.
+- **Error Detection:** Looks for XGMI-specific errors that may disrupt sustained transfers.
 
 Extended information
 
 ```bash
-$ /opt/amd/agfhc/agfhc --recipe-info pcie_lvl3
+$ /opt/amd/agfhc/agfhc --recipe-info xgmi_lvl1
 
-Log Directory: /home/cisco/agfhc/logs/agfhc_20250804-095039
-Name: pcie_lvl3
-Title: A ~30m PCIe workload
-Path: /opt/amd/agfhc/recipes/mi300x/pcie_lvl3.yml
+Log Directory: /home/user/agfhc/logs/agfhc_20250902-190619
+Name: xgmi_lvl1
+Title: A ~5m xGMI workload
+Path: /opt/amd/agfhc/recipes/mi350x/xgmi_lvl1.yml
 Contents:
 Test Title Mode Approximate Time
-pcie_link_status PCIe Link Status 1 iteration 0:00:08
-pcie_unidi_peak PCIe BW UniDi Peak 1 iteration 0:13:53
-pcie_bidi_peak PCIe BW BiDi Peak 1 iteration 0:13:45
-pcie_link_status PCIe Link Status 1 iteration 0:00:08
+xgmi_a2a XGMI BW A2A 1 iteration 0:05:09
 ---------
-Total: 00:27:54
+Total: 00:05:09
 Summary:
 Tests: 0 Total, 0 Executed, 0 Skipped
 Total Time: 00:00:03
-Log directory: /home/cisco/agfhc/logs/agfhc_20250804-095039
+Log directory: /home/user/agfhc/logs/agfhc_20250902-190619
 Program exiting with return code AGFHC_SUCCESS [0]
 ```
 
-#### rocHPL
+#### pcie_lvl2
 
-Only applicable for AMD Instinct™ MI300X, MI308X, and MI325X:
-
-- **Compute + Fabric:** Runs Linpack-like workloads (High Performance Linpack, "HPL") across all GPUs, stressing interconnect, DRAM, and compute together, like full scientific workloads.
-- **System Integration:** This is as close as AGFHC gets to "whole system" stability verification.
+- **PCIe Link Health:** Confirms all links are negotiated at expected width and speed.
+- **PCIe Bandwidth:** Benchmarks device-to-host and host-to-device bandwidth, ensuring full performance.
+- **Error Detection:** Looks for PCIe-specific errors that may disrupt sustained transfers.
 
 Extended information
 
-```{note}
-This section will be updated in a future version of this document
+```bash
+$ /opt/amd/agfhc/agfhc --recipe-info pcie_lvl2
+
+Log Directory: /home/user/agfhc/logs/agfhc_20250902-190647
+Name: pcie_lvl2
+Title: A ~10m PCIe workload
+Path: /opt/amd/agfhc/recipes/mi350x/pcie_lvl2.yml
+Contents:
+Test Title Mode Approximate Time
+pcie_link_status PCIe Link Status 1 iteration 0:00:08
+pcie_d2h_peak PCIe BW D2H Peak 1 iteration 0:05:13
+pcie_h2d_peak PCIe BW H2D Peak 1 iteration 0:05:21
+pcie_link_status PCIe Link Status 1 iteration 0:00:08
+---------
+Total: 00:10:50
+Summary:
+Tests: 0 Total, 0 Executed, 0 Skipped
+Total Time: 00:00:03
+Log directory: /home/user/agfhc/logs/agfhc_20250902-190647
+Program exiting with return code AGFHC_SUCCESS [0]
 ```
 
 #### miniHPL
 
-Only applicable for AMD Instinct™ MI350X and MI355X:
+Applicable for all AMD Instinct™ MI3xx models:
 
-- **Compute + Fabric:** Runs Linpack-like workloads (High Performance Linpack, "HPL") across all GPUs, stressing interconnect, DRAM, and compute together, like full scientific workloads.
-- **System Integration:** This is as close as AGFHC gets to "whole system" stability verification.
+- **Compute + Fabric:** Runs Linpack-like workloads (High Performance Linpack, "HPL") across all GPUs, stressing interconnect, DRAM, and compute together, like full scientific workloads.
+- **System Integration:** This is as close as AGFHC gets to "whole system" stability verification.
 
 Extended information
 
-```{note}
-This section will be updated in a future version of this document
+```bash
+$ /opt/amd/agfhc/agfhc --test-info minihpl
+
+Log Directory: /home/user/agfhc/logs/agfhc_20250902-190543
+Name: minihpl
+Description: Executes miniHPL Exerciser.
+Recipes:
+  single_pass
+target:
+  This test does not have targets
+
+Performance Benchmarking
+
+Summary:
+  Tests: 0 Total, 0 Executed, 0 Skipped
+  Total Time: 00:00:04
+  Log directory: /home/user/agfhc/logs/agfhc_20250902-190543
+Program exiting with return code AGFHC_SUCCESS [0]
 ```
 
 ### Running AGFHC Tests
 
-The following table lists the AGFHC command-line instructions to execute the validation recipes given above.
+This section provides the command required to run specific AGFHC validation recipes.
 
 Before starting, create a directory to store the test outputs:
 
@@ -1023,21 +1043,21 @@ mkdir /tmp/agfhc_output
 | **Test Name** | **Command Line** |
 | --- | --- |
 | all_lvl5 | /opt/amd/agfhc/agfhc -r all_lvl5 -o /tmp/agfhc_output |
-| hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5:i=2 -o /tmp/agfhc_output |
-| pcie_lvl3 | /opt/amd/agfhc/agfhc -r pcie_lvl3 -o /tmp/agfhc_output |
-| rocHPL | /opt/amd/agfhc/agfhc -t rocHPL:d=120m -o /tmp/agfhc_output |
-| miniHPL | /opt/amd/agfhc/agfhc -t miniHPL:d=120m -o /tmp/agfhc_output |
+| hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5:i=4 -o /tmp/agfhc_output |
+| miniHPL | /opt/amd/agfhc/agfhc -t minihpl:d=4h -o /tmp/agfhc_output |
+| xgmi_lvl1 | /opt/amd/agfhc/agfhc -r xgmi_lvl1 -o /tmp/agfhc_output |
+| pcie_lvl2 | /opt/amd/agfhc/agfhc -r pcie_lvl2 -o /tmp/agfhc_output |
 
-### Determining AGFHC Test Results
+### Evaluating AGFHC Test Results
 
-There are several methods for determining if a test passed.
+There are several methods for determining results of the tests.
 
 #### Terminal Summary Output
 
 After running a recipe test, AGFHC prints a summary to the terminal.
 
-- **PASS**: If all tests in the recipe succeed, you will see a clear PASS or AGFHC_SUCCESS [0] message at the end.
-- **FAIL**: If any test fails, the output will indicate a FAIL or a corresponding error code, and failed tests will be listed.
+- **PASS**: If all tests in the recipe succeed, you will see a clear PASS or AGFHC_SUCCESS [0] message.
+- **FAIL**: If any test fails, you will see a FAIL message or error an error code, and failed tests will be listed.
 
 #### Results File
 
