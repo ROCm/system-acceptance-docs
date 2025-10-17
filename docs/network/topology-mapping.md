@@ -121,8 +121,6 @@ Use the commands to create a similar table shown below, specifying the correct G
 
 Given the examples from this section, generate the following table for adjacency. Using this table, specify the correct GPU for the NIC to test peer-to-peer RDMA transfer.
 
-### Example of NIC GPUs for Peer-to-Peer RDMA Transfer
-
 | GPU | CPU | GPU BDF | NIC BDF | NIC Name |
 | --- | --- | --- | --- | --- |
 | 0 | 0 | `05:00.0` | `09:00.0` | `enp9s0np0` |

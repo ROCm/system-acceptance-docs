@@ -83,7 +83,8 @@ Configuration settings will not persist through a system power cycle. Reapply al
 ## Broadcom 400G Network Adapter
 
 For Broadcom 400G NICs, perform the following actions to guarantee proper operation and peak performance:
-Enable PCIe relaxed ordering.
+
+* Enable PCIe relaxed ordering.
 * Enable RDMA support.
 * Select the RoCE performance profile.
 * Exclude all speeds except 400G from the speed mask.
