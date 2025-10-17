@@ -25,7 +25,7 @@ purposes, commands and the output shown below were obtained from a system runnin
 
 ## OS and Host System Checks
 
-This section outlines checks to verify your system’s operating environment, including OS distribution, kernel boot parameters, GPU driver status, and available memory. Each step includes example commands and expected outputs to help you confirm your system is properly configured for AMD Instinct™-based GPUs.
+This section outlines checks to verify your system's operating environment, including OS distribution, kernel boot parameters, GPU driver status, and available memory. Each step includes example commands and expected outputs to help you confirm your system is properly configured for AMD Instinct™-based GPUs.
 
 ```{note}
 If results vary from the sample expected output, contact your system manufacturer support representative for further assistance.

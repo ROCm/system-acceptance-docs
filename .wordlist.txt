@@ -258,6 +258,7 @@ OAM
 OAMs
 OCP
 OEM
+OEMs
 OEM’s
 OFED
 ok
@@ -288,6 +289,7 @@ perl
 pfc
 Pid
 PID
+PLDM
 PLX
 Pollara
 pre
@@ -306,6 +308,7 @@ py
 pycache
 qa
 qos
+QoS
 Radeon
 rccl
 RCCL
@@ -379,6 +382,7 @@ UBB
 ubuntu
 UCX
 UEFI
+UDEV
 UG
 ulimit
 uncorrectable

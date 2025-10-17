@@ -118,7 +118,7 @@ RCCL implements operations such as all-reduce, all-gather, reduce, broadcast, re
 Copies data from one “root” GPU to all others, so every GPU ends up with an identical set of information-like giving everyone in a group the same set of starting instructions.
 
 * **Performance Metric**: Measures how fast the root GPU can distribute its data to all others, with the focus on the effective bandwidth of this one-to-many transfer.
-* **Bus Bandwidth (busbw)**: Calculated as the total data sent divided by the time taken. Since only the root sends data, busbw reflects the root’s ability to saturate the network and is a direct measure of the broadcast efficiency.
+* **Bus Bandwidth (busbw)**: Calculated as the total data sent divided by the time taken. Since only the root sends data, busbw reflects the root's ability to saturate the network and is a direct measure of the broadcast efficiency.
 
 [AllGather](https://github.com/ROCm/rccl-tests/blob/develop/test/test_AllGather.py)
 
@@ -129,7 +129,7 @@ Takes a unique chunk of data from each GPU and shares the full collection with e
 
 [AllReduce](https://github.com/ROCm/rccl-tests/blob/develop/test/test_AllReduce.py)
 
-Combines data from all GPUs using an operation like sum or max, and then gives the final, combined result back to every GPU-think of pooling everyone’s results together to get a group consensus, then making sure every participant knows the outcome.
+Combines data from all GPUs using an operation like sum or max, and then gives the final, combined result back to every GPU-think of pooling everyone's results together to get a group consensus, then making sure every participant knows the outcome.
 
 * **Performance Metric**: Measures both the speed of combining data and distributing the result, focusing on throughput and latency-crucial for keeping distributed computations coordinated.
 * **Bus Bandwidth (busbw)**: Takes into account that each GPUs data must be shared and the result returned, effectively doubling the data movement compared to all_gather. This metric reflects the maximum achievable bandwidth for this two-way communication pattern.
