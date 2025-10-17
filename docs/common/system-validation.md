@@ -79,12 +79,12 @@ Supported GPUs available:
 
 - FAILED: Otherwise
 
-  - Action: Don’t proceed further. Debug the issue of not being able to
+  - Action: Don't proceed further. Debug the issue of not being able to
     see all GPUs.
 
 #### GPU Properties
 
-The GPU Properties module queries the configuration of a targeted GPU and returns the device’s static characteristics. These static values can be used to debug issues such as device support, performance and firmware problems.
+The GPU Properties module queries the configuration of a targeted GPU and returns the device's static characteristics. These static values can be used to debug issues such as device support, performance and firmware problems.
 
 To confirm the architectural properties of the GPU, use the GPUP module, which uses the GPUP configuration file.
 
@@ -142,7 +142,7 @@ The block below shows only one of the `io_link-properties` of the eight GPUs (`0
 
 ### Benchmark, stress, qualification
 
-These categories of modules perform qualification of the GPU subsystem, execute stress test, and compute and display bandwidth. The modules do not produce a PASS / FAIL result. When bandwidth is measured, it only reports the bandwidth and doesn’t make any comparisons with the existing set of numbers. The only exceptions are GST and IET modules.
+These categories of modules perform qualification of the GPU subsystem, execute stress test, and compute and display bandwidth. The modules do not produce a PASS / FAIL result. When bandwidth is measured, it only reports the bandwidth and doesn't make any comparisons with the existing set of numbers. The only exceptions are GST and IET modules.
 
 #### GPU Stress Test
 
@@ -393,7 +393,7 @@ To validate the GPU interfaces, `rvs` has the following three *types* of modules
 
 #### PCIe Bandwidth Benchmark
 
-The PCIe Bandwidth Benchmark attempts to saturate the PCIe bus with DMA transfers between system memory and a target GPU card’s memory. The maximum bandwidth obtained is reported.
+The PCIe Bandwidth Benchmark attempts to saturate the PCIe bus with DMA transfers between system memory and a target GPU card's memory. The maximum bandwidth obtained is reported.
 
 The configuration file for GST module is located at:
 

@@ -1,6 +1,6 @@
 # Mapping NIC to GPU NUMA Node
 
-For optimal cluster performance and minimal latency, it’s essential to align each GPU with its nearest high-speed NIC—ideally on the same NUMA node and PCIe root complex. This ensures that data traveling to and from each GPU takes the shortest, most efficient path, which is especially critical for RDMA and high-throughput AI/HPC workloads. This section provides step-by-step instructions to map GPUs and NICs using PCIe tools and system commands, ensuring efficient data flow and minimal latency across your AMD Instinct™ cluster.
+For optimal cluster performance and minimal latency, it's essential to align each GPU with its nearest high-speed NIC—ideally on the same NUMA node and PCIe root complex. This ensures that data traveling to and from each GPU takes the shortest, most efficient path, which is especially critical for RDMA and high-throughput AI/HPC workloads. This section provides step-by-step instructions to map GPUs and NICs using PCIe tools and system commands, ensuring efficient data flow and minimal latency across your AMD Instinct™ cluster.
 
 ## Determine Topology to Map the NIC
 
