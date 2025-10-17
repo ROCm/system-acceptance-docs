@@ -176,7 +176,7 @@ To facilitate the use of the most adjacent NIC to the GPU that is being used, it
 ### Step 1: Remove Current Pensando Network Rules
 
 ```bash
-$ sudo rm /etc/udev/rules.d/81-pensando-net.rules
+sudo rm /etc/udev/rules.d/81-pensando-net.rules
 ```
 
 ### Step 2: Get the PCI BDF Information for the NICs

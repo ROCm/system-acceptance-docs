@@ -258,6 +258,7 @@ OAM
 OAMs
 OCP
 OEM
+OEMs
 OEM’s
 OFED
 ok
@@ -288,6 +289,7 @@ perl
 pfc
 Pid
 PID
+PLDM
 PLX
 Pollara
 pre

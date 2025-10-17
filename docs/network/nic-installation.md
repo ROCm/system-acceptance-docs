@@ -84,10 +84,10 @@ Configuration settings will not persist through a system power cycle. Reapply al
 
 For Broadcom 400G NICs, perform the following actions to guarantee proper operation and peak performance:
 Enable PCIe relaxed ordering.
-- Enable RDMA support.
-- Select the RoCE performance profile.
-- Exclude all speeds except 400G from the speed mask.
-- Disable unused ports to optimize resources.
+* Enable RDMA support.
+* Select the RoCE performance profile.
+* Exclude all speeds except 400G from the speed mask.
+* Disable unused ports to optimize resources.
 
 For detailed configuration, use the scripts provided in the cluster networking GitHub repository.
 
@@ -95,10 +95,10 @@ For detailed configuration, use the scripts provided in the cluster networking G
 
 To prevent library incompatibilities that could disrupt system operations, it is necessary to follow the specific installation order:
 
-1.  ROCm Installation: The ROCm driver must be installed first, because it sets up essential components and libraries that may otherwise conflict with the versions installed by other drivers.
-2.  Mellanox Driver Installation: The Mellanox driver should be installed before the UCX library because it installs an older version of the UCX library.
-3.  UCX Library Update: Since the Mellanox driver packages an outdated UCX library version, updating the UCX library after completing the Mellanox installation ensures that you are working with the latest features and fixes, thereby maintaining system stability and performance.
-   
+1. ROCm Installation: The ROCm driver must be installed first, because it sets up essential components and libraries that may otherwise conflict with the versions installed by other drivers.
+2. Mellanox Driver Installation: The Mellanox driver should be installed before the UCX library because it installs an older version of the UCX library.
+3. UCX Library Update: Since the Mellanox driver packages an outdated UCX library version, updating the UCX library after completing the Mellanox installation ensures that you are working with the latest features and fixes, thereby maintaining system stability and performance.
+
 ```{note}
 Ensure that the installation steps are performed in this order.
 ```
