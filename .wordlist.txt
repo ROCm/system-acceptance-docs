@@ -10,6 +10,7 @@ AllReduce
 amd
 amdgpu
 AMI
+ARI
 APBDIS
 api
 APIC

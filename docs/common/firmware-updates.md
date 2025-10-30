@@ -3,7 +3,7 @@
 This page explains the supported ways to update firmware on AMD Instinct GPU systems and points you to the right OEM documentation for anything device-specific. For AMD Instinct accelerators, “firmware” comes in two forms:
 
 - GPU runtime firmware blobs (microcode) that the AMDGPU kernel driver loads at boot from `/lib/firmware/amdgpu`. These are publicly distributed via your Linux distribution's `linux-firmware` package and/or AMD's official software repositories. Updating these packages and rebooting is the standard, supported way to update GPU firmware.
-- Board VBIOS, platform PLDM bundle components, or other device-level firmware. When an update is required, it is provided through your server OEM's update mechanisms (Dell, HPE, Lenovo, Supermicro, etc.). Always use the OEMs recommended tools and only updates posted—and qualified—for your exact GPU model.
+- Board VBIOS, platform PLDM bundle components, or other device-level firmware. When an update is required, it is provided through your server OEMs update mechanisms (Dell, HPE, Lenovo, Supermicro, etc.). Always use the OEMs recommended tools and only updates posted—and qualified—for your exact GPU model.
 
 AMD publishes a hardware / driver / firmware dependency matrix in the ROCm release notes. Always consult the latest matrix when planning upgrades: [ROCm Release Notes](https://rocm.docs.amd.com/en/latest/about/release-notes.html).
 
