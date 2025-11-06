@@ -79,8 +79,7 @@ Supported GPUs available:
 
 - FAILED: Otherwise
 
-  - Action: Don't proceed further. Debug the issue of not being able to
-    see all GPUs.
+  - Action: Don't proceed further. Debug the issue of not being able to see all GPUs.
 
 #### GPU Properties
 

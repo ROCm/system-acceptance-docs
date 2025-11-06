@@ -55,8 +55,7 @@ For deployment, adding a sysctl task to load the amdgpu driver immediately after
 
 ### Optional Kernel Parameters
 
-Depending on your specific environment and workload requirements, additional kernel command line parameters can further enhance performance and system responsiveness. The table below lists optional GRUB settings to consider for AMD Instinct implementations. Evaluate and apply those that best fit your
-deployment scenario.
+Depending on your specific environment and workload requirements, additional kernel command line parameters can further enhance performance and system responsiveness. The table below lists optional GRUB settings to consider for AMD Instinct implementations. Evaluate and apply those that best fit your deployment scenario.
 
 | Parameter | Comments |
 |---|---|
