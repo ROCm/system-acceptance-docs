@@ -28,6 +28,10 @@ sudo apt install linux-tools-common
 cpupower idle-set -d 2
 ```
 
+```{note}
+If the CPU core states (C-states) has not been restricted in kernel command-line with the parameter processor.max_cstate=0, then the C-state should be set after every reboot. The kernel command-line method is preferred.
+```
+
 ## NUMA Configuration
 
 ### Kernel Parameters
@@ -87,7 +91,9 @@ For systems with 256 logical CPU cores or more, configure the kernel for IOMMU p
 2. **Apply Changes**: Update GRUB and reboot
 3. **Verification**: Check with `dmesg | grep iommu`
 
-> **Note**: This kernel setting requires IOMMU to be enabled in the system BIOS. Refer to the [BIOS Settings](bios-settings.md) guide for details.
+```{note}
+This kernel setting requires IOMMU to be enabled in the system BIOS. Refer to the [BIOS Settings](bios-settings.md) guide for details.
+```
 
 ## CPU Power Management
 

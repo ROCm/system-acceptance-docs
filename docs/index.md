@@ -52,10 +52,9 @@ After completing node validation, proceed with network and multi-node testing:
 
 1. **[NIC Driver Installation](network/nic-installation.md)** – Install and validate network interface card drivers
 2. **[Network Configuration](network/configuration.md)** – Configure network routing and establish baseline settings
-3. **[Performance Optimization](network/optimization.md)** – Apply network performance tuning for optimal throughput
-4. **[Topology Mapping](network/topology-mapping.md)** – Discover and map network topology relationships
-5. **[RDMA Benchmarking](network/rdma-benchmarking.md)** – Measure RDMA bandwidth and latency performance
-6. **[Cluster Validation](network/validation.md)** – Execute multi-node validation tests and verify readiness gates
+3. **[Topology Mapping](network/topology-mapping.md)** – Discover and map network topology relationships
+4. **[RDMA Benchmarking](network/rdma-benchmarking.md)** – Measure RDMA bandwidth and latency performance
+5. **[Cluster Validation](network/validation.md)** – Execute multi-node validation tests and verify readiness gates
 
 Additional networking and cluster performance guidance is available in the AMD [GPU cluster networking documentation](https://instinct.docs.amd.com/projects/gpu-cluster-networking/en/latest/)
 
