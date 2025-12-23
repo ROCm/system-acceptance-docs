@@ -225,7 +225,7 @@ sphinx-external-toc==1.0.1
     # via rocm-docs-core
 sphinx-notfound-page==1.0.4
     # via rocm-docs-core
-sphinx-reredirects==1.0.0
+sphinx-reredirects==1.1.0
     # via -r requirements.in
 sphinxcontrib-applehelp==2.0.0
     # via sphinx
