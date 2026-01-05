@@ -8,6 +8,8 @@ Configuring the correct kernel command-line parameters is essential for stable o
 
 ## GRUB Configuration Steps
 
+The following steps are for Ubuntu-based systems:
+
 1. Open `/etc/default/grub` with root privileges.
 2. Locate the line starting with `GRUB_CMDLINE_LINUX`.
 3. Append all required and recommended parameters to this line.
@@ -17,18 +19,20 @@ Configuring the correct kernel command-line parameters is essential for stable o
    sudo update-grub
    ```
 
-5. For RHEL-based systems, use the grubby tool:
-
-   ```bash
-   sudo grubby --update-kernel=ALL --args="pci=realloc=off"
-   ```
-
-6. Reboot the system for changes to take effect.
-7. Verify the active kernel parameters:
+5. Reboot the system for changes to take effect.
+6. Verify the active kernel parameters:
 
    ```bash
    cat /proc/cmdline
    ```
+
+```{note}
+For RHEL-based systems, use the grubby tool instead of editing GRUB directly:
+
+```bash
+sudo grubby --update-kernel=ALL --args="pci=bfsort pci=realloc=off iommu=pt numa_balancing=disable modprobe.blacklist=amdgpu"
+```
+```
 
 ## Kernel Parameters
 
@@ -40,8 +44,8 @@ Configuring the correct kernel command-line parameters is essential for stable o
 | `pci=bfsort` | Forces the kernel to enumerate all devices on a bus in a breadth-first manner before proceeding to the next bus. This ensures predictable device ordering, important for devices with persistent naming schemes such as network interfaces, and results in improved performance. Using this parameter prevents accessing an unintended GPU over the network. |
 | `iommu=pt` | Enables IOMMU pass-through mode, which allows the adapter to bypass DMA translation to memory, thereby improving performance. IOMMU is a system-specific IO mapping useful for DMA mapping and isolation, particularly in virtualization and device assignments to virtual machines. It is recommended to enable IOMMU support. |
 | `intel_iommu=on` | Necessary for systems with Intel host CPUs; not required for systems with AMD CPUs. |
-| `numa_balancing=disable` | NUMA balancing allows the OS to scan memory and attempt to migrate to a DIMM logically closer to accessing cores. While beneficial in some scenarios, it adds overhead because the OS is only estimating NUMA allocations, which may be useful if the NUMA locality access is not ideal. |
-| `modprobe.blacklist=amdgpu` | For some system configurations, it is necessary to blacklist the amdgpu driver to prevent instances where the DCGPU may not be ready when the driver loads, or if the system BIOS settings are not optimally configured. If this parameter is used, the amdgpu driver must be loaded post-boot for the system to function properly. Alternatively, configuring the AMD DCGPU with recommended system-optimized BIOS settings might make it possible to remove driver blacklisting. However, blacklisting the driver is considered the safest option since the AMD DCGPU may not be ready during system boot if a firmware update is in progress. |
+| `numa_balancing=disable` | **Optional.** NUMA balancing allows the OS to scan memory and attempt to migrate to a DIMM logically closer to accessing cores. While beneficial in some scenarios, it adds overhead because the OS is only estimating NUMA allocations, which may be useful if the NUMA locality access is not ideal. |
+| `modprobe.blacklist=amdgpu` | **Optional.** For some system configurations, it is necessary to blacklist the amdgpu driver to prevent instances where the DCGPU may not be ready when the driver loads, or if the system BIOS settings are not optimally configured. If this parameter is used, the amdgpu driver must be loaded post-boot for the system to function properly. Alternatively, configuring the AMD DCGPU with recommended system-optimized BIOS settings might make it possible to remove driver blacklisting. However, blacklisting the driver is considered the safest option since the AMD DCGPU may not be ready during system boot if a firmware update is in progress. |
 
 ``````{note}
 If `modprobe.blacklist=amdgpu` is used, the amdgpu module must be loaded after booting:
