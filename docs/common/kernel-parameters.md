@@ -29,9 +29,7 @@ The following steps are for Ubuntu-based systems:
 ```{note}
 For RHEL-based systems, use the grubby tool instead of editing GRUB directly:
 
-```bash
-sudo grubby --update-kernel=ALL --args="pci=bfsort pci=realloc=off iommu=pt numa_balancing=disable modprobe.blacklist=amdgpu"
-```
+    sudo grubby --update-kernel=ALL --args="pci=bfsort pci=realloc=off iommu=pt numa_balancing=disable modprobe.blacklist=amdgpu"
 ```
 
 ## Kernel Parameters
@@ -47,15 +45,13 @@ sudo grubby --update-kernel=ALL --args="pci=bfsort pci=realloc=off iommu=pt numa
 | `numa_balancing=disable` | **Optional.** NUMA balancing allows the OS to scan memory and attempt to migrate to a DIMM logically closer to accessing cores. While beneficial in some scenarios, it adds overhead because the OS is only estimating NUMA allocations, which may be useful if the NUMA locality access is not ideal. |
 | `modprobe.blacklist=amdgpu` | **Optional.** For some system configurations, it is necessary to blacklist the amdgpu driver to prevent instances where the DCGPU may not be ready when the driver loads, or if the system BIOS settings are not optimally configured. If this parameter is used, the amdgpu driver must be loaded post-boot for the system to function properly. Alternatively, configuring the AMD DCGPU with recommended system-optimized BIOS settings might make it possible to remove driver blacklisting. However, blacklisting the driver is considered the safest option since the AMD DCGPU may not be ready during system boot if a firmware update is in progress. |
 
-``````{note}
+```{note}
 If `modprobe.blacklist=amdgpu` is used, the amdgpu module must be loaded after booting:
 
-```bash
-sudo modprobe amdgpu
-```
+    sudo modprobe amdgpu
 
 For deployment, adding a sysctl task to load the amdgpu driver immediately after boot is recommended.
-``````
+```
 
 ### Optional Kernel Parameters
 

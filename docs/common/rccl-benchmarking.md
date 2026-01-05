@@ -101,7 +101,7 @@ The RCCL all-reduce test criteria is to exceed an in-place busbw metric of **304
 
 **Example output:**
 
-```
+```text
 # nThread 1 nGpus 8 minBytes 8 maxBytes 8589934592 step: 2(factor) warmup iters: 5 iters: 20 agg iters: 1 validation: 1 graph: 0
 #
 rccl-tests: Version Unknown
