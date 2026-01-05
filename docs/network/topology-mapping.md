@@ -25,7 +25,7 @@ Record the output for mapping purposes; this will be needed later to confirm the
 Run the following command to determine the GPU number for each of the BDF listed from the previous command.
 
 ```bash
-amd-smi list | grep -e "BDF" -e "GPU"
+sudo amd-smi list | grep -e "BDF" -e "GPU"
 ```
 
 ### Determine the PCIe Bus Topology for Each GPU

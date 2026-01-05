@@ -2,11 +2,11 @@
 
 This section covers essential steps for validating network performance and reliability on AMD Instinct™ platforms. The process includes both software and hardware checks—from enabling RDMA (Remote Direct Memory Access) and verifying link speed to running targeted performance benchmarks and evaluating collective GPU operations. By following the outlined procedures, you can quickly identify and resolve network bottlenecks, ensuring your system delivers optimal performance for high-demand workloads.
 
-## OFED RDMA Perftest
+## OFED Performance Tests
 
 Install and run the [OFED performance tests](https://github.com/linux-rdma/perftest) for GPU to NIC, NIC to switch, and host to host (H2H) testing. Loopback is implemented in the tests to remove the switch from benchmark results.
 
-### Perftest installation
+### Performance Test installation
 
 Remember to install OFED perftests on both nodes you plan to use in this section. Commands may require `sudo` depending on user privileges.
 
@@ -102,6 +102,12 @@ Result:
 
 * PASSED: All paths report average throughput of a 400G NIC as 370 Gbps or greater at some point during the test.
 * FAILED: Unable to reach an average speed equal to or greater than 370 Gbps for a 400G NIC.
+
+### OFED Performance Tests with the Cluster Validation Suite
+
+The OFED Performance Tests can be automated using the [Cluster Validation Suite](https://rocm.docs.amd.com/projects/cvs/en/latest/).
+
+After [installing the test suite](https://rocm.docs.amd.com/projects/cvs/en/latest/install/cvs-install.html), run the test script as described under the [InfiniBand (IB Perf) test script](https://rocm.docs.amd.com/projects/cvs/en/latest/how-to/run-cvs-tests.html#infiniband-ib-perf-test-script) section.
 
 ## RCCL Benchmarking Results
 
