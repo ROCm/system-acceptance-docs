@@ -21,7 +21,7 @@ subtrees:
 
   - caption: Cluster Networking
     entries:
-      - title: NIC Driver Insallation
+      - title: NIC Driver Installation
         file: network/nic-installation.md
       - title: Network Routing
         file: network/configuration.md
