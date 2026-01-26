@@ -1083,4 +1083,30 @@ AGFHC ends with a return code:
 - 0: All tests passed
 - Non-zero: One or more tests failed
 
-This is useful if integrating AGFHC into scripts or CI pipelines
+This is useful if integrating AGFHC into scripts or CI pipelines.
+
+### Running AGFHC with the Cluster Validation Suite
+
+AGFHC tests recommended for deployment can be automated using the [Cluster Validation Suite](https://rocm.docs.amd.com/projects/cvs/en/latest/).
+
+Before running CVS, ensure that the configuration files for your specific platform and the nodes under test are correctly defined in the `cvs/input/config_file/` subdirectories.
+
+After [installing the test suite](https://rocm.docs.amd.com/projects/cvs/en/latest/install/cvs-install.html), deploy AGFHC to the cluster using the following command:
+
+```bash
+pytest -vvv --log-file=/tmp/test.log -s ./tests/health/install/install_agfhc.py \
+  --cluster_file input/cluster_file/cluster.json \
+  --config_file input/config_file/health/mi300_health_config.json \
+  --html=/var/www/html/cvs/agfhc.html --capture=tee-sys --self-contained-html
+```
+
+Once AGFHC is installed, run the deployment test set using:
+
+```bash
+pytest -vvv --log-file=/tmp/test.log -s ./tests/health/csp_qual_agfhc.py \
+  --cluster_file input/cluster_file/cluster.json \
+  --config_file input/config_file/health/mi300_health_config.json \
+  --html=/var/www/html/cvs/agfhc.html --capture=tee-sys --self-contained-html
+```
+
+Note that exact tests and durations in the `tests/health/csp_qual_agfhc.py` may differ from this document. Best practice is to run the longer of the two since extended test coverage will reduce the chance of failure after deployment

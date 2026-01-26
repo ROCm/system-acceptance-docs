@@ -1,15 +1,18 @@
 ACS
+AER
 agfhc
 AGFHC
 agg
 ainic
 AITER
 algbw
+AllGather
 Allreduce
 AllReduce
 amd
 amdgpu
 AMI
+ANP
 ARI
 APBDIS
 api
@@ -41,6 +44,7 @@ bfsort
 BiDi
 BiDir
 biosdevname
+BIOSes
 BKC
 BMC
 Bootloader
@@ -99,6 +103,7 @@ dnf
 dpkg
 dracut
 ds
+durations
 dscp
 DSCP
 DUP
@@ -147,6 +152,7 @@ hclib
 HDDs
 HGEMM
 HPC
+hyperthreading
 HPE
 HPL
 HSA
@@ -313,6 +319,7 @@ QoS
 Radeon
 rccl
 RCCL
+reachability
 rdma
 RDMA
 README
@@ -320,6 +327,7 @@ realloc
 Redfish
 redop
 repo
+Resizable
 reproducibility
 reseat
 reseating
@@ -342,6 +350,7 @@ salina
 scp
 sd
 SGEMM
+SGLang
 SIG
 sigtrap
 SMI

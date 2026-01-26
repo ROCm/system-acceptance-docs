@@ -2,11 +2,11 @@
 
 This section covers essential steps for validating network performance and reliability on AMD Instinct™ platforms. The process includes both software and hardware checks—from enabling RDMA (Remote Direct Memory Access) and verifying link speed to running targeted performance benchmarks and evaluating collective GPU operations. By following the outlined procedures, you can quickly identify and resolve network bottlenecks, ensuring your system delivers optimal performance for high-demand workloads.
 
-## OFED RDMA Perftest
+## OFED Performance Tests
 
 Install and run the [OFED performance tests](https://github.com/linux-rdma/perftest) for GPU to NIC, NIC to switch, and host to host (H2H) testing. Loopback is implemented in the tests to remove the switch from benchmark results.
 
-### Perftest installation
+### Performance Test installation
 
 Remember to install OFED perftests on both nodes you plan to use in this section. Commands may require `sudo` depending on user privileges.
 
@@ -36,7 +36,7 @@ Run `make -j && make install`.
 
 Repeat these steps on a second node for when starting multi-node testing.
 
-### Perftest Sanity Test
+### Performance Test Sanity Test
 
 Utilizing commands supported by the perftest suite, various system components can be unit tested. This allows for fast and accurate debugging by isolating the components. Common issues include peer-to-peer enablement, network configuration, transceivers, and cables. A methodical approach checking each component will save time overall.
 
@@ -46,7 +46,7 @@ For performance testing with perftest and RCCL, ACS should be disabled for optim
 
 To temporarily disable ACS, use the script linked at: [dis_acs.sh](https://github.com/ROCm/cluster-networking/blob/main/general_scripts/dis_acs.sh) This change will only take effect on the system until it is rebooted.
 
-#### Perftest GPU to NIC
+#### Performance Test GPU to NIC
 
 Testing the path from the GPU to the NIC to check that there is an optimized peer-to-peer path. This ensures that peer-to-peer RDMA support has been enabled. For accurate testing it is important to use the GPU adjacent to the backend network interface card. All 8 GPUs should be tested to their adjacent NIC.
 
@@ -65,7 +65,7 @@ sudo ./ib_write_bw -x 3 -a -b -F --use_rocm=<GPU Adjacent to NIC 0> -d <NIC 0> -
 * PASSED: All 8 paths report average throughput of 700 Gbps or greater at some point during the test.
 * FAILED: Unable to reach an average speed equal to or greater than 700 Gbps.
 
-#### Perftest NIC to Switch to NIC
+#### Performance Test NIC to Switch to NIC
 
 Testing the path from one NIC to another through the network switch is to ensure that each NIC sends and receives data at the expected speed to validate the NIC, all transceivers, the cable, and the backend switch ports.
 
@@ -85,7 +85,7 @@ sudo ./ib_write_bw -x 3 -a -b -F -d <NIC 1> --report_gbits <host_ip for NIC 0 on
 * PASSED: All paths report average throughput of a 400G NIC as 380 Gbps or greater at some point during the test.
 * FAILED: Unable to reach an average speed equal to or greater than 380 Gbps for a 400G NIC.
 
-#### Perftest GPU to GPU through the Switch
+#### Performance Test GPU to GPU through the Switch
 
 Run the following set of commands 16 times, once to check the send path and once to check the receive path GPU though the NIC out to the switch is valid. A second node is needed for this test since data will be routed locally over the PCIe bus if a single node is used. This will ensure that all NICs are functioning properly and that the connection to the supporting network switch is valid.
 
@@ -102,6 +102,12 @@ Result:
 
 * PASSED: All paths report average throughput of a 400G NIC as 370 Gbps or greater at some point during the test.
 * FAILED: Unable to reach an average speed equal to or greater than 370 Gbps for a 400G NIC.
+
+### OFED Performance Tests with the Cluster Validation Suite
+
+The OFED Performance Tests can be automated using the [Cluster Validation Suite](https://rocm.docs.amd.com/projects/cvs/en/latest/).
+
+After [installing the test suite](https://rocm.docs.amd.com/projects/cvs/en/latest/install/cvs-install.html), run the test script as described under the [InfiniBand (IB Perf) test script](https://rocm.docs.amd.com/projects/cvs/en/latest/how-to/run-cvs-tests.html#infiniband-ib-perf-test-script) section.
 
 ## RCCL Benchmarking Results
 

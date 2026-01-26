@@ -18,8 +18,47 @@ This guide follows a two-phase validation approach:
 **Node (GPU/Server) Validation**  
 Establish a known-good baseline for each individual server, including prerequisites verification, firmware and BIOS alignment, kernel parameter configuration, ROCm installation, health checks, GPU validation, microbenchmark performance testing, and acceptance threshold validation per GPU.
 
-**Cluster & Fabric Validation**  
+**Cluster & Fabric Validation**
 Extend validation across multiple nodes, covering NIC driver installation, network routing and configuration, performance optimization, topology mapping, RDMA benchmarking, and comprehensive cluster-level validation.
+
+For more information on AMD Instinct products, applications, configuration, and related software, see the [AMD Instinct Documentation](https://instinct.docs.amd.com/latest/).
+
+## Testing Overview
+
+Testing is generally divided into two categories: single-node tests, which verify the functionality of individual nodes, and multi-node tests, which validate the overall operation of the cluster. An exception to this division is the use of Open Fabrics Enterprise Distribution (OFED) Performance Tests, which are particularly useful for diagnosing network-related issues for a single node such as faulty cables.
+
+The following tables provide estimated test durations; however, these estimates do not include the time required for test configuration or workload file transfers, which can be significant. Actual test durations may vary depending on the number of nodes and the level of thoroughness desired.
+
+### Single Node Tests
+
+| Test | Estimated Duration |
+| --- | --- |
+| CVS Configuration Checker | 12 Minutes |
+| AGFHC all_lvl5 | 2 Hours |
+| AGFHC hbm_lvl5 | 4 Iterations, 8 Hours |
+| AGFHC minihpl | 4 Hours |
+| AGFHC xgmi_lvl1 | 5 Minutes |
+| AGFHC pcie_lvl2 | 10 Minutes |
+| Single Node RCCL | 2 to 11 Minutes |
+| Optional TransferBench | 2 Hours |
+| Optional Llama 3.1 70B | 1 to 24 Hours |
+
+### Multi-Node Tests
+
+| Test | Estimated Duration |
+| --- | --- |
+| OFED Performance Tests | 2 Hours |
+| Multi-node RCCL | 10 Minutes |
+| Llama 3.1 405B with JAX | 1 Hour |
+
+### Cluster Validation Suite
+
+Many of the tasks described in this guide, from checking system configuration to executing single-node and multi-node tests, can be automated using the Cluster Validation Suite (CVS). This toolset verifies the health and performance of AMD AI clusters at scale, extending validation across multiple nodes without requiring extensive manual intervention.
+
+- [Cluster Validation Suite Documentation](https://rocm.docs.amd.com/projects/cvs/en/latest/)
+- [CVS GitHub Repository](https://github.com/ROCm/cvs)
+
+Individual test examples utilizing the CVS for single and multi-node tests are called out in the following sections. Ensure that the configuration files for your specific platform and the nodes under test are correctly defined in the `cvs/input/config_file/` subdirectories before running CVS. Misconfigured files can lead to delays in testing and inaccurate results.
 
 ## Getting Started
 
