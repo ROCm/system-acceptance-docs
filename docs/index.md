@@ -36,7 +36,8 @@ The following tables provide estimated test durations; however, these estimates 
 | CVS Configuration Checker | 12 Minutes |
 | AGFHC all_lvl5 | 2 Hours |
 | AGFHC hbm_lvl5 | 4 Iterations, 8 Hours |
-| AGFHC minihpl | 4 Hours |
+| AGFHC gfx_lvl4 | 1 Hour |
+| AGFHC minihpl | 3 Hours |
 | AGFHC xgmi_lvl1 | 5 Minutes |
 | AGFHC pcie_lvl2 | 10 Minutes |
 | Single Node RCCL | 2 to 11 Minutes |

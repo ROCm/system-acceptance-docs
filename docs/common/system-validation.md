@@ -797,7 +797,7 @@ AGFHC offers various test levels to suit different validation needs. Individual 
 - To view the available test and recipes:
 
   ```bash
-  /opt/amd/agfhc/agfhc –list
+  /opt/amd/agfhc/agfhc --list
   ```
 
 - To view extended information about a test:
@@ -818,25 +818,43 @@ The tables below list the recommended and suggested AGFHC validation recipes alo
 
 #### Minimum Required AGFHC Tests
 
-| Recipe Name | Applicable Products | Iterations/Duration | Estimated Test Duration |
+| Recipe Name | Applicable Products | Iterations/Duration | Estimated Test Duration / Rationale |
 | --- | --- | --- | --- |
 | all_lvl5 | All AMD MI3xx Instinct™ models | 1 iteration | 2 Hours |
-| hbm_lvl5 | All AMD MI3xx Instinct™ models | 4 iterations | 8 Hours (4 x 2 hours) |
-| minihpl | All AMD MI3xx Instinct™ models | 4 hours | 4 Hours |
-| xgmi_lvl1 | All AMD MI3xx Instinct™ models | 1 iteration | 5 Minutes |
-| pcie_lvl2 | All AMD MI3xx Instinct™ models | 1 iteration | 10 Minutes |
-| Total | | | 14 Hours and 15 Minutes |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, first iteration | Stress HBM |
+| sleep 300 sec. | | 5 Minutes, second iteration | For silicon to contract to widen any cracks |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, second iteration | Stress HBM |
+| sleep 300 sec. | | 5 Minutes, third iteration | For silicon to contract to widen any cracks |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, third iteration | Stress HBM |
+| sleep 300 sec. | | 5 Minutes, fourth iteration | For silicon to contract to widen any cracks |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, fourth iteration | Stress HBM |
+| sleep 300 sec. | | 5 Minutes, fifth iteration | For silicon to contract to widen any cracks |
+| gfx_lvl4 | All AMD MI3xx Instinct™ models | 1 Hour | GPU stress test to hot spot test GPU needed for DLC systems |
+| sleep 300 sec. | | 5 Minutes, sixth iteration | For silicon to contract to widen any cracks |
+| minihpl | All AMD MI3xx Instinct™ models | 3 Hours | Search for voltage failures and stress HBM |
+| xgmi_lvl1 | All AMD MI3xx Instinct™ models | 5 Minutes | Check for link degradation |
+| pcie_lvl2 | All AMD MI3xx Instinct™ models | 10 Minutes | Check for link degradation |
+| Total | | | 14 Hours and 45 Minutes |
 
 #### Recommended AGFHC Tests
 
-| Recipe Name | Applicable Products | Iterations/Duration | Estimated Test Duration |
+| Recipe Name | Applicable Products | Iterations/Duration | Estimated Test Duration / Rationale |
 | --- | --- | --- | --- |
 | all_lvl5 | All AMD MI3xx Instinct™ models | 1 iteration | 2 Hours |
-| hbm_lvl5 | All AMD MI3xx Instinct™ models | 4 iterations | 8 Hours (4 x 2 hours) |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, first iteration | Stress HBM |
+| sleep 300 sec. | | 5 Minutes, second iteration | For silicon to contract to widen any cracks |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, second iteration | Stress HBM |
+| sleep 300 sec. | | 5 Minutes, third iteration | For silicon to contract to widen any cracks |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, third iteration | Stress HBM |
+| sleep 300 sec. | | 5 Minutes, fourth iteration | For silicon to contract to widen any cracks |
+| hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, fourth iteration | Stress HBM |
+| sleep 300 sec. | | 5 Minutes, fifth iteration | For silicon to contract to widen any cracks |
+| gfx_lvl4 | All AMD MI3xx Instinct™ models | 1 Hour | GPU stress test to hot spot test GPU needed for DLC systems |
+| sleep 300 sec. | | 5 Minutes, sixth iteration | For silicon to contract to widen any cracks |
 | minihpl | All AMD MI3xx Instinct™ models | 10 hours | 10 Hours |
-| xgmi_lvl1 | All AMD MI3xx Instinct™ models | 1 iteration | 5 Minutes |
-| pcie_lvl2 | All AMD MI3xx Instinct™ models | 1 iteration | 10 Minutes |
-| Total | | | 20 Hours and 15 Minutes |
+| xgmi_lvl1 | All AMD MI3xx Instinct™ models | 5 Minutes | Check for link degradation |
+| pcie_lvl2 | All AMD MI3xx Instinct™ models | 10 Minutes | Check for link degradation |
+| Total | | | 20 Hours and 45 Minutes |
 
 ### AGFHC Recipe Coverage Details
 
@@ -941,6 +959,49 @@ Log directory: /root/agfhc/logs/agfhc_20250707-082635
 Program exiting with return code AGFHC_SUCCESS [0]
 ```
 
+#### gfx_lvl4
+
+```{note}
+This test should be run for at least one hour to ensure no issues with the cooling system. Thermal testing the HBM is covered with the HBM tests.
+```
+
+- **GPU thermal stress test:** Executes a GFX matrix workload that combines precision-specific math (FP8/FP16/BF16/FP32/FP64) and transcendental functions. Doing so generates hot spots on the GPU to test the thermal solution.
+- **HBM thermal stress test:** Raw HBM bandwidth with dual concurrent streams (read/write or bidirectional), typically using non-temporal access patterns to bypass caches and hit memory controllers directly.
+- **GPU max power test:** Maximum board power by combining high-utilization compute and memory traffic to exercise SMU power management, VRMs, and thermal solution.
+- **Holistic workloads:** Executing workloads intended to stress both the GPU matrix and the HBM functioning as a graphics sanity check.
+
+Extended information
+
+```bash
+$ /opt/amd/agfhc/agfhc --recipe-info gfx_lvl4
+
+Log Directory: /home/user/agfhc/logs/agfhc_20260325-151748
+Name: gfx_lvl4
+Title: A ~1h GFX workload
+Path: /opt/amd/agfhc/recipes/mi300x/gfx_lvl4.yml
+Contents:
+Test Title Mode Approximate Time
+gfx_dgemm GFX dgemm 1 iteration 0:01:30
+gfx_sgemm GFX sgemm 1 iteration 0:01:15
+gfx_fp8ri GFX fp8 rand int 1 iteration 0:01:20
+gfx_fp16ri GFX fp16 rand int 1 iteration 0:01:20
+gfx_bf16ri GFX bf16 rand int 1 iteration 0:01:20
+gfx_fp8tf GFX fp8 trig float 1 iteration 0:01:20
+gfx_fp16tf GFX fp16 trig float 1 iteration 0:01:20
+gfx_bf16tf GFX bf16 trig float 1 iteration 0:01:20
+hbm_ds_ntd HBM Dual Stream NTD 1 iteration 0:01:10
+gfx_maxpower GFX Max Power 1 iteration 0:10:05
+rochpl rocHPL 2 iterations 0:15:40
+sprites SPRITES 1 iteration 0:20:29
+---------
+Total: 00:58:09
+Summary:
+Tests: 0 Total, 0 Executed, 0 Skipped
+Total Time: 00:00:05
+Log directory: /home/user/agfhc/logs/agfhc_20260325-151748
+Program exiting with return code AGFHC_SUCCESS [0]
+```
+
 #### xgmi_lvl1
 
 - **XGMI Link Health:** Confirms all links are negotiated at expected width and speed.
@@ -1042,8 +1103,17 @@ mkdir /tmp/agfhc_output
 | **Test Name** | **Command Line** |
 | --- | --- |
 | all_lvl5 | /opt/amd/agfhc/agfhc -r all_lvl5 -o /tmp/agfhc_output |
-| hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5:i=4 -o /tmp/agfhc_output |
-| miniHPL | /opt/amd/agfhc/agfhc -t minihpl:d=4h -o /tmp/agfhc_output |
+| hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5 -o /tmp/agfhc_output |
+| sleep | sleep 300 |
+| hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5 -o /tmp/agfhc_output |
+| sleep | sleep 300 |
+| hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5 -o /tmp/agfhc_output |
+| sleep | sleep 300 |
+| hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5 -o /tmp/agfhc_output |
+| sleep | sleep 300 |
+| gfx_lvl4 | /opt/amd/agfhc/agfhc -r gfx_lvl4 -o /tmp/agfhc_output |
+| sleep | sleep 300 |
+| miniHPL | /opt/amd/agfhc/agfhc -t minihpl:d=3h -o /tmp/agfhc_output |
 | xgmi_lvl1 | /opt/amd/agfhc/agfhc -r xgmi_lvl1 -o /tmp/agfhc_output |
 | pcie_lvl2 | /opt/amd/agfhc/agfhc -r pcie_lvl2 -o /tmp/agfhc_output |
 
