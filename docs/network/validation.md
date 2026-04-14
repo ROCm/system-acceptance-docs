@@ -22,6 +22,34 @@ All the backend network interfaces should support RDMA. To ensure it is enabled 
 rdma link
 ```
 
+Example output for Broadcom NICs:
+
+```bash
+link bnxt_re0/1 state ACTIVE physical_state LINK_UP netdev ens26np0
+link bnxt_re1/1 state ACTIVE physical_state LINK_UP netdev ens27np0
+link bnxt_re2/1 state ACTIVE physical_state LINK_UP netdev ens25np0
+link bnxt_re3/1 state ACTIVE physical_state LINK_UP netdev ens24np0
+link bnxt_re4/1 state ACTIVE physical_state LINK_UP netdev ens22np0
+link bnxt_re5/1 state ACTIVE physical_state LINK_UP netdev ens23np0
+link bnxt_re6/1 state ACTIVE physical_state LINK_UP netdev ens21np0
+link bnxt_re7/1 state ACTIVE physical_state LINK_UP netdev ens20np0
+```
+
+For Mellanox NICs, the RDMA device names would be `mlx5_0`, `mlx5_1`, etc.
+
+Example output for AMD Pensando (AINIC) NICs:
+
+```bash
+link ionic_0/1 state ACTIVE physical_state LINK_UP netdev benic7p1
+link ionic_1/1 state ACTIVE physical_state LINK_UP netdev benic8p1
+link ionic_2/1 state ACTIVE physical_state LINK_UP netdev benic6p1
+link ionic_3/1 state ACTIVE physical_state LINK_UP netdev benic5p1
+link ionic_4/1 state ACTIVE physical_state LINK_UP netdev benic3p1
+link ionic_5/1 state ACTIVE physical_state LINK_UP netdev benic2p1
+link ionic_6/1 state ACTIVE physical_state LINK_UP netdev benic1p1
+link ionic_7/1 state ACTIVE physical_state LINK_UP netdev benic4p1
+```
+
 Result:
 
 * PASSED: All 8 backend NICs should be listed and report status as ENABLED.
@@ -29,7 +57,7 @@ Result:
 
 ### Check NIC Link Speed
 
-Verify the NICs in your servers are reporting the correct speeds. Several commands and utilities are available to measure speed based on your network type. For the AMD Instinct™ product line 400G network cards are generally advised. 200G cards are not sufficient to avoid bottlenecks and 800G cards and not needed.
+Verify the NICs in your servers are reporting the correct speeds. Several commands and utilities are available to measure speed based on your network type. For the AMD Instinct™ product line 400G network cards are generally advised. 200G cards are not sufficient to avoid bottlenecks and 800G cards are not needed.
 
 #### RoCE / Ethernet
 
@@ -64,7 +92,7 @@ Multi-node RCCL testing verifies that GPUs in one node can communicate correctly
 
 To ensure that RCCL runs properly, please ensure that the following criteria are met:
 
-1. Ensure that UCX, OpenMPI, RCCL-Tests and AMD ANP are built using the options given in this document.
+1. Ensure that UCX, OpenMPI, and RCCL-Tests are built using the options given in this document. For systems using Pensando NICs the AMD ANP should also be rebuilt.
 2. Run a fabric ping test and ensure reachability.
 3. Configure PFC and DCQCN with recommended parameters.
 4. Ensure QoS (PFC + DCQCN) is configured across the network and DSCP marking at NICs and Switches are in sync.
