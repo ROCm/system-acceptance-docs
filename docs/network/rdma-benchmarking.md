@@ -62,8 +62,8 @@ sudo ./ib_write_bw -x 3 -a -b -F --use_rocm=<GPU Adjacent to NIC 0> -d <NIC 0> -
 
 ##### Result
 
-* PASSED: All 8 paths report average throughput of 700 Gbps or greater at some point during the test.
-* FAILED: Unable to reach an average speed equal to or greater than 700 Gbps.
+* PASSED: All 8 paths report average throughput of 390 Gbps or greater at some point during the test.
+* FAILED: Unable to reach an average speed equal to or greater than 390 Gbps.
 
 #### Performance Test NIC to Switch to NIC
 
@@ -80,10 +80,14 @@ sudo ./ib_write_bw -x 3 -a -b -F -d <NIC 0> --report_gbits
 sudo ./ib_write_bw -x 3 -a -b -F -d <NIC 1> --report_gbits <host_ip for NIC 0 on node 0>
 ```
 
+```{note}
+If you receive "Unable to open file descriptor for socket connection" relating to port 18515, please disable the firewall.
+```
+
 ##### Result
 
-* PASSED: All paths report average throughput of a 400G NIC as 380 Gbps or greater at some point during the test.
-* FAILED: Unable to reach an average speed equal to or greater than 380 Gbps for a 400G NIC.
+* PASSED: All paths report average throughput of a 400G NIC as 770 Gbps or greater at some point during the test.
+* FAILED: Unable to reach an average speed equal to or greater than 770 Gbps for a 400G NIC.
 
 #### Performance Test GPU to GPU through the Switch
 
@@ -100,8 +104,8 @@ sudo ./ib_write_bw -x 3 -a -b -F --use_rocm=<GPU Adjacent to NIC 1> -d <NIC 1> -
 
 Result:
 
-* PASSED: All paths report average throughput of a 400G NIC as 370 Gbps or greater at some point during the test.
-* FAILED: Unable to reach an average speed equal to or greater than 370 Gbps for a 400G NIC.
+* PASSED: All paths report average throughput of a 400G NIC as 770 Gbps or greater at some point during the test.
+* FAILED: Unable to reach an average speed equal to or greater than 770 Gbps for a 400G NIC.
 
 ### OFED Performance Tests with the Cluster Validation Suite
 
