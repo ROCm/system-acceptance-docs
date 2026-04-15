@@ -86,6 +86,7 @@ CX
 CXXFLAGS
 Datacenter
 DCGPU
+DLC
 dcqcn
 DCQCN
 De
@@ -136,8 +137,10 @@ GFLOPs
 gfortran
 gfx
 GFX
+GMI
 GPUP
 GPUs
+GPU's
 GRand
 GST
 gtu
@@ -180,6 +183,7 @@ ipv
 iso
 iters
 json
+JAX
 JSON
 KASLR
 KERNARG
@@ -409,6 +413,8 @@ uuid
 UUID
 uuids
 VBIOS
+vLLM
+VRMs
 warmup
 wget
 WR
