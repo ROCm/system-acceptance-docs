@@ -820,7 +820,7 @@ The tables below list the recommended and suggested AGFHC validation recipes alo
 
 | Recipe Name | Applicable Products | Iterations/Duration | Estimated Test Duration / Rationale |
 | --- | --- | --- | --- |
-| all_lvl5 | All AMD MI3xx Instinct™ models | 1 iteration | 2 Hours |
+| all_lvl5 | All AMD MI3xx Instinct™ models | 2 hours | Catches most errors |
 | hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, first iteration | Stress HBM |
 | sleep 300 sec. | | 5 Minutes, second iteration | For silicon to contract to widen any cracks |
 | hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, second iteration | Stress HBM |
@@ -840,7 +840,7 @@ The tables below list the recommended and suggested AGFHC validation recipes alo
 
 | Recipe Name | Applicable Products | Iterations/Duration | Estimated Test Duration / Rationale |
 | --- | --- | --- | --- |
-| all_lvl5 | All AMD MI3xx Instinct™ models | 1 iteration | 2 Hours |
+| all_lvl5 | All AMD MI3xx Instinct™ models | 2 hours | Catches most errors |
 | hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, first iteration | Stress HBM |
 | sleep 300 sec. | | 5 Minutes, second iteration | For silicon to contract to widen any cracks |
 | hbm_lvl5 | All AMD MI3xx Instinct™ models | 2 Hours, second iteration | Stress HBM |
@@ -1103,6 +1103,7 @@ mkdir /tmp/agfhc_output
 | **Test Name** | **Command Line** |
 | --- | --- |
 | all_lvl5 | /opt/amd/agfhc/agfhc -r all_lvl5 -o /tmp/agfhc_output |
+| sleep | sleep 300 |
 | hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5 -o /tmp/agfhc_output |
 | sleep | sleep 300 |
 | hbm_lvl5 | /opt/amd/agfhc/agfhc -r hbm_lvl5 -o /tmp/agfhc_output |
