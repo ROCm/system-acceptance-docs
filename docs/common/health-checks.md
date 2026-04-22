@@ -1,6 +1,6 @@
 # Basic system health checks
 
-Before proceeding with more extensive system validation, it's important to ensure all components in the system are operating at peak performance and bandwidth.
+Before proceeding with more extensive system validation, it's important to ensure all components in the system are operating at peak performance and bandwidth by performing basic system health checks of the single node. Multi-node testing is covered in later sections.
 
 A typical Instinct GPU server architecture consists of the following components:
 
@@ -200,3 +200,11 @@ sudo dmesg -T | grep -i 'error\|warn\|fail\|exception'
   - **Action:** Do not proceed. Analyze each message and troubleshoot accordingly.
 
 See the [technical support reference](../reference/rocm-techsupport.md) for information on the `rocm_techsupport.sh` script utility, which collects system logs for support and troubleshooting.
+
+## Automated Health Checks with the Cluster Validation Suite
+
+Checking kernel parameters, system configuration settings, system memory, and driver errors can be automated using the AMD [Cluster Validation Suite](https://rocm.docs.amd.com/projects/cvs/en/latest/).
+
+Before running any health or configuration tests, ensure that the `cvs/input/config_file/platform/host_config.json` file is correctly configured for your environment.
+
+After [installing the test suite](https://rocm.docs.amd.com/projects/cvs/en/latest/install/cvs-install.html), run the host configuration test script as described in the ROCm documentation page *Run Cluster Validation Suite Tests* under the [Platform Test Script](https://rocm.docs.amd.com/projects/cvs/en/latest/how-to/run-cvs-tests.html#platform-test-script) section.

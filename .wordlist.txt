@@ -1,15 +1,18 @@
 ACS
+AER
 agfhc
 AGFHC
 agg
 ainic
 AITER
 algbw
+AllGather
 Allreduce
 AllReduce
 amd
 amdgpu
 AMI
+ANP
 ARI
 APBDIS
 api
@@ -41,6 +44,7 @@ bfsort
 BiDi
 BiDir
 biosdevname
+BIOSes
 BKC
 BMC
 Bootloader
@@ -82,6 +86,7 @@ CX
 CXXFLAGS
 Datacenter
 DCGPU
+DLC
 dcqcn
 DCQCN
 De
@@ -99,6 +104,7 @@ dnf
 dpkg
 dracut
 ds
+durations
 dscp
 DSCP
 DUP
@@ -131,8 +137,10 @@ GFLOPs
 gfortran
 gfx
 GFX
+GMI
 GPUP
 GPUs
+GPU's
 GRand
 GST
 gtu
@@ -147,6 +155,7 @@ hclib
 HDDs
 HGEMM
 HPC
+hyperthreading
 HPE
 HPL
 HSA
@@ -174,6 +183,7 @@ ipv
 iso
 iters
 json
+JAX
 JSON
 KASLR
 KERNARG
@@ -313,6 +323,7 @@ QoS
 Radeon
 rccl
 RCCL
+reachability
 rdma
 RDMA
 README
@@ -320,6 +331,7 @@ realloc
 Redfish
 redop
 repo
+Resizable
 reproducibility
 reseat
 reseating
@@ -342,6 +354,7 @@ salina
 scp
 sd
 SGEMM
+SGLang
 SIG
 sigtrap
 SMI
@@ -400,6 +413,8 @@ uuid
 UUID
 uuids
 VBIOS
+vLLM
+VRMs
 warmup
 wget
 WR
