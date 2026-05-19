@@ -1,5 +1,6 @@
 .venv
 .vscode
+.cline_storage
 
 # documentation artifacts
 _build/
