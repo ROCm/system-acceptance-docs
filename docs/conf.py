@@ -11,7 +11,7 @@ project = "AMD Instinct Customer Acceptance Guide"
 
 # Disable external projects to avoid GitHub API issues
 external_projects_remote_repository = ""
-external_projects_current_project = "system-acceptance-docs"
+external_projects_current_project = os.environ.get("SPHINX_PROJECT_SLUG", "system-acceptance-docs")
 
 version = "1.0.0"
 release = version
