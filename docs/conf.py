@@ -52,6 +52,10 @@ EXCLUDED_DIRS = {
     ".venv",
 }
 
+EXCLUDED_FILES = {
+    "notices.md",
+}
+
 MARKUP_PREFIXES = (
     ":::",
     "```{",
@@ -85,7 +89,10 @@ MIN_PROSE_LINES = 10
 
 
 def should_skip(path: Path) -> bool:
-    return any(part in EXCLUDED_DIRS for part in path.parts)
+    return (
+        any(part in EXCLUDED_DIRS for part in path.parts)
+        or path.name in EXCLUDED_FILES
+    )
 
 
 def is_prose_line(line: str) -> bool:
