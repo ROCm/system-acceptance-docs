@@ -31,26 +31,76 @@ The following tables provide estimated test durations; however, these estimates 
 
 ### Single Node Tests
 
-| Test | Estimated Duration |
-| --- | --- |
-| CVS Configuration Checker | 12 Minutes |
-| AGFHC all_lvl5 | 2 Hours |
-| AGFHC hbm_lvl5 | 4 Iterations, 8 Hours |
-| AGFHC gfx_lvl4 | 1 Hour |
-| AGFHC minihpl | 3 Hours |
-| AGFHC xgmi_lvl1 | 5 Minutes |
-| AGFHC pcie_lvl2 | 10 Minutes |
-| Single Node RCCL | 2 to 11 Minutes |
-| Optional TransferBench | 2 Hours |
-| Optional Llama 3.1 70B | 1 to 24 Hours |
+```{list-table}
+:header-rows: 1
+
+* - Test
+  - Estimated Duration
+* - CVS Configuration Checker
+  - 12 Minutes
+* - AGFHC all_lvl5
+  - 6 Hours
+* - AGFHC hbm_lvl5
+  - 4 Iterations, 8 Hours
+* - AGFHC gfx_lvl4
+  - 1 Hour
+* - AGFHC minihpl
+  - 4 Hours
+* - AGFHC xgmi_lvl1
+  - 5 Minutes
+* - AGFHC pcie_lvl2
+  - 10 Minutes
+* - Single Node RCCL
+  - 11 Minutes
+* - rocHPL
+  - 12 hours
+* - Optional TransferBench
+  - 2 Hours
+* - Optional Llama 3.1 70B, Megatron, JAX, Deepseek
+  - 2-3 sets for 24 Hours (contact AMD representative to get specific recipes for target use-case/customer).
+```
 
 ### Multi-Node Tests
 
-| Test | Estimated Duration |
-| --- | --- |
-| OFED Performance Tests | 2 Hours |
-| Multi-node RCCL | 10 Minutes |
-| Llama 3.1 405B with JAX | 1 Hour |
+```{list-table}
+:header-rows: 1
+
+* - Test
+  - Estimated Duration
+* - Mesh/Ping test
+  - Every node and link is accessible.
+* - OFED Performance Tests
+  - Run the following tests for a total duration of 2 hours each:
+
+    * ib_write_bw
+    * ib_send_bw
+    * ib_write_lat
+    * ib_send_lat
+    * ib_read_lat
+
+    Testing should include GPU-to-adjacent-NIC pairs, NIC-to-NIC (through switch), and GPU-to-GPU (through switch, with the `-use_rocm` flag).
+* - JAX/Megatron with Llama 3.1 405B/DeepseekV3
+  - 2-3 sets of up to 128N for 24 hours with checkpointing (contact AMD representative to get specific recipes for target use-case/customer).
+* - Multi-Node RCCL
+  - Run the following tests on the full cluster, including nodes that span the network architecture end to end, for a total duration of 10 hours:
+    
+    * all_reduce_perf
+    * all_gather_perf
+    * scatter_perf
+    * gather_perf
+    * reduce_scatter_perf
+    * sendrecv_perf
+    * alltotall_perf
+    * alltoallv_perf 
+* - rocBLAS FP32 GEMM
+  - See [System Validation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-validation.html#summary-of-required-benchmarks).
+* - rocBLAS BF16
+  - See [System Validation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-validation.html#summary-of-required-benchmarks).
+* - rocBLAS INT8
+  - See [System Validation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-validation.html#summary-of-required-benchmarks).
+* - Babelstream
+  - See [System Validation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-validation.html#summary-of-required-benchmarks).
+```
 
 ### Cluster Validation Suite
 
