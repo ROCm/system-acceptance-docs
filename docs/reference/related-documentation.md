@@ -23,7 +23,7 @@ setup the system and run the tests in this guide.
 - [RVS user guide](https://github.com/ROCm/ROCmValidationSuite/blob/master/docs/ug1main.md)
 - [RVS modules](https://rocm.docs.amd.com/projects/ROCmValidationSuite/en/latest/conceptual/rvs-modules.html)
 - [TransferBench repository](https://github.com/ROCm/TransferBench)
-- [TransferBench how to guide](transferbench:how%20/use-transferbench)
+- [TransferBench how to guide](https://rocm.docs.amd.com/projects/TransferBench/en/latest/how%20to/use-transferbench.html)
 - [TransferBench example configuration](https://github.com/ROCm/TransferBench/blob/develop/examples/example.cfg)
 - [RCCL repository](https://github.com/ROCm/rccl)
 - [RCCL Tests repository](https://github.com/ROCm/rccl-tests/tree/develop)

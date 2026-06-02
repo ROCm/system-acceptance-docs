@@ -38,3 +38,5 @@ extensions = ["rocm_docs"]
 external_toc_path = "./sphinx/_toc.yml"
 
 exclude_patterns = ['.venv']
+# Add anchors to headings up to level 4
+myst_heading_anchors = 4
