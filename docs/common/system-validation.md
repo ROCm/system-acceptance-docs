@@ -47,7 +47,7 @@ The `rvs` has two different types of modules to validate the Compute subsystem. 
 - [Properties](#gpu-properties)
 - [Benchmark / Stress / Qualification](#benchmark-stress-qualification)
 
-MI300X GPU accelerators have many architectural features. Similar to the [Check GPU presence (lspci)](../mi300x/health-checks.md#check-gpu-presence-lspci) section, `rvs` has an option to display all MI300X GPU accelerators present in the SUT. Before
+MI300X GPU accelerators have many architectural features. Similar to the [Check GPU presence (lspci)](health-checks.md#check-gpu-presence) section, `rvs` has an option to display all MI300X GPU accelerators present in the SUT. Before
 proceeding with the modules below, run the following command to make sure all the GPUs are seen with their correct PCIe properties.
 
 Command:
@@ -380,7 +380,7 @@ grep "bandwidth" mem.txt
 
 #### BABEL
 
-Refer to the [BabelStream section](mi300x-bench-babelstream.md) for instructions on how to run this module to test memory.
+Refer to the [BabelStream section](#babelstream) for instructions on how to run this module to test memory.
 
 ### IO
 
@@ -870,10 +870,10 @@ For comprehensive instructions, test scope, and result interpretation, refer to 
 
 High level test summary:
 
-- **PCIe Subsystem:** Tests PCIe link status, speed, width, and stress bandwidth (host-to-device, device-to-host, and bidirectional).
-- **Memory Subsystem:** Exercises and validates HBM (High Bandwidth Memory) through stress tests such as bandwidth, dual stream, and random access patterns.
-- **Compute Subsystem:** Runs compute kernels at various data types and loads, verifying the stability and peak capability of the GPU compute units.
-- **Power and Thermal:** Max power and sustained stress kernels help uncover errors that show up under load.
+- **PCIe Subsystem:** Tests PCIe link status, speed, width, and stress bandwidth (host-to-device, device-to-host, and bidirectional).
+- **Memory Subsystem:** Exercises and validates HBM (High Bandwidth Memory) through stress tests such as bandwidth, dual stream, and random access patterns.
+- **Compute Subsystem:** Runs compute kernels at various data types and loads, verifying the stability and peak capability of the GPU compute units.
+- **Power and Thermal:** Max power and sustained stress kernels help uncover errors that show up under load.
 
 Extended information:
 
@@ -929,9 +929,9 @@ Program exiting with return code AGFHC_SUCCESS [0]
 This test should be run twice to better exercise the HBM memory ensuring no ECC exceptions are present.
 ```
 
-- **HBM Bandwidth:** Measures and stresses memory read/write throughput.
-- **HBM Data Patterns:** Performs wide pattern tests (dual stream, single/dual stream random, and sequential).
-- **Memory Error Detection:** Looks for correctable/uncorrectable errors under load—useful for catching early DIMM or silicon issues.
+- **HBM Bandwidth:** Measures and stresses memory read/write throughput.
+- **HBM Data Patterns:** Performs wide pattern tests (dual stream, single/dual stream random, and sequential).
+- **Memory Error Detection:** Looks for correctable/uncorrectable errors under load—useful for catching early DIMM or silicon issues.
 
 Extended information
 
@@ -1140,12 +1140,12 @@ Each run generates detailed logs and a summary JSON file (typically named result
 "tests": [
     {"name": "pcie_link_status", "result": "PASS"},
     {"name": "hbm_bw", "result": "PASS"},
-...
+    // ... additional test entries ...
 ]
 }
 ```
 
-If any result entry shows **FAIL**, that test did not pass.
+If any result entry shows **FAIL**, that test did not pass.
 
 #### Return Code
 
