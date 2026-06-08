@@ -79,6 +79,19 @@ The following tables provide estimated test durations; however, these estimates 
     * ib_read_lat
 
     Testing should include GPU-to-adjacent-NIC pairs, NIC-to-NIC (through switch), and GPU-to-GPU (through switch, with the `-use_rocm` flag).
+* - Storage Performance Test
+  - Run the following storage performance tests for 3 iterations each:
+    
+    * IOR
+    * FIO
+    * MDTEST
+    * IO500
+    * Smallfile
+    * MinIO Warp
+    * VectorDBBench
+    * GDSIO
+    * MLPerf Storage
+    * GenAI Perf
 * - JAX/Megatron with Llama 3.1 405B/DeepseekV3
   - 2-3 sets of up to 128N for 24 hours with checkpointing (contact AMD representative to get specific recipes for target use-case/customer).
 * - Multi-Node RCCL
