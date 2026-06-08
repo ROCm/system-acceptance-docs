@@ -1,6 +1,9 @@
 .venv
 .vscode
 
+# Local configuration file for esbonio extension
+pyproject.toml
+
 # AI assistant tool directories (personal, not project source)
 .claude/
 .cline/
