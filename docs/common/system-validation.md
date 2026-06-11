@@ -832,9 +832,8 @@ The tables below list the recommended and suggested AGFHC validation recipes alo
 | gfx_lvl4 | All AMD MI3xx Instinct™ models | 1 Hour | GPU stress test to hot spot test GPU needed for DLC systems |
 | sleep 300 sec. | | 5 Minutes, sixth iteration | For silicon to contract to widen any cracks |
 | minihpl | All AMD MI3xx Instinct™ models | 3 Hours | Search for voltage failures and stress HBM |
-| xgmi_lvl1 | All AMD MI3xx Instinct™ models | 5 Minutes | Check for link degradation |
 | pcie_lvl2 | All AMD MI3xx Instinct™ models | 10 Minutes | Check for link degradation |
-| Total | | | 14 Hours and 45 Minutes |
+| Total | | | 14 Hours and 40 Minutes |
 
 #### Recommended AGFHC Tests
 
