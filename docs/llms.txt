@@ -1,0 +1,40 @@
+# AMD Instinct Customer Acceptance Guide
+
+> A structured, repeatable methodology for configuring, validating, benchmarking, and baselining AMD Instinct GPU platforms at both single-node and multi-node (cluster) levels. Covers node validation, cluster networking, RDMA benchmarking, and acceptance criteria for HPC and AI workloads.
+
+## GPU platforms
+
+- [AMD Instinct MI355X](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/gpus/mi355x.html): MI355X-specific prerequisites, health checks, validation steps, and performance acceptance criteria.
+- [AMD Instinct MI350X](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/gpus/mi350x.html): MI350X-specific prerequisites, health checks, validation steps, and performance acceptance criteria.
+- [AMD Instinct MI325X](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/gpus/mi325x.html): MI325X-specific requirements, specifications, and acceptance testing criteria.
+- [AMD Instinct MI300X](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/gpus/mi300x.html): MI300X-specific requirements, specifications, and acceptance testing criteria.
+
+## Node validation
+
+- [System prerequisites](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/prerequisites.html): System requirements common to all AMD Instinct GPU models.
+- [Firmware updates](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/firmware-updates.html): Supported methods for updating GPU runtime firmware and system firmware on AMD Instinct platforms.
+- [BIOS settings](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/bios-settings.html): BIOS configuration settings common to all AMD Instinct GPU models.
+- [Kernel parameters](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/kernel-parameters.html): GRUB and kernel parameter settings common to all AMD Instinct GPU models.
+- [OS tuning](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/os-tuning.html): C-states, NUMA configuration, and environment variables for AMD Instinct GPU systems.
+- [System setup](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-setup.html): Preparing, installing, and validating the ROCm software stack on AMD Instinct GPU systems.
+- [Health checks](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/health-checks.html): Basic system health checks to verify components are operating at peak performance before extensive validation.
+- [System validation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/system-validation.html): RVS, AGFHC, and additional tools for validating AMD Instinct GPU systems.
+- [Workload validation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/workload-validation.html): Validate AI model performance, including LLMs, on AMD Instinct systems.
+- [RCCL benchmarking](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/common/rccl-benchmarking.html): Benchmark and validate RCCL collective communication performance for single-node and multi-node configurations.
+
+## Cluster and network validation
+
+- [NIC driver installation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/network/nic-installation.html): Vendor-specific guidance for installing and configuring NIC drivers and supporting software.
+- [Network configuration](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/network/configuration.html): Configure network routing to ensure each backend interface is used exclusively for GPU-driven cluster communications.
+- [Topology mapping](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/network/topology-mapping.html): Map GPUs and NICs by NUMA node and PCIe root complex to minimize latency for RDMA and AI/HPC workloads.
+- [Network optimization](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/network/optimization.html): NIC performance optimization for cluster networking.
+- [RDMA benchmarking](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/network/rdma-benchmarking.html): Validate RDMA performance and reliability, including link speed verification, RDMA benchmarks, and RCCL collective operations.
+- [Cluster validation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/network/validation.html): Multi-node network and cluster validation for data throughput and cluster efficiency.
+
+## Reference
+
+- [Related documentation](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/reference/related-documentation.html): Reference documents and links for system setup and test execution.
+- [Glossary](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/reference/glossary.html): Terms and definitions used throughout this guide.
+- [ROCm technical support](https://instinct.docs.amd.com/projects/system-acceptance/en/latest/reference/rocm-techsupport.html): Collect logs using the rocm_techsupport.sh utility for troubleshooting.
+
+---
