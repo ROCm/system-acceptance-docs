@@ -6,9 +6,11 @@ subtrees:
     - file: gpus/mi355x.md
     - file: gpus/mi350x.md
     - file: gpus/mi325x.md
-    - file: gpus/mi300x.md
+    - file: gpus/mi300x.md  
     - file: gpus/mi300a.md    
     - file: gpus/mi210.md
+    - file: gpus/mi100.md
+
 
   - caption: System Configuration
     entries:
