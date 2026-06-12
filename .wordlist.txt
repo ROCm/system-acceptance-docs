@@ -213,6 +213,7 @@ lsmem
 lsof
 lspci
 LTS
+LUMI
 lvl
 makefile
 maxBytes
