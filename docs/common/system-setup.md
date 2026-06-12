@@ -24,5 +24,5 @@ Basic checks (consult ROCm docs for expanded diagnostics):
 cat /opt/rocm/.info/version
 
 # Validate installed version
-amd-smi --version
+amd-smi version
 ```

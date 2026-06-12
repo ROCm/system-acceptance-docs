@@ -64,10 +64,10 @@ Prerequisite: Driver & Tools version needs to match the firmware version.
 
    ```bash
    # Single card reset
-   nicctl reset card -c <card_uuid>
+   sudo nicctl reset card -c <card_uuid>
 
    # or reset all cards
-   nicctl reset card –all
+   sudo nicctl reset card –all
    ```
 
 Firmware and software updates are complete.
