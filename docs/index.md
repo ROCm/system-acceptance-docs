@@ -138,6 +138,7 @@ Start by selecting the page for the specific GPU accelerator you are validating.
 - **[AMD Instinct MI350X](gpus/mi350x.md)**
 - **[AMD Instinct MI325X](gpus/mi325x.md)**
 - **[AMD Instinct MI300X](gpus/mi300x.md)**
+- **[AMD Instinct MI300A](gpus/mi300a.md)**
 - **[AMD Instinct MI210](gpus/mi210.md)**
 
 Follow the GPU page end‑to‑end; it will walk you through verifying system prerequisites, running health checks, executing validation suites and microbenchmarks, and applying acceptance criteria thresholds.

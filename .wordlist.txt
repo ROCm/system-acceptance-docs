@@ -17,6 +17,8 @@ ARI
 APBDIS
 api
 APIC
+APU
+APUs
 args
 arp
 aspm
@@ -137,6 +139,7 @@ GFLOPs
 gfortran
 gfx
 GFX
+GiB
 GMI
 GPUP
 GPUs
@@ -160,6 +163,7 @@ HPE
 HPL
 HSA
 hugepage
+hugepages
 ib
 ibdiagnet
 ibstat
