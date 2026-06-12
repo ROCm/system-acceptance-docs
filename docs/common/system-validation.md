@@ -612,6 +612,11 @@ Pass if bus bandwidth (large message, ~8 GB) ≥ 304 GB/s.
 
 ### rocBLAS GEMM Benchmarks
 
+For installation, review rocBLAS documentation:
+
+- [Linux installation](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/install/Linux_Install_Guide.html)
+- [Windows installation](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/install/Windows_Install_Guide.html)
+
 Run each until peak (stable) TFLOPS observed. Capture highest achieved value.
 
 FP32:
@@ -696,7 +701,7 @@ For complete details, extended guidance, and troubleshooting tips, consult the *
 
 ### AGFHC Installation
 
-For AGFHC installation steps consult the AMD GPU Field Health Check (AGFHC) User Guide (UG-58416) on the [AMD Technical Information Portal](https://docs.amd.com/).
+Reach out to your AMD customer success team for specific installation steps regarding AGFHC.
 
 The ROCm Validation suite (RVS) is a prerequisite of AGFHC. Make sure that this is installed as of the ROCm software installation. For example, on Ubuntu:
 
