@@ -139,6 +139,7 @@ Start by selecting the page for the specific GPU accelerator you are validating.
 - **[AMD Instinct MI325X](gpus/mi325x.md)**
 - **[AMD Instinct MI300X](gpus/mi300x.md)**
 - **[AMD Instinct MI300A](gpus/mi300a.md)**
+- **[AMD Instinct MI250 / MI250X](gpus/mi250.md)**
 - **[AMD Instinct MI210](gpus/mi210.md)**
 - **[AMD Instinct MI100](gpus/mi100.md)**
 
