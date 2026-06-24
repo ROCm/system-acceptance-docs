@@ -8,28 +8,42 @@ Configuring the correct kernel command-line parameters is essential for stable o
 
 ## GRUB Configuration Steps
 
-The following steps are for Ubuntu-based systems:
-
+````{tab-set}
+```{tab-item} Ubuntu / Debian
 1. Open `/etc/default/grub` with root privileges.
 2. Locate the line starting with `GRUB_CMDLINE_LINUX`.
 3. Append all required and recommended parameters to this line.
 4. Save the file and apply changes:
 
-   ```bash
-   sudo update-grub
-   ```
+       sudo update-grub
 
 5. Reboot the system for changes to take effect.
-6. Verify the active kernel parameters:
+```
 
-   ```bash
-   cat /proc/cmdline
-   ```
-
-```{note}
-For RHEL-based systems, use the grubby tool instead of editing GRUB directly:
+```{tab-item} RHEL / Rocky / AlmaLinux
+Use the `grubby` tool instead of editing GRUB directly:
 
     sudo grubby --update-kernel=ALL --args="pci=bfsort pci=realloc=off iommu=pt numa_balancing=disable modprobe.blacklist=amdgpu"
+
+Then reboot.
+```
+
+```{tab-item} SLES
+1. Open `/etc/default/grub` with root privileges.
+2. Locate the line starting with `GRUB_CMDLINE_LINUX_DEFAULT`.
+3. Append all required and recommended parameters to this line.
+4. Save the file and apply changes:
+
+       sudo grub2-mkconfig -o /boot/grub2/grub.cfg
+
+5. Reboot the system for changes to take effect.
+```
+````
+
+Verify the active kernel parameters after rebooting:
+
+```bash
+cat /proc/cmdline
 ```
 
 ## Kernel Parameters
@@ -66,7 +80,7 @@ Depending on your specific environment and workload requirements, additional ker
 | `processor.max_cstate=0` | Limits the CPU to the active state, making the CPU more responsive. This setting is highly recommended when prioritizing performance. |
 | `biosdevname=0` | Disables predictable system devices naming. This decreases boot time and has minimal performance increase. |
 | `quiet` | Reduces the number of messages logged to dmesg to only the critical messages. |
-| `transparent_hugepage=always` | Allows applications to automatically allocate huge (2MB) memory pages without application changes. This allows for faster memory allocation and easier memory management at the cost of increased RAM usage. This feature may reduce performance if RAM is constrained. |
+| `transparent_hugepage=always` | **Required on MI300A APU.** On the MI300A, the unified CPU+GPU shared-memory model requires transparent huge pages for correct and performant operation. On discrete OAM systems (MI300X, MI325X, MI350X, MI355X) this is optional: it allows applications to automatically allocate 2 MB pages without application changes, but may reduce performance if RAM is constrained. |
 | `tsc=nowatchdog` | The kernel stops periodically checking TSC accuracy, reducing background activity and optimizing performance. |
 | `nmi_watchdog=0` | Disables the NMI watchdog that detects hard lockups. Disabling this improves high-performance and low-latency workloads. |
 | `nowatchdog` | Disables the kernel's soft and hard lockup watchdog timers, which are normally used to detect and recover from CPU hangs. While this can slightly improve performance by reducing monitoring overhead, it removes a key safeguard against system lockups, making debugging and stability tracking more difficult. |

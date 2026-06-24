@@ -8,6 +8,10 @@ Operating system tuning is essential for achieving optimal performance with AMD 
 
 For all BIOS-level optimizations that complement these OS settings, refer to the [BIOS Settings](bios-settings.md) guide.
 
+```{note}
+The AMD Instinct MI300A APU uses a unified CPU+GPU shared-memory architecture that requires additional OS-level configuration not covered in this page. If you are working with MI300A systems, see the [APU-specific OS tuning](../gpus/mi300a.md#apu-specific-os-tuning) section in the MI300A page before proceeding.
+```
+
 ## C-states Configuration
 
 ### C-state Definitions
@@ -20,11 +24,25 @@ For all BIOS-level optimizations that complement these OS settings, refer to the
 
 If C-states must be enabled in BIOS, it's recommended to disable the C2 state to reduce latency, which is particularly important for high-performance networking.
 
-```bash
-# Install cpupower tool
-sudo apt install linux-tools-common
+First, install the `cpupower` tool. The package name varies by distribution:
 
-# Disable power-gating on all cores (disable C2 state)
+````{tab-set}
+```{tab-item} Ubuntu
+sudo apt install linux-tools-common
+```
+
+```{tab-item} RHEL
+sudo yum install cpupowerutils
+```
+
+```{tab-item} SLES
+sudo zypper install cpupower
+```
+````
+
+Then disable power-gating on all cores:
+
+```bash
 cpupower idle-set -d 2
 ```
 
@@ -56,6 +74,28 @@ cat /proc/sys/kernel/numa_balancing
 
 > **Note**: Disabling NUMA balancing should be done cautiously and tested in controlled environments first.
 
+### Persist NUMA balancing setting across kernel updates
+
+Kernel updates can re-enable NUMA balancing. To ensure the setting is always applied at boot, add a cron job for the root user:
+
+```bash
+sudo crontab -e
+```
+
+Add the following line:
+
+```bash
+@reboot sh -c 'echo 0 > /proc/sys/kernel/numa_balancing'
+```
+
+Verify the setting after the next reboot:
+
+```bash
+cat /proc/sys/kernel/numa_balancing
+```
+
+A value of `0` confirms NUMA balancing is disabled.
+
 ## Kernel Parameters for Performance
 
 For recommended kernel parameters, refer to the [Kernel Parameters](kernel-parameters.md) document.
@@ -85,11 +125,24 @@ echo "export HSA_OVERRIDE_CPU_AFFINITY_DEBUG=0" | sudo tee -a /etc/environment
 
 ## IOMMU Configuration for Large Systems
 
-For systems with 256 logical CPU cores or more, configure the kernel for IOMMU passthrough mode:
+For systems with 256 logical CPU cores or more, setting IOMMU to `disabled` in the BIOS can limit the available logical cores to 255. The reason is that the Linux kernel disables X2APIC in this case and falls back to the Advanced Programmable Interrupt Controller (APIC), which can only enumerate a maximum of 255 logical cores.
 
-1. **Kernel Parameters**: Add `iommu=pt` to GRUB arguments
-2. **Apply Changes**: Update GRUB and reboot
-3. **Verification**: Check with `dmesg | grep iommu`
+If SMT is enabled (`CCD/Core/Thread Enablement > SMT Control` set to `enable`), apply the following steps to expose all logical cores:
+
+1. In the server BIOS, set IOMMU to **Enabled**.
+2. Add `iommu=pt` to `GRUB_CMDLINE_LINUX` in `/etc/default/grub`.
+3. Update GRUB and reboot.
+4. Verify IOMMU passthrough mode:
+
+   ```bash
+   dmesg | grep iommu
+   ```
+
+   Expected output includes:
+
+   ```text
+   [    0.000000] Kernel command line: [...] iommu=pt
+   ```
 
 ```{note}
 This kernel setting requires IOMMU to be enabled in the system BIOS. Refer to the [BIOS Settings](bios-settings.md) guide for details.

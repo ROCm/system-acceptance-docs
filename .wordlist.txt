@@ -2,6 +2,7 @@ ACS
 AER
 agfhc
 AGFHC
+allocatable
 agg
 ainic
 AITER
@@ -73,6 +74,7 @@ CNP
 completers
 conf
 config
+cron
 Config
 ConfigFile
 ConnectX
@@ -88,6 +90,7 @@ CX
 CXXFLAGS
 Datacenter
 DCGPU
+DDR
 DLC
 dcqcn
 DCQCN
@@ -99,6 +102,7 @@ DF
 DGEMM
 diags
 DIMM
+DIMMs
 dma
 DMA
 dmesg
@@ -172,6 +176,7 @@ ibv
 ibverbs
 iDRAC
 IET
+initrd
 iface
 ifname
 iLO
@@ -190,6 +195,7 @@ json
 JAX
 JSON
 KASLR
+KiB
 KERNARG
 kx
 Lenovo
@@ -274,6 +280,7 @@ OAM
 OAMs
 OCP
 OEM
+OOM
 OEMs
 OEM’s
 OFED
@@ -305,6 +312,7 @@ perl
 pfc
 Pid
 PID
+POR
 PLDM
 PLX
 Pollara
@@ -401,6 +409,7 @@ UBB
 ubuntu
 UCX
 UEFI
+UMC
 UDEV
 UG
 ulimit
