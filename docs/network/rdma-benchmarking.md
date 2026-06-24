@@ -150,7 +150,7 @@ Measurements are reported for bus bandwidth and in-place operations, for message
 
 ### RCCL Installation
 
-For running multi-node testing, rccl-tests need to be compiled with MPI support. The [GPU-enabled Message Passing Interface Guide](https://amdcloud.sharepoint.com/sites/DCGPUTME/Shared%20Documents/Documentation/Cluster%20Acceptance%20Test%20Guides/MI3xx%20Cluster%20Acceptance%20Test%20Guide/GPU-enabled%20Message%20Passing%20Interface) contains specific instructions for how to install a ROCm-aware MPI installation for RoCE and InfiniBand-based networks. Once OpenMPI is installed, install RCCL-tests with the following script:
+For running multi-node testing, rccl-tests need to be compiled with MPI support. The [GPU-enabled Message Passing Interface Guide](https://instinct.docs.amd.com/projects/gpu-cluster-networking/en/latest/how-to/gpu-enabled-mpi.html) contains specific instructions for how to install a ROCm-aware MPI installation for RoCE and InfiniBand-based networks. Once OpenMPI is installed, install RCCL-tests with the following script:
 
 ```bash
 # Define preferred paths for MPI and RCCL installations (ensure /lib/libmpi.so and /lib/librccl.so exist in both install paths)
