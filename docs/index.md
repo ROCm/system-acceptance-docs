@@ -54,9 +54,9 @@ The following tables provide estimated test durations; however, these estimates 
   - 11 Minutes
 * - rocHPL
   - 12 hours
-* - Optional TransferBench
+* - TransferBench
   - 2 Hours
-* - Optional Llama 3.1 70B, Megatron, JAX, Deepseek
+* - Llama 3.1 70B, Megatron, JAX, Deepseek
   - 2-3 sets for 24 Hours (contact AMD representative to get specific recipes for target use-case/customer).
 ```
 
