@@ -33,5 +33,5 @@ The following table contains terms and definitions used throughout this document
 | RVS | ROCm Validation Suite |
 | SGEMM | Single-precision General Matrix Multiply |
 | SUT | System Under Test |
-| TFLOPS | Tera Floating Point Operations Per Second |
+| GFLOPS | Giga Floating Point Operations Per Second |
 | xGMI | Inter-chip (x) Global Memory Interconnect |

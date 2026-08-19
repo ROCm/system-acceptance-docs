@@ -561,9 +561,9 @@ After completing the functional RVS validation (presence, health, memory, PCIe, 
 | GPU ↔ GPU (p2p) | TransferBench p2p | `TransferBench p2p` | Uni ≥ 33.9 GB/s; Bi ≥ 43.9 GB/s |
 | Mixed copy patterns | TransferBench example.cfg Test 1–6 | `TransferBench examples/example.cfg` | T1 47.1, T2 48.4, T3 (0→1) 31.9, T3 (1→0) 38.9, T4 1264, T6 48.6 GB/s (T5 N/A) |
 | Collective bus BW | RCCL all_reduce | `build/all_reduce_perf -b 8 -e 8G -f 2 -g 8` | 8‑GPU all_reduce bus BW ≥ 304 GB/s |
-| GEMM FP32 | rocBLAS FP32 GEMM | `rocblas-bench -f gemm -r s -m 4000 -n 4000 -k 4000 --lda 4000 --ldb 4000 --ldc 4000 --transposeA N --transposeB T` | ≥ 94,100 TFLOPS (peak achieved in any run) |
-| GEMM BF16 (strided batched) | rocBLAS BF16 | `rocblas-bench -f gemm_strided_batched_ex ... --a_type h ...` (see below) | ≥ 130,600 TFLOPS |
-| GEMM INT8 (strided batched) | rocBLAS INT8 | `rocblas-bench -f gemm_strided_batched_ex ... --a_type i8_r ...` | ≥ 162,700 TFLOPS |
+| GEMM FP32 | rocBLAS FP32 GEMM | `rocblas-bench -f gemm -r s -m 4000 -n 4000 -k 4000 --lda 4000 --ldb 4000 --ldc 4000 --transposeA N --transposeB T` | ≥ 94,100 GFLOPS (peak achieved in any run) |
+| GEMM BF16 (strided batched) | rocBLAS BF16 | `rocblas-bench -f gemm_strided_batched_ex ... --a_type h ...` (see below) | ≥ 130,600 GFLOPS |
+| GEMM INT8 (strided batched) | rocBLAS INT8 | `rocblas-bench -f gemm_strided_batched_ex ... --a_type i8_r ...` | ≥ 162,700 GFLOPS |
 | Memory STREAM-like ops | BabelStream Triad, etc. (8 GPUs) | `mpiexec -n 8 wrapper.sh` | Copy 4,177,285; Mul 4,067,069; Add 3,920,853; Triad 3,885,301; Dot 3,660,781 MB/s |
 
 ```{note}
@@ -617,7 +617,7 @@ For installation, review rocBLAS documentation:
 - [Linux installation](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/install/Linux_Install_Guide.html)
 - [Windows installation](https://rocm.docs.amd.com/projects/rocBLAS/en/latest/install/Windows_Install_Guide.html)
 
-Run each until peak (stable) TFLOPS observed. Capture highest achieved value.
+Run each until peak (stable) GFLOPS observed. Capture highest achieved value.
 
 FP32:
 
@@ -625,7 +625,7 @@ FP32:
 rocblas-bench -f gemm -r s -m 4000 -n 4000 -k 4000 --lda 4000 --ldb 4000 --ldc 4000 --transposeA N --transposeB T
 ```
 
-Pass: ≥ 94,100 TFLOPS.
+Pass: ≥ 94,100 GFLOPS.
 
 BF16 (strided batched):
 
@@ -633,7 +633,7 @@ BF16 (strided batched):
 rocblas-bench -f gemm_strided_batched_ex --transposeA N --transposeB T -m 1024 -n 2048 -k 512 --a_type h --lda 1024 --stride_a 4096 --b_type h --ldb 2048 --stride_b 4096 --c_type s --ldc 1024 --stride_c 2097152 --d_type s --ldd 1024 --stride_d 2097152 --compute_type s --alpha 1.1 --beta 1 --batch_count 5
 ```
 
-Pass: ≥ 130,600 TFLOPS.
+Pass: ≥ 130,600 GFLOPS.
 
 INT8 (strided batched):
 
@@ -641,7 +641,7 @@ INT8 (strided batched):
 rocblas-bench -f gemm_strided_batched_ex --transposeA N --transposeB T -m 1024 -n 2048 -k 512 --a_type i8_r --lda 1024 --stride_a 4096 --b_type i8_r --ldb 2048 --stride_b 4096 --c_type i32_r --ldc 1024 --stride_c 2097152 --d_type i32_r --ldd 1024 --stride_d 2097152 --compute_type i32_r --alpha 1.1 --beta 1 --batch_count 5
 ```
 
-Pass: ≥ 162,700 TFLOPS.
+Pass: ≥ 162,700 GFLOPS.
 
 ### BabelStream
 
