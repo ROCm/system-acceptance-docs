@@ -3,6 +3,7 @@ defaults:
   titlesonly: true
 subtrees:
   - entries:
+    - file: gpus/mi455x.md
     - file: gpus/mi355x.md
     - file: gpus/mi350x.md
     - file: gpus/mi325x.md
