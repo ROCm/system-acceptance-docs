@@ -439,4 +439,5 @@ xf
 xgmi
 xGMI
 yml
-ztsGiga
+zts
+Giga
