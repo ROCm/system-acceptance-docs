@@ -37,9 +37,11 @@ html_theme_options = {
 
 extensions = ["rocm_docs"]
 
+html_static_path = ["_static"]
+html_css_files = ["no-reveal.css"]
+
 # Table of contents
 external_toc_path = "./sphinx/_toc.yml"
-
 exclude_patterns = ['.venv']
 
 # Add anchors to headings up to level 4
