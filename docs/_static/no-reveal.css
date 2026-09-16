@@ -1,0 +1,6 @@
+/* Disable instinct-design scroll-reveal animation: render all content immediately */
+.bd-main section[id] {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+}

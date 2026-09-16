@@ -23,7 +23,7 @@ copyright = "Copyright (c) 2025 Advanced Micro Devices, Inc. All rights reserved
 # Required settings
 html_theme = "rocm_docs_theme"
 html_theme_options = {
-    "flavor": "instinct",
+    "flavor": "instinct-design",
     "link_main_doc": True,
     "use_download_button": True,
     "nav_secondary_items": {
@@ -36,9 +36,11 @@ html_theme_options = {
 
 extensions = ["rocm_docs"]
 
+html_static_path = ["_static"]
+html_css_files = ["no-reveal.css"]
+
 # Table of contents
 external_toc_path = "./sphinx/_toc.yml"
-
 exclude_patterns = ['.venv']
 
 # Add anchors to headings up to level 4
