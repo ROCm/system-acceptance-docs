@@ -22,6 +22,7 @@ subtrees:
       - file: common/health-checks.md
       - file: common/os-tuning.md
       - file: common/system-validation.md
+      - file: common/xgmi-topology.md
       - file: common/rccl-benchmarking.md
       - file: common/workload-validation.md
       - file: common/firmware-updates.md      
