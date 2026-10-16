@@ -182,6 +182,7 @@ ifname
 iLO
 InfiniBand
 intra
+io
 IOD
 iommu
 IOMMU
@@ -387,6 +388,7 @@ SUT
 SVM
 sw
 sys
+sysfs
 sysctl
 tcl
 TDP
