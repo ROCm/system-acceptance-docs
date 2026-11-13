@@ -190,7 +190,7 @@ requests==2.34.2
     #   pygithub
     #   rocm-docs-core
     #   sphinx
-rocm-docs-core[llms]==1.41.0
+rocm-docs-core[llms]==1.42.0
     # via -r requirements.in
 roman-numerals==4.1.0
     # via sphinx
